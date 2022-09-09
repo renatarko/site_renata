@@ -1,7 +1,11 @@
-import Document, { DocumentContext } from "next/document";
+import Document, {
+  Head,
+  Html,
+  DocumentContext,
+  Main,
+  NextScript,
+} from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import { Head, Html } from "next/document";
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -47,7 +51,10 @@ export default class MyDocument extends Document {
 
           <title>Renata Karolina</title>
         </Head>
-        <body></body>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
       </Html>
     );
   }
