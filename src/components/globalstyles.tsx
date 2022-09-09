@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-    color: ${({ theme }) => theme.colors.primary};
+    background: linear-gradient(1.25turn, #5d4f5fee, #39005c);;
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -18,6 +18,6 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;
