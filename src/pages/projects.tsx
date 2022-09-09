@@ -57,7 +57,19 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 1rem;
+  padding: 0px 1.5rem;
+
+  @media (max-width: 790px) {
+    padding: 0px 5rem;
+  }
+  @media (max-width: 545px) {
+    padding: 0px 2rem;
+  }
+  @media (max-width: 360px) {
+    padding: 0px 1rem;
+    gap: 20px;
+    justify-content: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -74,6 +86,14 @@ const ContainerGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
+
+  @media (max-width: 790px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 545px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ContainerCard = styled.a`
@@ -88,18 +108,23 @@ const ContainerCard = styled.a`
   &:hover > p {
     color: ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.secondary};
-    box-shadow: 0px 0px 10px 3px rgba(26, 17, 24, 0.2);
+    font-weight: 600;
   }
 `;
 
-const Card = styled(Image)`
-  border: 3px solid #7d6883 !important;
-  border-radius: 10px !important;
+const Card = styled.div`
+  border: 3px solid rgb(221, 151, 219);
+  border-radius: 10px;
+  width: 230px;
+  height: 230px;
+
+  overflow: hidden;
+  object-fit: cover;
   cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
 `;
 
@@ -111,6 +136,10 @@ const Paragraph = styled.p`
   transition: all 0.3s;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 1.2rem;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 5px rgba(163, 67, 201, 0.2);
+  }
 `;
 
 export default function Projects() {
@@ -118,26 +147,27 @@ export default function Projects() {
     <Main>
       <Header>
         <Link href="/">
-          <a>
-            <FaArrowLeft color="rgb(232, 229, 233)" fontSize={30} />
-          </a>
+          <FaArrowLeft
+            color="rgb(232, 229, 233)"
+            fontSize={30}
+            cursor="pointer"
+          />
         </Link>
         <Title>Meus Projetos</Title>
       </Header>
       <ContainerGrid>
         {myProjects.map((project) => (
           <ContainerCard key={project.id} href={project.url} target="_blank">
-            <Card
-              className=""
-              src={project.image}
-              alt="projeto"
-              {...{
-                width: 230,
-                height: 230,
-                overFlow: "hidden",
-                objectFit: "cover",
-              }}
-            ></Card>
+            <Card>
+              <Image
+                src={project.image}
+                layout="fixed"
+                width={230}
+                height={230}
+                alt="projeto"
+              />
+            </Card>
+
             <Paragraph>{project.name}</Paragraph>
           </ContainerCard>
         ))}

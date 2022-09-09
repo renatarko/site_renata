@@ -11,15 +11,15 @@ const Main = styled.main`
   max-width: 800px;
 `;
 const Container = styled.div`
-  height: 85%;
-  width: 70%;
+  height: 100%;
+  width: 100%;
 
   background: transparent;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px 2px rgba(26, 17, 24, 0.2);
+  /* box-shadow: 0px 0px 10px 2px rgba(26, 17, 24, 0.2); */
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
