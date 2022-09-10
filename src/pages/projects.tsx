@@ -68,7 +68,6 @@ const Header = styled.header`
   @media (max-width: 360px) {
     padding: 0px 1rem;
     gap: 20px;
-    justify-content: center;
   }
 `;
 
@@ -77,6 +76,10 @@ const Title = styled.h1`
   text-transform: uppercase;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 2.2rem;
+
+  @media (max-width: 430px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ContainerGrid = styled.div`
