@@ -7,6 +7,7 @@ const FooterDiv = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0 1rem;
 
   @media (max-width: 655px) {
     a {
@@ -61,7 +62,7 @@ const FooterText = styled.p`
   font-size: 1rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: ${({ theme }) => theme.colors.secondary};
-  padding: 10px;
+  /* padding: 10px; */
 `;
 
 export default function Footer() {

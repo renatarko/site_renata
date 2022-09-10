@@ -3,12 +3,11 @@ import Link from "next/link";
 
 const Container = styled.div`
   width: 100%;
-  /* height: 50%; */
   padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3rem;
+  gap: 1.5rem;
   align-items: center;
   flex: 3;
 
@@ -25,6 +24,10 @@ const Container = styled.div`
   }
   @media (max-width: 432px) {
     padding: 0rem 1rem;
+
+    p {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -32,9 +35,14 @@ const TextPrimary = styled.p`
   width: 100%;
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
+  line-height: 2rem;
   color: ${({ theme }) => theme.colors.secondary};
   text-align: justify;
   display: flex;
+
+  @media (max-width: 320px) {
+    line-height: 1.8rem;
+  }
 `;
 
 const ContainerTextAndA = styled.div`
@@ -43,16 +51,6 @@ const ContainerTextAndA = styled.div`
   justify-content: space-around;
   align-items: center;
   gap: 30px;
-`;
-
-const TextSecundy = styled.span`
-  padding: 1rem;
-  /* border-radius: 10px 20px; */
-  width: 45%;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: ${({ theme }) => theme.colors.secondary};
-  text-align: justify;
 `;
 
 const LinkExtern = styled.a`
