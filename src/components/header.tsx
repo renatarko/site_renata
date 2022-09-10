@@ -43,7 +43,7 @@ const HeaderDiv = styled.div`
 const ImageAvatar = styled(Image)`
   width: 8rem;
   height: 8rem;
-  border-radius: 50%;
+  border-radius: 50% !important;
   border: 3px solid rgb(232, 229, 233) rgb(232, 229, 233) !important;
   padding: 4px !important;
 `;
