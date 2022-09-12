@@ -32,7 +32,7 @@ const myProjects = [
     id: 5,
     name: "Calculadora IMC",
     image: "/projects/5.png",
-    url: "",
+    url: "https://calculadoraimcapp.netlify.app/",
   },
   {
     id: 6,
