@@ -38,7 +38,7 @@ const myProjects = [
     id: 6,
     name: "Site Empresa",
     image: "/projects/6.png",
-    url: "biancoea.netlify.app/",
+    url: "https://biancoea.netlify.app/",
   },
 ];
 
