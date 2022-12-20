@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-    background: linear-gradient(1.25turn, #5d4f5fee, #39005c);;
+    /* background: linear-gradient(1.25turn, #5d4f5fee, #39005c); */
+    background: ${({ theme }) => theme.colors.primary};
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   a {

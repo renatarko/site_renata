@@ -2,6 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
+import { TbWorld } from "react-icons/tb";
+import { IconBase } from "react-icons";
 
 const myProjects = [
   {
@@ -53,11 +55,12 @@ const Main = styled.main`
 
 const Header = styled.header`
   width: 100%;
-  height: 20%;
+  height: 4rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 1.5rem;
+  padding: 0 2rem;
 
   @media (max-width: 790px) {
     padding: 0px 5rem;
@@ -72,20 +75,20 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 2.2rem;
+  font-size: 1.3rem;
 
   @media (max-width: 430px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 `;
 
 const ContainerGrid = styled.div`
   display: grid;
   width: 100%;
-  height: 80%;
+  height: 60%;
+  margin-top: 5rem;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
@@ -102,7 +105,6 @@ const ContainerGrid = styled.div`
 const ContainerCard = styled.a`
   text-align: center;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -116,33 +118,40 @@ const ContainerCard = styled.a`
 `;
 
 const Card = styled.div`
-  border: 3px solid rgb(221, 151, 219);
+  width: 170px;
+  height: 170px;
+  background: #1d1d1d;
   border-radius: 10px;
-  width: 230px;
-  height: 230px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 0.8rem;
 
-  overflow: hidden;
-  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
     transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: #1d1d1d;
   }
 `;
 
+const Icon = styled(IconBase)`
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.colors.purpleLigth};
+`;
+
 const Paragraph = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
-  width: 80%;
-  padding: 5px;
+  color: ${({ theme }) => theme.colors.purpleLigth};
   border-radius: 10px;
   transition: all 0.3s;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1.2rem;
-
-  &:hover {
-    box-shadow: 0px 0px 10px 5px rgba(163, 67, 201, 0.2);
-  }
+  /* position: absolute;
+  top: 20px;
+  left: 30px; */
 `;
 
 export default function Projects() {
@@ -151,8 +160,8 @@ export default function Projects() {
       <Header>
         <Link href="/">
           <FaArrowLeft
-            color="rgb(232, 229, 233)"
-            fontSize={30}
+            color="rgb(130, 92, 168)"
+            fontSize={20}
             cursor="pointer"
           />
         </Link>
@@ -162,16 +171,19 @@ export default function Projects() {
         {myProjects.map((project) => (
           <ContainerCard key={project.id} href={project.url} target="_blank">
             <Card>
-              <Image
+              {/* <Image
                 src={project.image}
                 layout="fixed"
-                width={230}
-                height={230}
+                width={150}
+                height={150}
                 alt="projeto"
-              />
-            </Card>
+              /> */}
+              <Icon>
+                <TbWorld />
+              </Icon>
 
-            <Paragraph>{project.name}</Paragraph>
+              <Paragraph>{project.name}</Paragraph>
+            </Card>
           </ContainerCard>
         ))}
       </ContainerGrid>

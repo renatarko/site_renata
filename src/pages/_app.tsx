@@ -4,8 +4,13 @@ import GlobalStyle from "../components/globalstyles";
 
 const theme: DefaultTheme = {
   colors: {
-    primary: "#4a0376",
+    primary: "#1A1A1A",
     secondary: "rgb(232, 229, 233)",
+    purple: "rgb(130, 92, 168)",
+    purpleLigth: "rgb(221, 151, 219)",
+  },
+  fontFamily: {
+    poppins: "'Poppins', sans-serif",
   },
 };
 

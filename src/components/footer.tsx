@@ -7,7 +7,7 @@ const FooterDiv = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 2rem;
 
   @media (max-width: 655px) {
     a {
@@ -46,13 +46,13 @@ const ContainerButton = styled.section`
 `;
 
 const StyledA = styled.a`
-  color: rgb(130, 92, 168);
+  color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
   transition: all 0.2s;
   font-size: 2.2rem;
 
   &:hover {
-    color: rgb(221, 151, 219);
+    color: ${({ theme }) => theme.colors.purpleLigth};
     transform: scale(1.2);
   }
 `;
