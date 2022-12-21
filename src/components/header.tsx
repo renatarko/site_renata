@@ -1,6 +1,7 @@
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "./logo";
 
 const ContainerMenu = styled.div`
   width: 100%;
@@ -10,43 +11,10 @@ const ContainerMenu = styled.div`
   display: flex;
   aligm-items: center;
 
-  @media (max-width: 655px) {
-    h1 {
-      font-size: 2rem;
-    }
-  }
-
-  @media (max-width: 520px) {
-    h1 {
-      font-size: 1.8rem;
-    }
-  }
-
-  @media (max-width: 470px) {
-    h1 {
-      font-size: 1.4rem;
-      margin: 0;
-    }
-  }
-  @media (max-width: 432px) {
-    padding: 1rem;
-    flex-direction: column;
-
-    h1 {
-      font-size: 1.1rem;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  @media (max-width: 470px) {
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  @media (max-width: 650px) {
+    margin-top: 5rem;
   }
 `;
-
-const Logo = styled(Image)``;
 
 const Menu = styled.nav`
   width: 100%;
@@ -59,15 +27,27 @@ const MenuLink = styled.div`
   display: inline-flex;
   gap: 2rem;
   aligm-items: center;
+
+  @media (max-width: 650px) {
+   display: none;
+  }
 `;
 
 const LinkPage = styled.a`
   color: ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
-  transition: 0.2s;
+  transition: 0.4s;
+  font-weight: bold;
+  padding: 5px 0;
 
   :hover {
     color: ${({ theme }) => theme.colors.purpleLigth};
+    border-bottom: 2px solid ${({theme}) => theme.colors.purpleLigth};
+  }
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purpleLigth};
+    background: none;
   }
 `;
 
@@ -87,11 +67,6 @@ const LinkExtern = styled.a`
   }
 `;
 
-const StyledA = styled.a`
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 800;
-  text-transform: uppercase; ;
-`;
 
 const StyledLink = ({ href, name }) => (
   <Link href={href} passHref>
@@ -99,20 +74,21 @@ const StyledLink = ({ href, name }) => (
   </Link>
 );
 
-export default function Header(props) {
+export default function Header() {
   return (
     <ContainerMenu>
       <Menu>
-        <Logo
+        <Logo/>
+        {/* <Logo
           {...props}
           src="/assets/rk.png"
           layout="fixed"
           width={50}
           height={50}
-        />
+        /> */}
 
         <MenuLink>
-          <StyledLink href="/about" name="Sobre mim" />
+          <StyledLink href="/" name="Sobre mim" />
           <StyledLink href="/projects" name="Projetos" />
           <StyledLink href="/contact" name="Contato" />
         </MenuLink>

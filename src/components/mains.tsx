@@ -7,7 +7,7 @@ const Container = styled.div`
   padding: 2rem 2rem;
   display: flex;
   align-items: center;
-  margin-top: 5rem;
+  // margin-top: 5rem;
 
   @media (max-width: 655px) {
     a {
@@ -42,17 +42,32 @@ const ContainerText = styled.div`
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: 2.6rem;
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purpleLigth};
+    background: none;
+  }
 `;
 
 const SubTitle = styled.h1`
   font-size: 2.5rem;
   color: ${({ theme }) => theme.colors.purpleLigth};
   margin: 0;
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purple};
+    background: none;
+  }
 `;
 
 const Description = styled.p`
-  width: 700px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.secondary};
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purpleLigth};
+    background: none;
+  }
 
   @media (max-width: 320px) {
     line-height: 1.8rem;
@@ -93,8 +108,6 @@ const StyledLink = ({ href, name }) => (
 
 export default function Mains() {
   return (
-    <>
-      {" "}
       <Container>
         <ContainerText>
           <Title>
@@ -112,13 +125,11 @@ export default function Mains() {
           </Description>
 
           <ContainerTextAndA>
-            {/* <FaLongArrowAltRight color="#f5f5f5" fontSize={30} /> */}
             <LinkExtern>
               <StyledLink href="/projects" name="Projetos" />
             </LinkExtern>
           </ContainerTextAndA>
         </ContainerText>
       </Container>
-    </>
   );
 }
