@@ -7,15 +7,12 @@ const Main = styled.main`
   align-items: center;
   margin: 0px auto;
   width: 100%;
-  height: 100vh;
+  height: auto;
   max-width: 1200px;
 `;
 const Container = styled.div`
-  height: 100%;
+  height: auto;
   width: 100%;
-
-  /* background: transparent; */
-  /* box-shadow: 0px 0px 10px 2px rgba(26, 17, 24, 0.2); */
 
   display: flex;
   flex-direction: column;
