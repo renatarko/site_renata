@@ -5,7 +5,8 @@ const FooterDiv = styled.footer`
   height: 4rem;
   display: flex;
   align-items: center;
- 
+  position: absolute;
+  bottom: 0;
 `;
 
 const FooterText = styled.p`

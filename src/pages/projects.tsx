@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { IconBase } from "react-icons";
@@ -49,7 +48,7 @@ const Main = styled.main`
   flex-direction: column;
   margin: 0px auto;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   max-width: 800px;
 `;
 
@@ -62,7 +61,7 @@ const Header = styled.header`
   align-items: center;
   padding: 0 2rem;
 
-  @media (max-width: 790px) {
+  /* @media (max-width: 790px) {
     padding: 0px 5rem;
   }
   @media (max-width: 545px) {
@@ -71,7 +70,7 @@ const Header = styled.header`
   @media (max-width: 360px) {
     padding: 0px 1rem;
     gap: 20px;
-  }
+  } */
 `;
 
 const Title = styled.h1`
@@ -92,6 +91,7 @@ const ContainerGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
+  gap: 2rem;
 
   @media (max-width: 790px) {
     grid-template-columns: 1fr 1fr;
@@ -109,12 +109,6 @@ const ContainerCard = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  &:hover > p {
-    color: ${({ theme }) => theme.colors.primary};
-    background-color: ${({ theme }) => theme.colors.secondary};
-    font-weight: 600;
-  }
 `;
 
 const Card = styled.div`
@@ -123,7 +117,7 @@ const Card = styled.div`
   background: #1d1d1d;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  font-size: 0.8rem;
+  gap: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -138,9 +132,15 @@ const Card = styled.div`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background: #1d1d1d;
   }
+
+    &:hover > p {
+      padding: .3rem;
+      background: ${({theme}) => theme.colors.secondary};
+      color: ${({theme}) => theme.colors.purple}
+    }
 `;
 
-const Icon = styled(IconBase)`
+const IconWorld = styled(TbWorld)`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.purpleLigth};
 `;
@@ -149,21 +149,27 @@ const Paragraph = styled.p`
   color: ${({ theme }) => theme.colors.purpleLigth};
   border-radius: 10px;
   transition: all 0.3s;
-  /* position: absolute;
-  top: 20px;
-  left: 30px; */
+  font-size: .8rem;
 `;
+
+const IconBack = styled(FaArrowLeft)`
+  color: ${({theme}) => theme.colors.purple};
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    color: ${({theme}) => theme.colors.purpleLigth};
+   
+  }
+`
 
 export default function Projects() {
   return (
     <Main>
       <Header>
         <Link href="/">
-          <FaArrowLeft
-            color="rgb(130, 92, 168)"
-            fontSize={20}
-            cursor="pointer"
-          />
+          <IconBack/>
         </Link>
         <Title>Meus Projetos</Title>
       </Header>
@@ -171,17 +177,7 @@ export default function Projects() {
         {myProjects.map((project) => (
           <ContainerCard key={project.id} href={project.url} target="_blank">
             <Card>
-              {/* <Image
-                src={project.image}
-                layout="fixed"
-                width={150}
-                height={150}
-                alt="projeto"
-              /> */}
-              <Icon>
-                <TbWorld />
-              </Icon>
-
+              <IconWorld/>
               <Paragraph>{project.name}</Paragraph>
             </Card>
           </ContainerCard>

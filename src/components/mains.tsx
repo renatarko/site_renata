@@ -5,7 +5,7 @@ const Container = styled.div`
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  margin-top: 4rem;
+  margin-top: 6rem;
 
   @media (max-width: 655px) {
     a {

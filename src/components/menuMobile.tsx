@@ -112,8 +112,8 @@ export const StyledLink = ({ href, name }) => (
 
 export default function MenuMobile() {
 
-  const [isOpen, setIsOpen] = useState(true)
-  console.log(isOpen)
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
   <>
     <MenuIconOpen onClick={() => setIsOpen(true)}><FaBars /></MenuIconOpen>
