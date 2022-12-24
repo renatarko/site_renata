@@ -60,7 +60,7 @@ const Imagem = styled.img`
 `
 
 const Text = styled.h3`
-  display: flex;
+  display: none;
   width: 200px;
   color: ${({theme}) => theme.colors.purple};
   position: absolute;
