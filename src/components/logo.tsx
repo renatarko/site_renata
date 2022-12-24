@@ -60,40 +60,52 @@ const Imagem = styled.img`
 `
 
 const Text = styled.h3`
-  display: none;
+  display: flex;
   width: 200px;
   color: ${({theme}) => theme.colors.purple};
   position: absolute;
-  top: 5px;
+  top: 1.8rem;
+  left: 6rem;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`
+
+const hoverAnimationName = keyframes`
+  from {
+    width:15rem;
+    left: 20px;
+  }
+  to {
+    width: 15rem;
+    left: 6rem;
+    top: 1.8rem;
+  }
 `
 
 const ContentText = styled.div`
   display: flex;
   gap: 5px;
   position: relative;
-  transition: 2s;
+  transition: .5s;
 
   &:hover ${Text} {
     display: block;
-    left: 85px;
+    animation: ${hoverAnimationName} 1s;
   }
 `
 
 export default function Logo() {
   return (
-    <>
     <ContentText>
     <Box>
       <Content>
         <Imagem src="./assets/rk.png"></Imagem>
       </Content>
-      
-      </Box>
+    </Box>
       <Text>Renata Karolina</Text>
-    </ContentText>
-      
-    </>
-    
+    </ContentText>   
   )
 }
   
