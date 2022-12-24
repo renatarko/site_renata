@@ -19,27 +19,27 @@ const Container = styled.div`
 `;
 
 const ContainerText = styled.div`
-  width: 40rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
-  @media (max-width: 625px) {
-    width: 100%;
-  }
+  // @media (max-width: 705px) {
+  //   width: 30rem;
+  // }
 
-  @media (max-width: 510px) {
-    width: 20rem;
-  }
+  // @media (max-width: 510px) {
+  //   width: 20rem;
+  // }
 
-  @media (max-width: 340px) {
-    width: 100%;
-  }
+  // @media (max-width: 340px) {
+  //   width: 100%;
+  // }
 `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: 2.6rem;
+  font-size: 2rem;
   margin: 0;
 
   ::selection {
@@ -58,7 +58,7 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: ${({ theme }) => theme.colors.purpleLigth};
   margin: 0;
 
@@ -77,7 +77,7 @@ const SubTitle = styled.h2`
 `;
 
 const Description = styled.p`
-  width: 40rem;
+  width: 80%;
   color: ${({ theme }) => theme.colors.secondary};
 
   ::selection {
@@ -85,9 +85,9 @@ const Description = styled.p`
     background: none;
   }
 
-  @media (max-width: 625px) {
-    width: 100%;
-  }
+  // @media (max-width: 625px) {
+  //   width: 10rem;
+  // }
 
 `;
 
@@ -107,7 +107,7 @@ export default function Mains() {
             <br />
             <br /> Atualmente, desenvolvo projetos com a biblioteca React com
             seu ecossistema e o framework Next.js.
-          </Description>        
+          </Description>
       </Container>
   );
 }
