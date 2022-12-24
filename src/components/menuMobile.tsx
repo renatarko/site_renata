@@ -44,8 +44,8 @@ const IconMenuClose = styled.button`
     border: none;
     position: absolute;
     top: 0;
-    bottom:34rem;
-    right: 1.8rem;
+    bottom: 35rem;
+    right: 1rem;
     z-index: 10;
     cursor: pointer;
     
