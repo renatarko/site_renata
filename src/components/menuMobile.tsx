@@ -22,8 +22,8 @@ const MenuLink = styled.ul<MenuLinkProps>`
       bottom: 0;
       left: 0;
       background: ${({theme}) => theme.colors.secondary};
-      font-size: 1.5rem;
       height:100vh;
+      gap: 2rem;
       overflow: hidden;
       z-index: 10;
       transition: .5s;
@@ -43,7 +43,7 @@ const IconMenuClose = styled.button`
     position: absolute;
     top: 0;
     bottom:34rem;
-    right: .9rem;
+    right: 1.8rem;
     z-index: 10;
     cursor: pointer;
     
@@ -81,17 +81,19 @@ const LinkPage = styled.a`
   display: none;
 
   @media (max-width: 600px) {
+    font-size: 1.5rem;
     display: flex;
     color: ${({ theme }) => theme.colors.purple};
     text-transform: uppercase;
-    transition: 0.4s;
+    transition: 0.5s;
     font-weight: bold;
-    padding: 1rem;
+    padding: .5rem;
+    border-radius: 10px;
   }
 
   :hover {
-    color: ${({ theme }) => theme.colors.purpleLigth};
-    border-bottom: 2px solid ${({theme}) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({theme}) => theme.colors.purple};    
   }
 
   ::selection {
