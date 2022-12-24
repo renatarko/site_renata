@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import { Container, Main } from "../components/sharedstyles";
 
 export default function Home() {
+
   return (
     <Main>
       <Container>
