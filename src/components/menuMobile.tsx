@@ -9,6 +9,8 @@ type MenuLinkProps = {
 }
 
 const MenuLink = styled.ul<MenuLinkProps>`
+  display: none;
+  
   ${({ isOpen}) => css`
     @media (max-width: 600px) {
       position: absolute;
