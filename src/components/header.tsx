@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import Logo from "./logo";
+import MenuMobile from "./menuMobile";
 
 const ContainerMenu = styled.div`
   width: 100%;
@@ -9,10 +9,11 @@ const ContainerMenu = styled.div`
   padding: 0 2rem;
   margin-top: 1rem;
   display: flex;
-  aligm-items: center;
+  align-items: center;
+  position: relative;
 
-  @media (max-width: 650px) {
-    margin-top: 5rem;
+  @media (max-width: 450px) {
+    padding: 0 1rem;
   }
 `;
 
@@ -23,13 +24,14 @@ const Menu = styled.nav`
   align-items: center;
 `;
 
-const MenuLink = styled.div`
+const MenuLink = styled.ul`
+
   display: inline-flex;
   gap: 2rem;
-  aligm-items: center;
+  align-items: center;
 
-  @media (max-width: 650px) {
-   display: none;
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -38,7 +40,7 @@ const LinkPage = styled.a`
   text-transform: uppercase;
   transition: 0.4s;
   font-weight: bold;
-  padding: 5px 0;
+  padding: 1rem;
 
   :hover {
     color: ${({ theme }) => theme.colors.purpleLigth};
@@ -51,21 +53,6 @@ const LinkPage = styled.a`
   }
 `;
 
-const LinkExtern = styled.a`
-  display: none;
-  background: rgb(221, 151, 219);
-  width: 20rem;
-  padding: 8px;
-  border-radius: 15px;
-  text-align: center;
-  transition: all 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0px 5px 8px 0px rgba(40, 36, 40, 0.2) !important;
-    transform: scale(1.1);
-  }
-`;
 
 
 const StyledLink = ({ href, name }) => (
@@ -75,28 +62,20 @@ const StyledLink = ({ href, name }) => (
 );
 
 export default function Header() {
-  return (
+
+    return (
     <ContainerMenu>
       <Menu>
         <Logo/>
-        {/* <Logo
-          {...props}
-          src="/assets/rk.png"
-          layout="fixed"
-          width={50}
-          height={50}
-        /> */}
+          <MenuLink>
+            <StyledLink href="/" name="Sobre mim" />
+            <StyledLink href="/projects" name="Projetos" />
+            <StyledLink href="/contact" name="Contato" />
+          </MenuLink>
 
-        <MenuLink>
-          <StyledLink href="/" name="Sobre mim" />
-          <StyledLink href="/projects" name="Projetos" />
-          <StyledLink href="/contact" name="Contato" />
-        </MenuLink>
+          <MenuMobile/>
       </Menu>
-      {/* <Title>
-          Olá! Sou Renata,
-          <TitleGradient>Desenvolvedora Front-end.</TitleGradient>
-        </Title> */}
+
     </ContainerMenu>
   );
 }
