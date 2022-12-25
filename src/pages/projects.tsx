@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FaArrowLeft } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { IconBase } from "react-icons";
+import MenuMobile from "../components/menuMobile";
 
 const myProjects = [
   {
@@ -43,12 +44,10 @@ const myProjects = [
   },
 ];
 
-const Main = styled.main`
+export const Main = styled.main`
   display: flex;
   flex-direction: column;
   margin: 0px auto;
-  width: 100%;
-  height: 100%;
   max-width: 800px;
 `;
 
@@ -60,23 +59,15 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-
-  /* @media (max-width: 790px) {
-    padding: 0px 5rem;
-  }
-  @media (max-width: 545px) {
-    padding: 0px 2rem;
-  }
-  @media (max-width: 360px) {
-    padding: 0px 1rem;
-    gap: 20px;
-  } */
-`;
+  background: none;
+  z-index: 1;
+  `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
   font-size: 1.3rem;
+  z-index: 1;
 
   @media (max-width: 430px) {
     font-size: 1rem;
@@ -85,8 +76,6 @@ const Title = styled.h1`
 
 const ContainerGrid = styled.div`
   display: grid;
-  width: 100%;
-  height: 60%;
   margin-top: 5rem;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
@@ -104,7 +93,6 @@ const ContainerGrid = styled.div`
 
 const ContainerCard = styled.a`
   text-align: center;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,8 +100,8 @@ const ContainerCard = styled.a`
 `;
 
 const Card = styled.div`
-  width: 170px;
-  height: 170px;
+  width: 11rem;
+  height: 10rem;
   background: #1d1d1d;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -123,6 +111,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 0;
 
   cursor: pointer;
   transition: all 0.3s;
@@ -136,13 +125,19 @@ const Card = styled.div`
     &:hover > p {
       padding: .3rem;
       background: ${({theme}) => theme.colors.secondary};
-      color: ${({theme}) => theme.colors.purple}
+      color: ${({theme}) => theme.colors.purple};
+      font-weight: 600;
+    }
+
+    &:hover > svg {
+      display: block
     }
 `;
 
 const IconWorld = styled(TbWorld)`
   font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.purpleLigth};
+  display: none;
 `;
 
 const Paragraph = styled.p`
@@ -160,18 +155,52 @@ const IconBack = styled(FaArrowLeft)`
 
   &:hover {
     color: ${({theme}) => theme.colors.purpleLigth};
-   
   }
+`
+
+const BackOne = styled.div`
+  animation: slide 5s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #1a1a1ae8 50%, rgba(82, 48, 116, 0.301) 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.1;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:0;
+
+  @keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+`
+
+const BacktTwo = styled(BackOne)`
+  animation-direction: alternate-reverse;
+  animation-duration:4s;
+`
+
+const BackThree = styled(BackOne)`
+  animation-duration:5s;
 `
 
 export default function Projects() {
   return (
-    <Main>
+    <>
+      <Main>
+      <BackOne/>
+      <BacktTwo/>
+      <BackThree/>
       <Header>
         <Link href="/">
           <IconBack/>
         </Link>
         <Title>Meus Projetos</Title>
+      <MenuMobile/>
       </Header>
       <ContainerGrid>
         {myProjects.map((project) => (
@@ -183,6 +212,8 @@ export default function Projects() {
           </ContainerCard>
         ))}
       </ContainerGrid>
+      
     </Main>
+    </>
   );
 }
