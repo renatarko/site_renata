@@ -2,15 +2,17 @@ import styled from "styled-components";
 import Link from "next/link";
 import Logo from "./logo";
 import MenuMobile from "./menuMobile";
+import { ReactNode } from "react";
 
 const ContainerMenu = styled.div`
   width: 100%;
   height: 4rem;
   padding: 0 2rem;
-  margin-top: 1rem;
   display: flex;
   align-items: center;
-  position: relative;
+  position: fixed;
+  top: 1.2rem;
+  bottom: 0;
 
   @media (max-width: 450px) {
     padding: 0 1rem;
@@ -61,7 +63,11 @@ const StyledLink = ({ href, name }) => (
   </Link>
 );
 
-export default function Header() {
+type HeaderProps = {
+  children: ReactNode;
+}
+
+export default function Header({children}: HeaderProps) {
 
     return (
     <ContainerMenu>
@@ -75,7 +81,6 @@ export default function Header() {
 
           <MenuMobile/>
       </Menu>
-
     </ContainerMenu>
   );
 }
