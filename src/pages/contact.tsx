@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { FaWhatsapp, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
 
 import PageProgress from "../components/pageProgress";
+import MenuMobile from "../components/menuMobile";
+import Header from "../components/header";
 
 const FooterDiv = styled.footer`
   width: 100%;
@@ -59,15 +61,29 @@ const StyledA = styled.a`
   }
 `;
 
+const Main = styled.main`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto;
+  max-width: 800px;
+`
+
 
 export default function Contact() {
   return (
-      <FooterDiv>
-        <PageProgress/>
+    <>
+    <Header>
+      <MenuMobile/>
+    </Header>
+    <Main>
+    <PageProgress/>
+      {/* <FooterDiv> */}
         <ContainerButton>
-          <StyledA href="https://wa.me/+5567991687767" target="_blank">
+          {/* <StyledA href="https://wa.me/+5567991687767" target="_blank">
             <FaWhatsapp />
-          </StyledA>
+          </StyledA> */}
           <StyledA href="https://www.instagram.com/renata_rko/" target="_blank">
             <FaInstagram />
           </StyledA>
@@ -78,6 +94,8 @@ export default function Contact() {
             <FaTwitter />
           </StyledA>
         </ContainerButton>
-      </FooterDiv>
+      {/* </FooterDiv> */}
+      </Main>
+    </>
   );
 }
