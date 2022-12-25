@@ -19,46 +19,45 @@ const MenuLink = styled.ul<MenuLinkProps>`
       align-items: center;
       justify-content: center;
       width: 100%;
-      top: -1rem;
+      top: 5.3rem;
       right: 0;
       bottom: 0;
       left: 0;
-      background: ${({theme}) => theme.colors.secondary};
-      height:100vh;
+      background: ${({theme}) => theme.colors.primary};
+      height: calc(100vh - 5.3rem);
       gap: 2rem;
       overflow: hidden;
       z-index: 10;
-      transition: .5s;
 
       opacity: ${isOpen ? 1 : 0};
-      pointer-events: ${isOpen ? "all" : "none"}
-    }
+      pointer-events: ${isOpen ? "all" : "none"};
+      transition: all .5s;   
   `} 
 `
 
-const IconMenuClose = styled.button`
-  display: none;
-  @media (max-width: 600px) {
-    display: block;
-    background: none;
-    border: none;
-    position: absolute;
-    top: 0;
-    bottom: 35rem;
-    right: 1rem;
-    z-index: 10;
-    cursor: pointer;
+// const IconMenuClose = styled.button`
+//   display: none;
+//   @media (max-width: 600px) {
+//     display: block;
+//     background: none;
+//     border: none;
+//     position: absolute;
+//     top: 0;
+//     bottom: 35rem;
+//     right: 1rem;
+//     z-index: 10;
+//     cursor: pointer;
     
-    > svg {
-      color: ${({theme}) => theme.colors.purple} ;
-      font-size: 2.5rem;
+//     > svg {
+//       color: ${({theme}) => theme.colors.purple} ;
+//       font-size: 2.5rem;
 
-      &:hover {
-        color: ${({theme}) => theme.colors.purpleLigth};
-      }
-    }
-  }
-`
+//       &:hover {
+//         color: ${({theme}) => theme.colors.purpleLigth};
+//       }
+//     }
+//   }
+// `
 
 const MenuIconOpen = styled.button`
   display: none;
@@ -89,8 +88,8 @@ const LinkPage = styled.a`
     text-transform: uppercase;
     transition: 0.5s;
     font-weight: bold;
-    padding: .5rem;
-    border-radius: 10px;
+    padding: .4rem;
+    border-radius: 8px;
   }
 
   :hover {
@@ -114,15 +113,18 @@ export default function MenuMobile() {
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const hadleIsOpen = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
   <>
-    <MenuIconOpen onClick={() => setIsOpen(true)}><FaBars /></MenuIconOpen>
+    <MenuIconOpen onClick={hadleIsOpen}><FaBars /></MenuIconOpen>
     <MenuLink isOpen={isOpen}>
       <StyledLink href="/" name="Sobre mim" />
       <StyledLink href="/projects" name="Projetos" />
       <StyledLink href="/contact" name="Contato" />
-      <IconMenuClose onClick={() => setIsOpen(false)}><FiX/></IconMenuClose>
-    </MenuLink>
+    </MenuLink> 
   </>
     )
 }
