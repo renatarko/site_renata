@@ -8,42 +8,42 @@ const myProjects = [
   {
     id: 1,
     name: "Minhas Tarefas",
-    description: "Alguma descrição sobre o site aqui",
+    description: `Projeto "to do" onde tive o primeiro contato com hooks do React. Feito com React e ViteJS`,
     url: "https://minhastarefasapp.netlify.app/",
     icon: <FaCheckCircle/>
   },
   {
     id: 2,
     name: "GitHub Repositories",
-    description: "Alguma descrição sobre o site aqui",
+    description: "Primeiro projeto com React. A aplicação lista os repositórios dos usuários do GitHub",
     url: "https://github-tracker-rko.netlify.app/",
     icon: <FaGithubAlt/>
   },
   {
     id: 3,
     name: <p>Formulário <br/> de Cadastro</p>,
-    description: "Alguma descrição sobre o site aqui",
+    description: "Formulário com validações utilizando HTML, CSS e JS",
     url: "https://renatarko.github.io/formulario/",
     icon: <FaIdBadge/>,
   },
   {
     id: 4,
     name: "Site Salão de Beleza",
-    description: "Alguma descrição sobre o site aqui",
+    description: "Projeto desenvolvido durante a NLW Origin da Rocketseat, utilizando HTML, CSS e JS",
     url: "https://renatarko.github.io/beatysalon/",
     icon: <FaStoreAlt/>
   },
   {
     id: 5,
     name: "Calculadora IMC",
-    description: "Alguma descrição sobre o site aqui",
+    description: "Primeiro projeto autônomo assim que iniciei os estudos na área. Feito com HTML, CSS e JS",
     url: "https://calculadoraimcapp.netlify.app/",
     icon: <FaCalculator/>
   },
   {
     id: 6,
     name: "Site Cafeteria",
-    description: "Alguma descrição sobre o site aqui",
+    description: "Landing Page sobre uma cafeteria fictícia que criei do zero, feito com HTML, CSS e JS",
     url: "https://cafeteriaapp.vercel.app/",
     icon: <FaMugHot/>
   },
@@ -133,7 +133,8 @@ const Card = styled.a`
     bottom: 0;
     opacity: 0;
     transition: .5s;
-  }
+    padding: 5px;
+  } 
 
   > svg {
     font-size: 2rem;
@@ -158,7 +159,7 @@ const Card = styled.a`
     }
 
     &:hover span {
-      bottom: 3rem;
+      bottom: 2rem;
       opacity: 1;
     }
 
