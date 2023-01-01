@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { FiX } from "react-icons/fi";
 import styled, { css } from "styled-components";
 
 type MenuLinkProps = {
@@ -11,10 +10,9 @@ type MenuLinkProps = {
 const MenuLink = styled.ul<MenuLinkProps>`
   display: none;
   
-  ${({ isOpen}) => css`
-    @media (max-width: 600px) {
-      position: absolute;
-      display: flex;
+  @media (max-width: 600px) {
+    position: absolute;
+    display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -24,41 +22,19 @@ const MenuLink = styled.ul<MenuLinkProps>`
       bottom: 0;
       left: 0;
       background: ${({theme}) => theme.colors.primary};
-      height: calc(100vh - 5.3rem);
       gap: 2rem;
       overflow: hidden;
-      z-index: 10;
+      transition: all .5s; 
+      z-index: 10;  
 
-      opacity: ${isOpen ? 1 : 0};
+    ${({ isOpen}) => css`
+      visibility: ${isOpen ? "visible" : "hidden"};
+      height: ${isOpen ? "100vh" : 0};
       pointer-events: ${isOpen ? "all" : "none"};
-      transition: all .5s;   
-  `} 
+      opacity: ${isOpen ? "1" : 0.3};
+    `} 
+  }
 `
-
-// const IconMenuClose = styled.button`
-//   display: none;
-//   @media (max-width: 600px) {
-//     display: block;
-//     background: none;
-//     border: none;
-//     position: absolute;
-//     top: 0;
-//     bottom: 35rem;
-//     right: 1rem;
-//     z-index: 10;
-//     cursor: pointer;
-    
-//     > svg {
-//       color: ${({theme}) => theme.colors.purple} ;
-//       font-size: 2.5rem;
-
-//       &:hover {
-//         color: ${({theme}) => theme.colors.purpleLigth};
-//       }
-//     }
-//   }
-// `
-
 const MenuIconOpen = styled.button`
   display: none;
     @media (max-width: 600px) {
@@ -66,6 +42,7 @@ const MenuIconOpen = styled.button`
       background: none;
       border: none;
       cursor: pointer;
+      z-index: 10;  
 
       > svg {
         color: ${({theme}) => theme.colors.purple} ;
@@ -90,7 +67,8 @@ const LinkPage = styled.a`
     font-weight: bold;
     padding: .4rem;
     border-radius: 8px;
-  }
+    z-index: 10;  
+    }
 
   :hover {
     color: ${({ theme }) => theme.colors.secondary};
