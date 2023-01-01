@@ -17,7 +17,7 @@ const Box = styled.div`
   border-radius: 50%;
   overflow: hidden;
 
-  &::before {
+  /* &::before {
     content: "";
     position: absolute;
     inset: -10px 20px;
@@ -37,7 +37,7 @@ const Box = styled.div`
     background: ${({theme}) => theme.colors.primary};
     border-radius: 50%;
     z-index: 1;
-  }
+  } */
 `
 
 const Content = styled.div`
@@ -56,7 +56,11 @@ const Imagem = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
+
+  @media (max-width: 415px) {
+    visibility: hidden;
+  }
+
 `
 
 const Text = styled.h3`
