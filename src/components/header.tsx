@@ -63,11 +63,11 @@ const StyledLink = ({ href, name }) => (
   </Link>
 );
 
-// type HeaderProps = {
-//   children: ReactNode;
-// }
+type HeaderProps = {
+  children: ReactNode;
+}
 
-export default function Header() {
+export default function Header({children}: HeaderProps) {
 
     return (
     <ContainerMenu>
