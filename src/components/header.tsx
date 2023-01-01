@@ -57,19 +57,17 @@ const LinkPage = styled.a`
   }
 `;
 
-
-
 const StyledLink = ({ href, name }) => (
   <Link href={href} passHref>
     <LinkPage>{name}</LinkPage>
   </Link>
 );
 
-type HeaderProps = {
-  children: ReactNode;
-}
+// type HeaderProps = {
+//   children: ReactNode;
+// }
 
-export default function Header({children}: HeaderProps) {
+export default function Header() {
 
     return (
     <ContainerMenu>
