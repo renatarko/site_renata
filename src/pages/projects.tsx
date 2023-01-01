@@ -49,8 +49,8 @@ const myProjects = [
   },
 ];
 
-const Main = styled.main`
-  height: 100vh;
+export const Main = styled.main`
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   margin: 0px auto;
@@ -66,6 +66,10 @@ const Header = styled.header`
   align-items: center;
   padding: 0 2rem;
   background: none;
+
+  @media (max-width: 430px) {
+    padding: 0 .9rem;
+  }
   `;
 
 const Title = styled.h1`
@@ -91,14 +95,15 @@ const ContainerGrid = styled.div`
 
   @media (max-width: 790px) {
     grid-template-columns: 1fr 1fr;
+    gap: 2rem 0;
   }
 
-  @media (max-width: 545px) {
+  @media (max-width: 435px) {
     grid-template-columns: 1fr;
   }
 `;
 
-const Card = styled.a`
+const Card = styled.div`
   width: 11rem;
   height: 10rem;
   
@@ -109,10 +114,9 @@ const Card = styled.a`
   text-align: center;
   position: relative;
 
-  cursor: pointer;
   transition: all 0.5s;
 
-  > a {
+  > h3 {
     color: ${({ theme }) => theme.colors.secondary};
     transition: all 0.3s;
     font-size: .9rem;
@@ -147,19 +151,41 @@ const Card = styled.a`
     transition: .5s;
   }
 
+  > a {
+    width: 4.5rem;
+    padding: 2px;
+    background-color: ${({theme}) => theme.colors.purple};
+    border-radius: 10px;
+    color: ${({theme}) => theme.colors.secondary};
+    font-size: .8rem;
+    transition: all .5s;
+
+    position: absolute;
+    bottom: 0px;
+    left: 3.2rem;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid ${({theme}) => theme.colors.purple};
+      background:transparent;
+    }
+  }
+
   &:hover {
     transform: scale(1.03);
     box-shadow: rgba(0, 0, 0, 0.432) 0px 5px 15px;
     border: 1px solid ${({theme}) => theme.colors.purple};
   }
 
-    &:hover a {
+    &:hover h3 {
       opacity: 1;
       bottom: 6rem;
     }
 
     &:hover span {
-      bottom: 2rem;
+      bottom: 2.5rem;
       opacity: 1;
     }
 
@@ -167,6 +193,11 @@ const Card = styled.a`
       font-size: 1rem;
       top: 10px;
       left: 10px;
+    }
+
+    &:hover a {
+      bottom: 10px;
+      opacity: 1;
     }
 `;
 
@@ -194,10 +225,11 @@ export default function Projects() {
       </Header>
       <ContainerGrid>
         {myProjects.map((project) => (
-            <Card key={project.id} href={project.url}>
+            <Card key={project.id}>
               {project.icon}
-              <a href={project.url} target="_blank">{project.name}</a>
+              <h3>{project.name}</h3>
               <span>{project.description}</span>
+              <a href={project.url} target="_blank">acessar</a>
             </Card>
         ))}
       </ContainerGrid>
