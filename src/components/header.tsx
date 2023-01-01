@@ -5,14 +5,16 @@ import MenuMobile from "./menuMobile";
 import { ReactNode } from "react";
 
 const ContainerMenu = styled.div`
+  background-color: ${({theme}) => theme.colors.primary};
   width: 100%;
-  height: 4rem;
-  padding: 0 2rem;
+  height: 6rem;
+  padding:0 2rem;
   display: flex;
   align-items: center;
   position: fixed;
-  top: 1.2rem;
+  top: 0;
   bottom: 0;
+  z-index: 10;
 
   @media (max-width: 450px) {
     padding: 0 1rem;
