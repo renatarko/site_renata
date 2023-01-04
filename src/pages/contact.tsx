@@ -11,7 +11,8 @@ const Container = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 2rem 1rem;
+  padding-bottom: 2rem;
   gap: 6rem;
   margin-top: 10rem;
 
@@ -24,7 +25,7 @@ const Container = styled.section`
 `
 
 const Main = styled.main`
-  width: 100vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0px auto;
@@ -115,16 +116,15 @@ const ContainerContact = styled.div`
 
 export default function Contact() {
   return (
-    <>
+  <>
     <Header>
       <MenuMobile/>
     </Header>
 
     <Main>
       <Container>
-
     {/* <PageProgress/> */}
-            <ContainerContact>
+        <ContainerContact>
           <h1>Fale comigo</h1>
 
           <div>
@@ -145,13 +145,13 @@ export default function Contact() {
         </ContainerContact>
 
         <Form>
-            <input type="text" name="name" id="name" placeholder="Nome"/>
-            <input type="email" name="email" id="email" placeholder="Email"/>
-            <textarea name="textarea" id="textarea" placeholder="Mensagem" rows={5}></textarea>
+          <input type="text" name="name" id="name" placeholder="Nome"/>
+          <input type="email" name="email" id="email" placeholder="Email"/>
+          <textarea name="textarea" id="textarea" placeholder="Mensagem" rows={5}></textarea>
         </Form>
       </Container>
-      </Main>
-      <Footer/>
-    </>
+    </Main>
+  <Footer/>
+  </>
   );
 }
