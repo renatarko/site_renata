@@ -29,7 +29,7 @@ const MenuLink = styled.ul<MenuLinkProps>`
 
     ${({ isOpen}) => css`
       visibility: ${isOpen ? "visible" : "hidden"};
-      height: ${isOpen ? "100vh" : 0};
+      height: ${isOpen ? "calc(100vh - 5.3rem)" : 0};
       pointer-events: ${isOpen ? "all" : "none"};
       opacity: ${isOpen ? "1" : 0.3};
     `} 
