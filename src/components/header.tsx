@@ -28,7 +28,7 @@ const Menu = styled.nav`
   align-items: center;
 `;
 
-const MenuLink = styled.ul`
+export const MenuLink = styled.ul`
 
   display: inline-flex;
   gap: 2rem;
@@ -39,7 +39,7 @@ const MenuLink = styled.ul`
   }
 `;
 
-const LinkPage = styled.a`
+export const LinkPage = styled.a`
   color: ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
   transition: 0.4s;
@@ -57,7 +57,7 @@ const LinkPage = styled.a`
   }
 `;
 
-const StyledLink = ({ href, name }) => (
+export const StyledLink = ({ href, name }) => (
   <Link href={href} passHref>
     <LinkPage>{name}</LinkPage>
   </Link>
