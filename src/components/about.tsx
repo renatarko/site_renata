@@ -3,17 +3,88 @@ import { Main } from "../pages/projects";
 import {FaRegCommentAlt } from "react-icons/fa";
 import { useState } from "react";
 import Footer from "./footer";
+import { Container } from "./sharedstyles";
 
-const SMain = styled(Main)`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
+// const SMain = styled(Main)`
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 5rem;
+//   z-index: 1;
+//   padding: 0 1rem;
+//   margin-top: 10rem;   
+// `;
+
+const ContainerText = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   z-index: 1;
-  padding: 0 1rem;
-  margin-top: 10rem;
+  padding-bottom: 3rem;
+  /* margin-top: 12rem; */
 
-  > img {
+  @media (max-width: 600px) {
+     padding-top: 7rem;
+     align-items: center;
+     text-align: center;
+     gap: 5rem;
+  }
+
+  /* @media (max-width: 320px) {
+      padding-top: 10rem;
+    } */
+`;
+
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 2rem;
+  margin: 0;
+  /* z-index: 1; */
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purpleLigth};
+    background: none;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
+
+`;
+
+const SubTitle = styled.h2`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.purpleLigth};
+  margin: 0;
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purple};
+    background: none;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
+`;
+
+const Description = styled.p`
+  width: 100%;
+  margin-top: 1rem;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  ::selection {
+    color: ${({ theme }) => theme.colors.purpleLigth};
+    background: none;
+  }
+
+  @media (max-width: 500px) {
+    /* font-size: .95rem; */
+    display: none;
+  }
+`;
+
+const ImageProfile = styled.img`
     max-width: 100%;
     width: 10rem;
     height: 10rem;
@@ -36,86 +107,14 @@ const SMain = styled(Main)`
         border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
       }
     }
-  }
 
-  @media (max-width: 510px) {
-    flex-direction: column;
-
-    img {
+  @media (max-width: 600px) {
       position: absolute;
       width: 8rem;
       height:8rem;
-      top: 20%;
-    }
-  }    
-`;
-
-const ContainerText = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-  /* margin-top: 12rem; */
-
-  @media (max-width: 510px) {
-     /* padding-top: 15rem; */
-     align-items: center;
-     text-align: center;
-     position: absolute;
-     top: 50%;
-     padding: 0 10px;
+      top: 1rem;
   }
-`;
-
-const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 2rem;
-  margin: 0;
-  z-index: 1;
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
-    background: none;
-  }
-
-  @media (max-width: 415px) {
-    /* font-size: 1.5rem; */
-  }
-
-`;
-
-const SubTitle = styled.h2`
-  font-size: 2rem;
-  color: ${({ theme }) => theme.colors.purpleLigth};
-  margin: 0;
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purple};
-    background: none;
-  }
-
-  @media (max-width: 470px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const Description = styled.p`
-  width: 100%;
-  margin-top: 1rem;
-  color: ${({ theme }) => theme.colors.secondary};
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
-    background: none;
-  }
-
-  @media (max-width: 500px) {
-    /* font-size: .95rem; */
-    display: none;
-  }
-`;
+`
 
 // Após 390px
 
@@ -128,7 +127,7 @@ const ContainerIconAboutMe = styled.div<ButtonIconProps>`
   @media (max-width: 550px) {
     display: flex;
     position: absolute;
-    min-height: 33%;
+    min-height: 40%;
     width: 90%;
     background-color: ${({theme}) => theme.colors.purple};
     flex-direction: column;
@@ -139,17 +138,23 @@ const ContainerIconAboutMe = styled.div<ButtonIconProps>`
     z-index: 1;
     border-radius: 10px;
     transition: all .6s;
+    /* padding-bottom: 1rem; */
 
     ${({openMedia}) => css`  
     visibility: ${openMedia ? "visible" : "hidden"};
+    /* display: ${openMedia ? "flex" : "none"}; */
     pointer-events: ${openMedia ? "all" : "none"};
-    bottom: ${openMedia ? "28%" : "20%" };
+    bottom: ${openMedia ? "7rem" : "5rem" };
     opacity: ${openMedia ? "1" : 0};
+
+    @media (max-width: 320px) {
+      bottom: ${openMedia ? "5.5rem" : "5rem" };
+    }
 
     &::after {
       content: " ";
       position: absolute;
-      top: 98%;
+      top: 97%;
       left: 50%;
       bottom: 0;
       border-width: 20px;
@@ -176,14 +181,15 @@ const ButtonOpen = styled.button<ButtonIconProps>`
     border: none;
     color: ${({theme}) => theme.colors.purple};
     font-size: 40px;
-    position: absolute;
-    top: 15rem;
+    position: relative;
+    /* position: absolute; */
+    /* top: 5rem; */
     /* bottom: -100px; */
     z-index: 1;
     transition: all .6s;
 
     ${({openMedia}) => css`
-      top: ${openMedia ? "16rem" : "14rem"};
+      top: ${openMedia ? "6rem" : "1rem"};
     `}
   }
 `
@@ -197,21 +203,25 @@ export default function About() {
   }
 
   return (
-    <>
-      <SMain>
+  <>
+      {/* <SMain> */}
+    <Main>
+      <Container>
         <ContainerText>
-          <Title>
-            Olá! Sou Renata,
-          </Title>
-          <SubTitle>Desenvolvedora Front-end.</SubTitle>
-          <Description>
-            Iniciei a transição para a área de desenvolvimento de software em
-            Abril de 2022 estudando lógica de programação e algoritmos,
-            tecnologias HTML, CSS e a linguagem de JavaScript.
-            <br />
-            Atualmente, desenvolvo projetos com a biblioteca React com
-            seu ecossistema e o framework Next.js.
-          </Description>
+          <div>
+            <Title>
+              Olá! Sou Renata,
+            </Title>
+            <SubTitle>Desenvolvedora Front-end.</SubTitle>
+            <Description>
+              Iniciei a transição para a área de desenvolvimento de software em
+              Abril de 2022 estudando lógica de programação e algoritmos,
+              tecnologias HTML, CSS e a linguagem de JavaScript.
+              <br />
+              Atualmente, desenvolvo projetos com a biblioteca React com
+              seu ecossistema e o framework Next.js.
+            </Description>
+          </div>
 
           <ButtonOpen openMedia={openMedia} onClick={handleOpenMedia}><FaRegCommentAlt/></ButtonOpen>
           
@@ -229,8 +239,11 @@ export default function About() {
           </DescriptionMedia>
         </ContainerIconAboutMe>
 
-        <img src="/assets/foto.png"/>
-      </SMain>
-          </>
+        <ImageProfile src="/assets/foto.png"/>
+      </Container>
+
+    </Main>
+      {/* </SMain> */}
+</>
   );
 }
