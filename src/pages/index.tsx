@@ -1,19 +1,18 @@
 // import Head from "next/head";
 import Header from "../components/header";
-import Mains from "../components/mains";
 import Footer from "../components/footer";
-import { Container, Main } from "../components/sharedstyles";
-import MenuMobile from "../components/menuMobile";
+import { Main } from "../components/sharedstyles";
+import About from "../components/about";
 
 export default function Home() {
 
   return (
-    <Main>
-      <Container>
+      <>
+      <Main>
         <Header children/>
-        <Mains />
-        {/* <Footer /> */}
-      </Container>
-    </Main>
+        <About/>
+      <Footer/>
+      </Main>
+     </>
   );
 }
