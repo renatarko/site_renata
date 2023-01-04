@@ -1,75 +1,117 @@
 import styled from "styled-components";
-import { FaWhatsapp, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
+// import { FaWhatsapp, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
+import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
 import PageProgress from "../components/pageProgress";
 import MenuMobile from "../components/menuMobile";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
-const FooterDiv = styled.footer`
-  width: 100%;
-  height: 100vh;
+const Container = styled.section`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 655px) {
-    a {
-      font-size: 2rem;
-    }
-  }
-
-  @media (max-width: 470px) {
-    p {
-      font-size: 0.8rem;
-    }
-    a {
-      font-size: 1.5rem;
-    }
-  }
-  @media (max-width: 432px) {
-    flex-direction: column;
-    text-align: center;
-    section {
-      justify-content: space-around;
-    }
-    a {
-      order: 1;
-    }
-    p {
-      order: 2;
-    }
-  }
-`;
-const ContainerButton = styled.section`
-  width: 100%;
-  display: none;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-`;
+  padding: 0 1rem;
+  gap: 6rem;
+  margin-top: 10rem;
 
-const StyledA = styled.a`
-  color: ${({ theme }) => theme.colors.purple};
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 2.2rem;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.purpleLigth};
-    transform: scale(1.2);
+  @media (max-width: 600px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 7rem;
+    padding: 1rem 1rem;
   }
-`;
+`
 
 const Main = styled.main`
-  height: 100vh;
+  width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   margin: 0px auto;
   max-width: 800px;
 `
 
+const Form = styled.form`
+  /* z-index: 10; */
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  > input {
+    opacity: .8;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    font-family: ${({theme}) => theme.fontFamily.poppins};
+    
+    &:focus {
+      outline: ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
+      opacity: .95;
+    }
+  }
+
+  > textarea {
+    opacity: .8;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    font-family: ${({theme}) => theme.fontFamily.poppins};
+
+    &:focus {
+      outline: ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
+      opacity: .95;
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin-top: -2rem ;
+  }
+`
+
+const ContainerContact = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  > h1 {
+    color: ${({theme}) => theme.colors.purpleLigth};
+    padding-bottom: 8px;
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0 30px;
+
+      > svg {
+        color: ${({theme}) => theme.colors.secondary};
+        opacity: .2;
+        font-size: 1.7rem;
+      }
+
+      > span {
+        color: ${({theme}) => theme.colors.purpleLigth};
+        font-size: .8rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding-bottom: 3rem;
+      border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    }
+`
 
 export default function Contact() {
   return (
@@ -77,25 +119,39 @@ export default function Contact() {
     <Header>
       <MenuMobile/>
     </Header>
+
     <Main>
-    <PageProgress/>
-      {/* <FooterDiv> */}
-        <ContainerButton>
-          {/* <StyledA href="https://wa.me/+5567991687767" target="_blank">
-            <FaWhatsapp />
-          </StyledA> */}
-          <StyledA href="https://www.instagram.com/renata_rko/" target="_blank">
-            <FaInstagram />
-          </StyledA>
-          <StyledA href="https://github.com/renatarko" target="_blank">
-            <FaGithub />
-          </StyledA>
-          <StyledA href="https://twitter.com/renatarko_" target="_blank">
-            <FaTwitter />
-          </StyledA>
-        </ContainerButton>
-      {/* </FooterDiv> */}
+      <Container>
+
+    {/* <PageProgress/> */}
+            <ContainerContact>
+          <h1>Fale comigo</h1>
+
+          <div>
+            <div>
+              <FiMail/>
+              <span>renata_rko@hotmail.com</span>
+            </div>
+            <div>
+              <FiMapPin/>
+              <span>Campo Grande - MS</span>
+            </div>
+            <div>
+              <FiPhone/>
+              <span>(67) 99168-7767</span>
+            </div>
+          </div>
+          
+        </ContainerContact>
+
+        <Form>
+            <input type="text" name="name" id="name" placeholder="Nome"/>
+            <input type="email" name="email" id="email" placeholder="Email"/>
+            <textarea name="textarea" id="textarea" placeholder="Mensagem" rows={5}></textarea>
+        </Form>
+      </Container>
       </Main>
+      <Footer/>
     </>
   );
 }
