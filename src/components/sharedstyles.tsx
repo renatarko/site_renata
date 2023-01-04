@@ -1,29 +1,39 @@
 import styled from "styled-components";
 
 const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
-  width: 100%;
+  width: 100vw;
   height: auto;
-  max-width: 1200px;
+  /* position: relative; */
+  /* max-width: 1200px; */
+
+  @media (max-width: 1065px) {
+    position: relative;
+  }
 `;
+
 const Container = styled.section`
   width: 100%;
-  height: 100vh;
-
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  padding: 5rem 1rem;
+  gap:7rem;
+  margin-top: 5rem;
+  position: relative;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+  }
 `;
 
 const CodeTag = styled.code`
   border-radius: 5px;
-  margin: 0 0.75rem;
-  padding: 0.75rem;
+  /* margin: 0 0.75rem;
+  padding: 0.75rem; */
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
