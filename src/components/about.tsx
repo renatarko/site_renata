@@ -5,16 +5,6 @@ import { useState } from "react";
 import Footer from "./footer";
 import { Container } from "./sharedstyles";
 
-// const SMain = styled(Main)`
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: center;
-//   gap: 5rem;
-//   z-index: 1;
-//   padding: 0 1rem;
-//   margin-top: 10rem;   
-// `;
-
 const ContainerText = styled.div`
   width: 100%;
   display: flex;
@@ -22,7 +12,6 @@ const ContainerText = styled.div`
   position: relative;
   z-index: 1;
   padding-bottom: 3rem;
-  /* margin-top: 12rem; */
 
   @media (max-width: 600px) {
      padding-top: 7rem;
@@ -31,16 +20,12 @@ const ContainerText = styled.div`
      gap: 5rem;
   }
 
-  /* @media (max-width: 320px) {
-      padding-top: 10rem;
-    } */
 `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: 2rem;
   margin: 0;
-  /* z-index: 1; */
 
   ::selection {
     color: ${({ theme }) => theme.colors.purpleLigth};
@@ -79,7 +64,6 @@ const Description = styled.p`
   }
 
   @media (max-width: 500px) {
-    /* font-size: .95rem; */
     display: none;
   }
 `;
@@ -138,11 +122,9 @@ const ContainerIconAboutMe = styled.div<ButtonIconProps>`
     z-index: 1;
     border-radius: 10px;
     transition: all .6s;
-    /* padding-bottom: 1rem; */
 
     ${({openMedia}) => css`  
     visibility: ${openMedia ? "visible" : "hidden"};
-    /* display: ${openMedia ? "flex" : "none"}; */
     pointer-events: ${openMedia ? "all" : "none"};
     bottom: ${openMedia ? "7rem" : "5rem" };
     opacity: ${openMedia ? "1" : 0};
@@ -182,9 +164,6 @@ const ButtonOpen = styled.button<ButtonIconProps>`
     color: ${({theme}) => theme.colors.purple};
     font-size: 40px;
     position: relative;
-    /* position: absolute; */
-    /* top: 5rem; */
-    /* bottom: -100px; */
     z-index: 1;
     transition: all .6s;
 
@@ -204,7 +183,6 @@ export default function About() {
 
   return (
   <>
-      {/* <SMain> */}
     <Main>
       <Container>
         <ContainerText>
@@ -214,12 +192,9 @@ export default function About() {
             </Title>
             <SubTitle>Desenvolvedora Front-end.</SubTitle>
             <Description>
-              Iniciei a transição para a área de desenvolvimento de software em
-              Abril de 2022 estudando lógica de programação e algoritmos,
-              tecnologias HTML, CSS e a linguagem de JavaScript.
+               Iniciei a transição para a área de desenvolvimento de software em Abril de 2022 estudando lógica de programação e algoritmos, tecnologias HTML, CSS e a linguagem de JavaScript.
               <br />
-              Atualmente, desenvolvo projetos com a biblioteca React com
-              seu ecossistema e o framework Next.js.
+                Atualmente, desenvolvo projetos web com React utilizando o framework Next.js e o ecossistema JavaScript. Faço o deploy (implantação) dos projetos no Github Pages, Netlify, Vercel e Heroku.
             </Description>
           </div>
 
@@ -229,13 +204,10 @@ export default function About() {
 
         <ContainerIconAboutMe openMedia={openMedia}>
           <DescriptionMedia>
-            Iniciei a transição para a área de desenvolvimento de software em
-            Abril de 2022 estudando lógica de programação e algoritmos,
-            tecnologias HTML, CSS e a linguagem de JavaScript.
+           Iniciei a transição para a área de desenvolvimento de software em Abril de 2022 estudando lógica de programação e algoritmos, tecnologias HTML, CSS e a linguagem de JavaScript.
           </DescriptionMedia>
           <DescriptionMedia>
-             Atualmente, desenvolvo projetos com a biblioteca React com
-            seu ecossistema e o framework Next.js.
+            Atualmente, desenvolvo projetos web com React utilizando o framework Next.js e o ecossistema JavaScript. Faço o deploy (implantação) dos projetos no Github Pages, Netlify, Vercel e Heroku.
           </DescriptionMedia>
         </ContainerIconAboutMe>
 
@@ -243,7 +215,6 @@ export default function About() {
       </Container>
 
     </Main>
-      {/* </SMain> */}
 </>
   );
 }
