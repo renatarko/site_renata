@@ -16,7 +16,12 @@ const Container = styled.section`
   padding-bottom: 2rem;
   gap: 6rem;
   margin-top: 10rem;
-  z-index: 10;
+  z-index: 2;
+
+  @media (max-width: 1070px) {
+    margin-top: 6rem;
+    padding-bottom: 3rem;
+  }
 
   @media (max-width: 600px) {
     justify-content: center;
@@ -139,7 +144,7 @@ const ContainerContact = styled.div`
     > div {
       display: flex;
       align-items: center;
-      gap: 0 30px;
+      gap: 0 20px;
 
       > svg {
         color: ${({theme}) => theme.colors.secondary};
@@ -157,7 +162,7 @@ const ContainerContact = styled.div`
 
   @media (max-width: 600px) {
     padding-bottom: 3rem;
-      border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
     }
 `
 
@@ -166,14 +171,14 @@ export default function Contact() {
   function sendEmail(e) {
       e.preventDefault();
   
-      // emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
-      //   .then(() => {
-      //       alert("Mensagem enviada com sucesso!");
-      //   }, (error) => {
-      //       alert(error);
-      //   });
+      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
+        .then(() => {
+            alert("Mensagem enviada com sucesso! 👍");
+        }, (error) => {
+            alert(error);
+        });
 
-      //   e.target.reset()
+        e.target.reset()
   }
 
   const [name, setName] = useState("")
