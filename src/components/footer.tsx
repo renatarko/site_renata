@@ -9,7 +9,7 @@ const FooterDiv = styled.footer`
   left: 0;
   z-index: 1;
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     position: relative;
     margin-top: 3rem;
   }
