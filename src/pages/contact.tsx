@@ -50,7 +50,7 @@ const Form = styled.form`
     display: grid;
 
     > span {
-      color: ${({theme}) => theme.colors.purpleLigth};
+      color: ${({theme}) => theme.colors.purpleLight};
       font-size: .8rem;
       padding-left: 10px;
   }
@@ -119,7 +119,7 @@ const InputButton = styled.input`
   border-radius: 10px;
 
   &:hover {
-    background-color: ${({theme}) => theme.colors.purpleLigth};
+    background-color: ${({theme}) => theme.colors.purpleLight};
     transform: scale(1.01);
   }
 `
@@ -131,9 +131,9 @@ const ContainerContact = styled.div`
   gap: 2rem;
 
   > h1 {
-    color: ${({theme}) => theme.colors.purpleLigth};
+    color: ${({theme}) => theme.colors.purpleLight};
     padding-bottom: 8px;
-    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLight};
   }
 
   > div {
@@ -153,7 +153,7 @@ const ContainerContact = styled.div`
       }
 
       > span {
-        color: ${({theme}) => theme.colors.purpleLigth};
+        color: ${({theme}) => theme.colors.purpleLight};
         font-size: .8rem;
         letter-spacing: 1px;
       }
@@ -162,7 +162,7 @@ const ContainerContact = styled.div`
 
   @media (max-width: 600px) {
     padding-bottom: 3rem;
-    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLight};
     }
 `
 

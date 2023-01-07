@@ -28,7 +28,7 @@ const Title = styled.h1`
   margin: 0;
 
   ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     background: none;
   }
 
@@ -40,7 +40,7 @@ const Title = styled.h1`
 
 const SubTitle = styled.h2`
   font-size: 2rem;
-  color: ${({ theme }) => theme.colors.purpleLigth};
+  color: ${({ theme }) => theme.colors.purpleLight};
   margin: 0;
 
   ::selection {
@@ -59,7 +59,7 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors.secondary};
 
   ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     background: none;
   }
 

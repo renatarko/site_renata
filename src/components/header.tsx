@@ -47,12 +47,12 @@ export const LinkPage = styled.a`
   padding: 1rem;
 
   :hover {
-    color: ${({ theme }) => theme.colors.purpleLigth};
-    border-bottom: 2px solid ${({theme}) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
+    border-bottom: 2px solid ${({theme}) => theme.colors.purpleLight};
   }
 
   ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     background: none;
   }
 `;
