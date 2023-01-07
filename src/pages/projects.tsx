@@ -208,7 +208,7 @@ const IconBack = styled(FaArrowLeft)`
   transition: .5s;
 
   &:hover {
-    color: ${({theme}) => theme.colors.purpleLigth};
+    color: ${({theme}) => theme.colors.purpleLight};
   }
 `
 
@@ -229,7 +229,7 @@ export default function Projects() {
               {project.icon}
               <h3>{project.name}</h3>
               <span>{project.description}</span>
-              <a href={project.url} target="_blank">acessar</a>
+              <a href={project.url} target="_blank" rel="noreferrer">acessar</a>
             </Card>
         ))}
       </ContainerGrid>

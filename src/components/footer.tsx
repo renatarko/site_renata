@@ -55,14 +55,14 @@ const StyledA = styled.a`
   }
 
   > svg {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     cursor: pointer;
     transition: all .3s;
     opacity: .6;
   }
 
   &:hover svg {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     transform: scale(1.2);
     opacity: 1;
   }
