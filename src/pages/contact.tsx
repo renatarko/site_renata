@@ -166,6 +166,12 @@ const ContainerContact = styled.div`
     }
 `
 
+interface IContact {
+  name: string
+  email: string
+  message: string
+}
+
 export default function Contact() {
 
   function sendEmail(e) {
@@ -184,7 +190,7 @@ export default function Contact() {
   
   }
 
-  const [contact, setContact] = useState<{name: string, email: string, message: string}>({})
+  const [contact, setContact] = useState<IContact | null>(null)
  
   function handleChange(event) {
    const { name, value} = event.target
@@ -206,7 +212,7 @@ export default function Contact() {
     if (contact.email === "") {
       spanEmail.innerHTML = "Preencha seu email"
       return false
-    } else if (!checkEmail(email)) {
+    } else if (!checkEmail(contact.email)) {
       spanEmail.innerHTML = "Preencha um e-mail válido"
       return false
     }
