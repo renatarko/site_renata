@@ -166,12 +166,19 @@ const ContainerContact = styled.div`
     }
 `
 
+interface IContact {
+  name: string
+  email: string
+  message: string
+}
+
 export default function Contact() {
 
   function sendEmail(e) {
       e.preventDefault();
-  
-      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
+
+      if (validationInput()) {
+        emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
         .then(() => {
             alert("Mensagem enviada com sucesso! 👍");
         }, (error) => {
@@ -179,32 +186,44 @@ export default function Contact() {
         });
 
         e.target.reset()
+      } 
+  
   }
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [textarea, setTextarea ] = useState("")
+  const [contact, setContact] = useState<IContact | null>(null)
+ 
+  function handleChange(event) {
+   const { name, value} = event.target
+   setContact({...contact, [name]: value})
+  }
 
+  console.log(contact)
     
   function validationInput() {
     const spanEmail = document.querySelector(".email")
 
     
-    if(name === "") {
+    if(contact.name === "") {
       const spanName = document.querySelector(".name")
       spanName.innerHTML = "Preencha seu nome"
+      return false
     }
 
-    if (email === "") {
+    if (contact.email === "") {
       spanEmail.innerHTML = "Preencha seu email"
-    } else if (!checkEmail(email)) {
+      return false
+    } else if (!checkEmail(contact.email)) {
       spanEmail.innerHTML = "Preencha um e-mail válido"
+      return false
     }
 
-    if(textarea === "") {
+    if(contact.message === "") {
       const spanTextarea = document.querySelector(".textarea")
       spanTextarea.innerHTML = "Escreva sua mensagem"
+      return false
     }
+
+    return true
   }
 
   function checkEmail(email: string) {
@@ -244,21 +263,21 @@ export default function Contact() {
 
         <Form onSubmit={sendEmail}>
           <div>
-            <input type="text" name="name" id="name" placeholder="Nome" onChange={(e) => setName(e.target.value)}/>
-            <span className="name"></span>
+            <input type="text" name="name" id="name" placeholder="Nome" onChange={handleChange}/>
+            <span className="name" />
           </div>
           
           <div>
-            <input type="email" name="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            <span className="email"></span>
+            <input type="email" name="email" id="email" placeholder="Email" onChange={handleChange}/>
+            <span className="email" />
           </div>
           
           <div>
-            <textarea name="message" id="message" placeholder="Mensagem" rows={5} onChange={(e) => setTextarea(e.target.value)}></textarea>
-            <span className="textarea"></span>
+            <textarea name="message" id="message" placeholder="Mensagem" rows={5} onChange={handleChange} />
+            <span className="textarea"/>
           </div>
           
-          <InputButton type="submit" value="Enviar" onClick={validationInput}/>
+          <InputButton type="submit" value="Enviar"/>
         </Form>
       </Container>
     </Main>
