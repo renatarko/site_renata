@@ -2,11 +2,11 @@ import styled from "styled-components";
 import emailjs from '@emailjs/browser';
 import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
-import PageProgress from "../components/pageProgress";
 import MenuMobile from "../components/menuMobile";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useState } from "react";
+
 
 const Container = styled.section`
   display: flex;
@@ -168,43 +168,56 @@ const ContainerContact = styled.div`
 
 export default function Contact() {
 
-  function sendEmail(e) {
-      e.preventDefault();
-  
-      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
-        .then(() => {
-            alert("Mensagem enviada com sucesso! 👍");
-        }, (error) => {
-            alert(error);
-        });
-
-        e.target.reset()
+  interface contactProps {
+    name: string,
+    email: string,
+    message: string
   }
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [textarea, setTextarea ] = useState("")
+  const [contact , setContact] = useState<contactProps>({name: "", email: "", message: ""})
 
+  function handleChange(event) {
+    const {name, value} = event.target
+    setContact({...contact, [name]: value})
+  }
+
+  function sendEmail(e) {
+    e.preventDefault(); 
+
+    if(validationInput()) {
+      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
+        .then(() => 
+          alert("Mensagem enviada com sucesso! 👍")).catch((error) => alert(error))
+      
+      e.target.reset() 
+    }
+  }
     
+
   function validationInput() {
-    const spanEmail = document.querySelector(".email")
 
+    const spanEmail = document.querySelector(".email")
     
-    if(name === "") {
+    if(contact.name === "") {
       const spanName = document.querySelector(".name")
       spanName.innerHTML = "Preencha seu nome"
+      return false
     }
 
-    if (email === "") {
-      spanEmail.innerHTML = "Preencha seu email"
-    } else if (!checkEmail(email)) {
-      spanEmail.innerHTML = "Preencha um e-mail válido"
+    if (contact.email === "") {
+       spanEmail.innerHTML = "Preencha seu email"
+       return false
+    } else if (!checkEmail(contact.email)) {
+       spanEmail.innerHTML = "Preencha um e-mail válido"
+       return false
     }
 
-    if(textarea === "") {
+    if(contact.message === "") {
       const spanTextarea = document.querySelector(".textarea")
-      spanTextarea.innerHTML = "Escreva sua mensagem"
+       spanTextarea.innerHTML = "Escreva sua mensagem"
+       return false
     }
+    
   }
 
   function checkEmail(email: string) {
@@ -221,7 +234,6 @@ export default function Contact() {
 
     <Main>
       <Container>
-    {/* <PageProgress/> */}
         <ContainerContact>
           <h1>Fale comigo</h1>
 
@@ -244,21 +256,21 @@ export default function Contact() {
 
         <Form onSubmit={sendEmail}>
           <div>
-            <input type="text" name="name" id="name" placeholder="Nome" onChange={(e) => setName(e.target.value)}/>
-            <span className="name"></span>
+            <input type="text" name="name" id="name" placeholder="Nome" onChange={handleChange}/>
+           <span className="name"></span>
           </div>
           
           <div>
-            <input type="email" name="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+            <input type="email" name="email" id="email" placeholder="Email" onChange={handleChange}/>
             <span className="email"></span>
           </div>
           
           <div>
-            <textarea name="message" id="message" placeholder="Mensagem" rows={5} onChange={(e) => setTextarea(e.target.value)}></textarea>
+            <textarea name="message" id="message" placeholder="Mensagem" rows={5} onChange={handleChange}></textarea>
             <span className="textarea"></span>
           </div>
           
-          <InputButton type="submit" value="Enviar" onClick={validationInput}/>
+          <InputButton type="submit" value="Enviar"/>
         </Form>
       </Container>
     </Main>
