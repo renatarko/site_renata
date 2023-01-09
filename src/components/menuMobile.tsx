@@ -49,7 +49,7 @@ const MenuIconOpen = styled.button`
         font-size: 2rem;
 
         &:hover {
-        color: ${({theme}) => theme.colors.purpleLigth};
+        color: ${({theme}) => theme.colors.purpleLight};
       }
       }
     }
@@ -76,7 +76,7 @@ const LinkPage = styled.a`
   }
 
   ::selection {
-    color: ${({ theme }) => theme.colors.purpleLigth};
+    color: ${({ theme }) => theme.colors.purpleLight};
     background: none;
   }
 `;

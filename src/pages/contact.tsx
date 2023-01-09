@@ -50,7 +50,7 @@ const Form = styled.form`
     display: grid;
 
     > span {
-      color: ${({theme}) => theme.colors.purpleLigth};
+      color: ${({theme}) => theme.colors.purpleLight};
       font-size: .8rem;
       padding-left: 10px;
   }
@@ -119,7 +119,7 @@ const InputButton = styled.input`
   border-radius: 10px;
 
   &:hover {
-    background-color: ${({theme}) => theme.colors.purpleLigth};
+    background-color: ${({theme}) => theme.colors.purpleLight};
     transform: scale(1.01);
   }
 `
@@ -131,9 +131,9 @@ const ContainerContact = styled.div`
   gap: 2rem;
 
   > h1 {
-    color: ${({theme}) => theme.colors.purpleLigth};
+    color: ${({theme}) => theme.colors.purpleLight};
     padding-bottom: 8px;
-    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLight};
   }
 
   > div {
@@ -153,7 +153,7 @@ const ContainerContact = styled.div`
       }
 
       > span {
-        color: ${({theme}) => theme.colors.purpleLigth};
+        color: ${({theme}) => theme.colors.purpleLight};
         font-size: .8rem;
         letter-spacing: 1px;
       }
@@ -162,38 +162,40 @@ const ContainerContact = styled.div`
 
   @media (max-width: 600px) {
     padding-bottom: 3rem;
-    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLigth};
+    border-bottom: 1px solid ${({theme}) => theme.colors.purpleLight};
     }
 `
 
+interface IContact {
+  name: string
+  email: string
+  message: string
+}
+
 export default function Contact() {
+  
+  function sendEmail(e) {
+    e.preventDefault();
 
-  interface contactProps {
-    name: string,
-    email: string,
-    message: string
-  }
+    if (validationInput()) {
+      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
+      .then(() => {
+          alert("Mensagem enviada com sucesso! 👍");
+      }, (error) => {
+          alert(error);
+      });
 
-  const [contact , setContact] = useState<contactProps>({name: "", email: "", message: ""})
+      e.target.reset()
+    } 
+}
+
+  const [contact, setContact] = useState<IContact | null>(null)
 
   function handleChange(event) {
-    const {name, value} = event.target
+    const { name, value} = event.target
     setContact({...contact, [name]: value})
-  }
-
-  function sendEmail(e) {
-    e.preventDefault(); 
-
-    if(validationInput()) {
-      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
-        .then(() => 
-          alert("Mensagem enviada com sucesso! 👍")).catch((error) => alert(error))
-      
-      e.target.reset() 
-    }
-  }
-    
-
+   }
+ 
   function validationInput() {
 
     const spanEmail = document.querySelector(".email")
@@ -205,19 +207,16 @@ export default function Contact() {
     }
 
     if (contact.email === "") {
-       spanEmail.innerHTML = "Preencha seu email"
-       return false
+      spanEmail.innerHTML = "Preencha seu email"
     } else if (!checkEmail(contact.email)) {
-       spanEmail.innerHTML = "Preencha um e-mail válido"
-       return false
+      spanEmail.innerHTML = "Preencha um e-mail válido"
     }
 
     if(contact.message === "") {
       const spanTextarea = document.querySelector(".textarea")
-       spanTextarea.innerHTML = "Escreva sua mensagem"
-       return false
+      spanTextarea.innerHTML = "Escreva sua mensagem"
+      return false
     }
-    
   }
 
   function checkEmail(email: string) {
@@ -257,7 +256,7 @@ export default function Contact() {
         <Form onSubmit={sendEmail}>
           <div>
             <input type="text" name="name" id="name" placeholder="Nome" onChange={handleChange}/>
-           <span className="name"></span>
+            <span className="name"></span>
           </div>
           
           <div>

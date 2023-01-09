@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const PageInProgress = styled.h1`
   color: ${({theme}) => theme.colors.secondary};
-  border-bottom: 2px solid ${({theme}) => theme.colors.purpleLigth};
+  border-bottom: 2px solid ${({theme}) => theme.colors.purpleLight};
   text-align: center;
   padding: 1rem;
 
