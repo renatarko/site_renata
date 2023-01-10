@@ -13,15 +13,18 @@ const Container = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   gap: 6rem;
   margin-top: 10rem;
   z-index: 2;
 
-  @media (max-width: 1070px) {
-    margin-top: 6rem;
-    padding-bottom: 3rem;
+  @media (max-width: 1010px) {
+    margin-top: 5.5rem;
   }
+
+  /* @media (max-width: 780px) {
+    margin-top: 5.5rem;
+  } */
 
   @media (max-width: 600px) {
     justify-content: center;
@@ -65,12 +68,12 @@ const Form = styled.form`
       outline: none;
 
     &:focus {
-      border: 1px solid ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
       opacity: .95;
     }
 
     &:hover {
-      border: 1px solid ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
     }
 
     &::placeholder {
@@ -88,12 +91,12 @@ const Form = styled.form`
     outline: none;
 
     &:focus {
-      border: 1px solid ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
       opacity: .95;
     }
 
     &:hover {
-      border: 1px solid ${({theme}) => theme.colors.purple};
+      border: 2px solid ${({theme}) => theme.colors.purple};
     }
 
     &::placeholder {
@@ -102,9 +105,16 @@ const Form = styled.form`
   }
   }
 
+  .sendMessage {
+    text-align: center;
+    color: ${({theme}) => theme.colors.secondary};
+    font-size: .8rem;
+  }
+
   @media (max-width: 600px) {
     width: 70%;
     margin-top: -2rem ;
+    margin-bottom: 3rem;
   }
 `
 
@@ -173,51 +183,64 @@ interface IContact {
 }
 
 export default function Contact() {
-  
-  function sendEmail(e) {
-    e.preventDefault();
 
-    if (validationInput()) {
-      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
-      .then(() => {
-          alert("Mensagem enviada com sucesso! 👍");
-      }, (error) => {
-          alert(error);
-      });
-
-      e.target.reset()
-    } 
-}
-
-  const [contact, setContact] = useState<IContact | null>(null)
+  const [contact, setContact] = useState<IContact>({name: "", email: "", message: ""})
 
   function handleChange(event) {
     const { name, value} = event.target
     setContact({...contact, [name]: value})
-   }
+  }
+   
+  
+  function sendEmail(e) {
+    e.preventDefault();
+    
+    const sendMessage = document.querySelector(".sendMessage")
+    console.log(sendMessage)
+
+    if (validationInput()) {
+      emailjs.sendForm('emailMessage', 'template_4dbzh8s', e.target, '1lxy4vpb4pSh47JcJ')
+      .then(() => {
+        sendMessage.innerHTML = "Mensagem enviada com sucesso! 👍"
+      }, (error) => {
+          alert(error);
+      });
+    } 
+    e.target.reset()
+}
  
   function validationInput() {
 
-    const spanEmail = document.querySelector(".email")
+      const spanName = document.querySelector(".name")
+      const spanEmail = document.querySelector(".email")
+      const spanTextarea = document.querySelector(".message")
     
     if(contact.name === "") {
-      const spanName = document.querySelector(".name")
+      console.log("name")
       spanName.innerHTML = "Preencha seu nome"
       return false
+    } else {
+      spanName.innerHTML = ""
     }
-
+    
     if (contact.email === "") {
       spanEmail.innerHTML = "Preencha seu email"
+      return false
     } else if (!checkEmail(contact.email)) {
       spanEmail.innerHTML = "Preencha um e-mail válido"
+      return false
+    } else {
+      spanEmail.innerHTML = ""
     }
 
     if(contact.message === "") {
-      const spanTextarea = document.querySelector(".textarea")
       spanTextarea.innerHTML = "Escreva sua mensagem"
       return false
-    }
-  }
+    } else {
+      spanTextarea.innerHTML = ""
+      return true
+      }
+}
 
   function checkEmail(email: string) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -256,17 +279,18 @@ export default function Contact() {
         <Form onSubmit={sendEmail}>
           <div>
             <input type="text" name="name" id="name" placeholder="Nome" onChange={handleChange}/>
-            <span className="name"></span>
+            <span className="name"/>
           </div>
           
           <div>
             <input type="email" name="email" id="email" placeholder="Email" onChange={handleChange}/>
-            <span className="email"></span>
+            <span className="email"/>
           </div>
           
           <div>
             <textarea name="message" id="message" placeholder="Mensagem" rows={5} onChange={handleChange}></textarea>
-            <span className="textarea"></span>
+            <span className="message"/>
+            <p className="sendMessage"/>
           </div>
           
           <InputButton type="submit" value="Enviar"/>

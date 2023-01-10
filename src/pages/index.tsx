@@ -11,7 +11,7 @@ export default function Home() {
       <Main>
         <Header children/>
         <About/>
-      <Footer/>
+        <Footer/>
       </Main>
      </>
   );
