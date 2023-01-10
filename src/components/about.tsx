@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Main } from "../pages/projects";
 import {FaRegCommentAlt } from "react-icons/fa";
 import { useState } from "react";
-import Footer from "./footer";
 import { Container } from "./sharedstyles";
 
 const ContainerText = styled.div`
@@ -10,16 +9,16 @@ const ContainerText = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1;
+  z-index: 10;
   padding-bottom: 3rem;
 
   @media (max-width: 600px) {
-     padding-top: 7rem;
+     /* padding-top: 7rem; */
      align-items: center;
      text-align: center;
      gap: 5rem;
+     order: 2;
   }
-
 `;
 
 const Title = styled.h1`
@@ -35,7 +34,6 @@ const Title = styled.h1`
   @media (max-width: 500px) {
     font-size: 1.5rem;
   }
-
 `;
 
 const SubTitle = styled.h2`
@@ -93,10 +91,9 @@ const ImageProfile = styled.img`
     }
 
   @media (max-width: 600px) {
-      position: absolute;
+      order: 1;
       width: 8rem;
       height:8rem;
-      top: 1rem;
   }
 `
 
@@ -119,9 +116,11 @@ const ContainerIconAboutMe = styled.div<ButtonIconProps>`
     justify-content: center;
     gap: .5rem;
     padding: 0 .8rem;
-    z-index: 1;
+    z-index: 10;
     border-radius: 10px;
     transition: all .6s;
+    order: 2;
+    z-index: 10;
 
     ${({openMedia}) => css`  
     visibility: ${openMedia ? "visible" : "hidden"};
@@ -151,7 +150,7 @@ const DescriptionMedia = styled.p`
   text-align: center;
   color: white;
   font-size: .95rem;
-  z-index: 1;
+  z-index: 10;
 `
 
 const ButtonOpen = styled.button<ButtonIconProps>`
@@ -164,7 +163,7 @@ const ButtonOpen = styled.button<ButtonIconProps>`
     color: ${({theme}) => theme.colors.purple};
     font-size: 40px;
     position: relative;
-    z-index: 1;
+    z-index: 10;
     transition: all .6s;
 
     ${({openMedia}) => css`
