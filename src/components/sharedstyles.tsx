@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-const Main = styled.main`
-  margin: 0 auto;
-  width: 100vw;
-  height: 100vh;
 
-  @media (max-width: 1065px) {
-    position: relative;
-  }
-`;
+const Main = styled.main`
+  width: 100%;
+  /* height: 100vh; */
+`
 
 const Container = styled.section`
-  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 0px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,7 +20,7 @@ const Container = styled.section`
   position: relative;
 
   @media (max-width: 1010px) {
-    padding: .5rem 1rem;
+    /* padding: .5rem 1rem; */
   }
 
   @media (max-width: 600px) {

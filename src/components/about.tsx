@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { Main } from "../pages/projects";
+// import { Main } from "../pages/projects";
 import {FaRegCommentAlt } from "react-icons/fa";
 import { useState } from "react";
-import { Container } from "./sharedstyles";
+import { Container, Main } from "./sharedstyles";
 
 const ContainerText = styled.div`
   width: 100%;

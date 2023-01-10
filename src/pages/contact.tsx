@@ -1,46 +1,12 @@
 import styled from "styled-components";
 import emailjs from '@emailjs/browser';
+import { useState } from "react";
 import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
 import MenuMobile from "../components/menuMobile";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useState } from "react";
-
-
-const Container = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 1rem;
-  /* padding-bottom: 2rem; */
-  gap: 6rem;
-  margin-top: 10rem;
-  z-index: 2;
-
-  @media (max-width: 1010px) {
-    margin-top: 5.5rem;
-  }
-
-  /* @media (max-width: 780px) {
-    margin-top: 5.5rem;
-  } */
-
-  @media (max-width: 600px) {
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 7rem;
-    padding: 1rem 1rem;
-  }
-`
-
-const Main = styled.main`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0px auto;
-  max-width: 800px;
-`
+import { Container, Main } from "../components/sharedstyles";
 
 const Form = styled.form`
   width: 40%;
