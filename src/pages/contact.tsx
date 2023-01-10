@@ -72,10 +72,6 @@ const Form = styled.form`
       opacity: .95;
     }
 
-    &:hover {
-      border: 2px solid ${({theme}) => theme.colors.purple};
-    }
-
     &::placeholder {
       color: ${({theme}) => theme.colors.purple};
     }
@@ -93,10 +89,6 @@ const Form = styled.form`
     &:focus {
       border: 2px solid ${({theme}) => theme.colors.purple};
       opacity: .95;
-    }
-
-    &:hover {
-      border: 2px solid ${({theme}) => theme.colors.purple};
     }
 
     &::placeholder {
