@@ -25,7 +25,7 @@ const MenuLink = styled.ul<MenuLinkProps>`
       gap: 2rem;
       overflow: hidden;
       transition: all .5s; 
-      z-index: 10;  
+      z-index: 100;  
 
     ${({ isOpen}) => css`
       visibility: ${isOpen ? "visible" : "hidden"};
@@ -42,7 +42,7 @@ const MenuIconOpen = styled.button`
       background: none;
       border: none;
       cursor: pointer;
-      z-index: 10;  
+      z-index: 100;  
 
       > svg {
         color: ${({theme}) => theme.colors.purple} ;
@@ -67,7 +67,7 @@ const LinkPage = styled.a`
     font-weight: bold;
     padding: .4rem;
     border-radius: 8px;
-    z-index: 10;  
+    z-index: 100;  
     }
 
   :hover {
