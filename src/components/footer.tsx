@@ -73,10 +73,6 @@ export default function Footer() {
   return (
       <FooterDiv>
           <Media>
-            <StyledA href="https://wa.me/+5567991687767" target="_blank">
-              <p>Whatsapp</p>
-              <FaWhatsapp />
-            </StyledA>
             <StyledA href="https://www.instagram.com/renata_rko/" target="_blank">
             <p>Instagram</p>
               <FaInstagram />
