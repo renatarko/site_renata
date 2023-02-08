@@ -47,6 +47,12 @@ const myProjects = [
     url: "https://cafeteriaapp.vercel.app/",
     icon: <FaMugHot/>
   },
+  {
+    id:7,
+    name:"Site Book",
+    description: "Página de Compra de Livro feito com HTML, CSS e JS",
+    url: "https://redexbook.netlify.app",
+    icon: <FaMugHot/>
 ];
 
 export const Main = styled.main`
