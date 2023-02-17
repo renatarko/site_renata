@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-
 const Main = styled.main`
   width: 100%;
   /* height: 100vh; */
-`
+`;
 
 const Container = styled.section`
   max-width: 800px;
@@ -15,8 +14,8 @@ const Container = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 5rem 1rem;
-  gap:7rem;
-  margin-top: 5rem;
+  gap: 7rem;
+  margin-top: 2rem;
   position: relative;
 
   @media (max-width: 1010px) {
