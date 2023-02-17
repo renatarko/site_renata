@@ -15,18 +15,15 @@ const Container = styled.section`
   align-items: center;
   padding: 5rem 1rem;
   gap: 7rem;
-  margin-top: 2rem;
+  margin-top: 5rem;
   position: relative;
-
-  @media (max-width: 1010px) {
-    /* padding: .5rem 1rem; */
-  }
 
   @media (max-width: 600px) {
     justify-content: center;
     flex-wrap: wrap;
     gap: 5rem;
     z-index: 2;
+    margin-top: 3rem;
   }
 `;
 
