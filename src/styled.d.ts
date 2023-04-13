@@ -6,7 +6,7 @@ declare module "styled-components" {
       primary: string;
       secondary: string;
       purple: string;
-      purpleLigth: string;
+      purpleLight: string;
     };
     fontFamily: {
       poppins: string;

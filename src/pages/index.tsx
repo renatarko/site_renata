@@ -1,17 +1,17 @@
 // import Head from "next/head";
-import Header from "../components/header";
-import Mains from "../components/mains";
-import Footer from "../components/footer";
-import { Container, Main } from "../components/sharedstyles";
+import About from "../components/about/about";
+import Footer from "../components/footer/footer";
+import Header from "../components/header/header";
+import { Main } from "../sharedstyles";
 
 export default function Home() {
   return (
-    <Main>
-      <Container>
-        <Header />
-        <Mains />
+    <>
+      <Main>
+        <Header children />
+        <About />
         <Footer />
-      </Container>
-    </Main>
+      </Main>
+    </>
   );
 }
