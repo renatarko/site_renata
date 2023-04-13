@@ -149,9 +149,6 @@ const Paragraph = styled.p`
   color: ${({ theme }) => theme.colors.purpleLigth};
   border-radius: 10px;
   transition: all 0.3s;
-  /* position: absolute;
-  top: 20px;
-  left: 30px; */
 `;
 
 export default function Projects() {
@@ -167,6 +164,7 @@ export default function Projects() {
         </Link>
         <Title>Meus Projetos</Title>
       </Header>
+
       <ContainerGrid>
         {myProjects.map((project) => (
           <ContainerCard key={project.id} href={project.url} target="_blank">
