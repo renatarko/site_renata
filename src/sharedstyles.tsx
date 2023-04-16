@@ -34,4 +34,4 @@ const CodeTag = styled.code`
     Bitstream Vera Sans Mono, Courier New, monospace;
 `;
 
-export { Container, Main, CodeTag };
+export { CodeTag, Container, Main };
