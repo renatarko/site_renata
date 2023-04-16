@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { ReactNode } from "react";
 
-import { ContainerMenu, LinkPage, Menu, MenuLink } from "./style";
+import { ButtonTheme, ContainerMenu, LinkPage, Menu, MenuLinks } from "./style";
 
-import Logo from "../logo/logo";
-import MenuMobile from "../menuMobile/menuMobile";
+import Link from "next/link";
+import { FaSun } from "react-icons/fa";
 
 type HeaderProps = {
   children: ReactNode;
@@ -20,14 +19,17 @@ export default function Header({ children }: HeaderProps) {
   return (
     <ContainerMenu>
       <Menu>
-        <Logo />
-        <MenuLink>
-          <StyledLink href="/" name="Sobre mim" />
-          <StyledLink href="/projects" name="Projetos" />
-          <StyledLink href="/contact" name="Contato" />
-        </MenuLink>
+        {/* <Logo /> */}
+        <MenuLinks>
+          <StyledLink href="/" name="Home" />
+          <StyledLink href="/projects" name="Serviços" />
+          <StyledLink href="/contact" name="Cursos" />
+        </MenuLinks>
 
-        <MenuMobile />
+        <ButtonTheme>
+          <FaSun />
+        </ButtonTheme>
+        {/* <MenuMobile /> */}
       </Menu>
     </ContainerMenu>
   );

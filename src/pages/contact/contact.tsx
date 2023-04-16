@@ -3,10 +3,10 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
-import Footer from "../components/footer/footer";
-import Header from "../components/header/header";
-import MenuMobile from "../components/menuMobile/menuMobile";
-import { Container, Main } from "../sharedstyles";
+import Footer from "../../components/footer/footer";
+import Header from "../../components/header/header";
+import MenuMobile from "../../components/menuMobile/menuMobile";
+import { Container, Main } from "../../sharedstyles";
 import { ContainerContact, Form, InputButton } from "./contactStyle";
 
 interface IContact {

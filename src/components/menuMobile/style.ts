@@ -18,7 +18,7 @@ export const MenuLink = styled.ul<MenuLinkProps>`
     right: 0;
     bottom: 0;
     left: 0;
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.darkBg};
     gap: 2rem;
     overflow: hidden;
     transition: all 0.5s;

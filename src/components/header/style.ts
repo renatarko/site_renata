@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ContainerMenu = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.darkBg};
   width: 100%;
   height: 6rem;
   padding: 0 2rem;
@@ -24,10 +24,12 @@ export const Menu = styled.nav`
   align-items: center;
 `;
 
-export const MenuLink = styled.ul`
-  display: inline-flex;
-  gap: 2rem;
-  align-items: center;
+export const MenuLinks = styled.ul`
+  ${({ theme }) => css`
+    display: inline-flex;
+    gap: ${theme.spacing.gap};
+    align-items: center;
+  `}
 
   @media (max-width: 600px) {
     display: none;
@@ -35,19 +37,25 @@ export const MenuLink = styled.ul`
 `;
 
 export const LinkPage = styled.a`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   text-transform: uppercase;
   transition: 0.4s;
   font-weight: bold;
   padding: 1rem;
 
   :hover {
-    color: ${({ theme }) => theme.colors.purpleLight};
-    border-bottom: 2px solid ${({ theme }) => theme.colors.purpleLight};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
   }
+`;
 
-  ::selection {
-    color: ${({ theme }) => theme.colors.purpleLight};
+export const ButtonTheme = styled.button`
+  ${({ theme }) => css`
     background: none;
-  }
+    border: none;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fontSize.icon};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  `}
 `;

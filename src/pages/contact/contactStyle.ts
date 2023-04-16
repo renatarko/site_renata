@@ -22,7 +22,7 @@ export const Form = styled.form`
       padding: 5px;
       border-radius: 10px;
       font-family: ${({ theme }) => theme.fontFamily.poppins};
-      border: 1px solid ${({ theme }) => theme.colors.primary};
+      border: 1px solid ${({ theme }) => theme.colors.darkBg};
       outline: none;
 
       &:focus {
@@ -39,7 +39,7 @@ export const Form = styled.form`
       width: 100%;
       opacity: 0.8;
       padding: 8px;
-      border: 1px solid ${({ theme }) => theme.colors.primary};
+      border: 1px solid ${({ theme }) => theme.colors.darkBg};
       border-radius: 10px;
       font-family: ${({ theme }) => theme.fontFamily.poppins};
       outline: none;
