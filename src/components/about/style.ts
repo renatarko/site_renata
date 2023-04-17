@@ -1,170 +1,48 @@
 import styled, { css } from "styled-components";
 
-export const ContainerText = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 10;
-  padding-bottom: 3rem;
-
-  @media (max-width: 600px) {
-    /* padding-top: 7rem; */
-    align-items: center;
-    text-align: center;
-    gap: 5rem;
-    order: 2;
-  }
-`;
-
-export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 2rem;
-  margin: 0;
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purpleLight};
-    background: none;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 1.5rem;
-  }
-`;
-
-export const SubTitle = styled.h2`
-  font-size: 2rem;
-  color: ${({ theme }) => theme.colors.purpleLight};
-  margin: 0;
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purple};
-    background: none;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 1.2rem;
-  }
-`;
-
-export const Description = styled.p`
-  width: 100%;
-  margin-top: 1rem;
-  color: ${({ theme }) => theme.colors.secondary};
-
-  ::selection {
-    color: ${({ theme }) => theme.colors.purpleLight};
-    background: none;
-  }
-
-  @media (max-width: 500px) {
-    display: none;
-  }
-`;
-
-export const ImageProfile = styled.img`
-  max-width: 100%;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.purple};
-  box-shadow: 59px 47px 37px -7px rgba(0, 0, 0, 0.09);
-  -webkit-box-shadow: 19px 27px 37px -7px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 59px 47px 37px -7px rgba(0, 0, 0, 0.9);
-  z-index: 1;
-  animation: identifier 8s ease-in-out infinite 1s;
-
-  @keyframes identifier {
-    0% {
-      border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-    }
-    50% {
-      border-radius: 30% 60% 70% 40%/50% 60% 60% 40%;
-    }
-    100% {
-      border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-    }
-  }
-
-  @media (max-width: 600px) {
-    order: 1;
-    width: 8rem;
-    height: 8rem;
-  }
-`;
-
-// Após 390px
-
-type ButtonIconProps = {
-  openMedia: boolean;
+export type OpenHistoryProps = {
+  open?: boolean;
 };
 
-export const ContainerIconAboutMe = styled.div<ButtonIconProps>`
-  display: none;
-  @media (max-width: 550px) {
-    display: flex;
-    position: absolute;
-    min-height: 40%;
-    width: 90%;
-    background-color: ${({ theme }) => theme.colors.purple};
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0 0.8rem;
-    z-index: 10;
-    border-radius: 10px;
-    transition: all 0.6s;
-    order: 2;
-    z-index: 10;
-
-    ${({ openMedia }) => css`
-      visibility: ${openMedia ? "visible" : "hidden"};
-      pointer-events: ${openMedia ? "all" : "none"};
-      bottom: ${openMedia ? "7rem" : "5rem"};
-      opacity: ${openMedia ? "1" : 0};
-
-      @media (max-width: 320px) {
-        bottom: ${openMedia ? "5.5rem" : "5rem"};
-      }
-
-      &::after {
-        content: " ";
-        position: absolute;
-        top: 97%;
-        left: 50%;
-        bottom: 0;
-        border-width: 20px;
-        border-style: solid;
-        border-color: ${({ theme }) => theme.colors.purple} transparent
-          transparent transparent;
-        margin-left: -20px;
-      }
-    `}
-  }
-`;
-export const DescriptionMedia = styled.p`
-  text-align: center;
-  color: white;
-  font-size: 0.95rem;
-  z-index: 10;
+export const Wrapper = styled.section<OpenHistoryProps>`
+  ${({ theme, open }) => css`
+    width: 100%;
+    min-height: ${open ? "10rem" : "8.5rem"};
+    background-color: ${theme.colors.baseDark};
+  `}
 `;
 
-export const ButtonOpen = styled.button<ButtonIconProps>`
-  display: none;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 8rem;
+  transition: all 0.3s;
+  margin-right: 5rem;
+  margin-left: 5rem;
+`;
 
-  @media (max-width: 500px) {
-    display: flex;
+export const ShowHistory = styled.button<OpenHistoryProps>`
+  ${({ theme, open }) => css`
     background: none;
     border: none;
-    color: ${({ theme }) => theme.colors.purple};
-    font-size: 40px;
-    position: relative;
-    z-index: 10;
-    transition: all 0.6s;
+    font-family: ${theme.fontFamily.poppins};
+    color: ${({ theme }) => theme.colors.baseLight};
+    font-size: ${theme.fontSize.description};
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s;
 
-    ${({ openMedia }) => css`
-      top: ${openMedia ? "6rem" : "1rem"};
-    `}
-  }
+    align-self: ${open ? "flex-end" : "center"};
+    margin-top: ${open ? "2rem" : "none"};
+  `}
+`;
+
+export const Myhistory = styled.p<OpenHistoryProps>`
+  ${({ theme, open }) => css`
+    color: ${({ theme }) => theme.colors.baseLight};
+    font-size: ${theme.fontSize.description};
+    display: ${open ? "flex" : "none"};
+  `}
 `;

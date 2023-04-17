@@ -1,5 +1,5 @@
 // import Head from "next/head";
-import Photo from "../components/photo";
+import About from "../components/about/about";
 import { Main } from "../sharedstyles";
 
 export default function Home() {
@@ -8,8 +8,8 @@ export default function Home() {
       <Main>
         {/* <Header children /> */}
         {/* <Title /> */}
-        <Photo />
-        {/* <About /> */}
+        {/* <Photo /> */}
+        <About />
         {/* <Footer /> */}
       </Main>
     </>
