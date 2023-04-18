@@ -46,8 +46,16 @@ export const Icon = styled.a`
     justify-content: center;
     background-color: rgba(191, 176, 209, 0.1);
     border-radius: 100%;
-    padding: 0.5rem;
+    padding: 0.7rem;
     font-size: ${theme.fontSize.icon};
     color: ${theme.colors.primary};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.colors.baseLight};
+      opacity: 0.7;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+        rgba(0, 0, 0, 0.13) 0px 3px 6px;
+    }
   `}
 `;
