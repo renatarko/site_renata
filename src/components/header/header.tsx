@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
-import { ButtonTheme, ContainerMenu, LinkPage, Menu, MenuLinks } from "./style";
+import * as S from "./style";
 
 import Link from "next/link";
-import { FaSun } from "react-icons/fa";
+import { FaGithub, FaSun } from "react-icons/fa";
 
 type HeaderProps = {
   children: ReactNode;
@@ -11,26 +11,32 @@ type HeaderProps = {
 
 export const StyledLink = ({ href, name }) => (
   <Link href={href} passHref>
-    <LinkPage>{name}</LinkPage>
+    <S.LinkPage>{name}</S.LinkPage>
   </Link>
 );
 
 export default function Header({ children }: HeaderProps) {
   return (
-    <ContainerMenu>
-      <Menu>
+    <S.Container>
+      <S.Menu>
         {/* <Logo /> */}
-        <MenuLinks>
+        <S.MenuLinks>
           <StyledLink href="/" name="Home" />
           <StyledLink href="/projects" name="Serviços" />
           <StyledLink href="/contact" name="Cursos" />
-        </MenuLinks>
+        </S.MenuLinks>
 
-        <ButtonTheme>
-          <FaSun />
-        </ButtonTheme>
+        <S.ContainerIcon>
+          <S.ButtonTheme>
+            <FaSun />
+          </S.ButtonTheme>
+          <S.ButtonIcon>
+            <FaGithub />
+          </S.ButtonIcon>
+        </S.ContainerIcon>
+
         {/* <MenuMobile /> */}
-      </Menu>
-    </ContainerMenu>
+      </S.Menu>
+    </S.Container>
   );
 }

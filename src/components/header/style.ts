@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const ContainerMenu = styled.div`
+export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.darkBg};
   width: 100%;
   height: 6rem;
@@ -48,6 +48,13 @@ export const LinkPage = styled.a`
   }
 `;
 
+export const ContainerIcon = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    gap: ${theme.spacing.gap};
+  `}
+`;
+
 export const ButtonTheme = styled.button`
   ${({ theme }) => css`
     background: none;
@@ -57,5 +64,27 @@ export const ButtonTheme = styled.button`
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    &:hover {
+      color: ${theme.colors.baseLight};
+      opacity: 0.7;
+    }
+  `}
+`;
+
+export const ButtonIcon = styled.button`
+  ${({ theme }) => css`
+    background: none;
+    border: none;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fontSize.icon};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: ${theme.colors.baseLight};
+      opacity: 0.7;
+    }
   `}
 `;
