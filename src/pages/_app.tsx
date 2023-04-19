@@ -10,6 +10,7 @@ const theme: DefaultTheme = {
     secondary: "#BFB0D1",
     baseDark: "#161223",
     baseLight: "#FAF9FB",
+    secondaryOpa: "rgba(191, 176, 209, 0.4)",
   },
   fontFamily: {
     poppins: "'Poppins', sans-serif",

@@ -1,17 +1,11 @@
 // import Head from "next/head";
-import About from "../components/about/about";
-import { Main } from "../sharedstyles";
+// import { Main } from "../sharedstyles";
+import Home from "../templates/Home";
 
-export default function Home() {
+export default function Index() {
   return (
     <>
-      <Main>
-        {/* <Header children /> */}
-        {/* <Title /> */}
-        {/* <Photo /> */}
-        <About />
-        {/* <Footer /> */}
-      </Main>
+      <Home />
     </>
   );
 }

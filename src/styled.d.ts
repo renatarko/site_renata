@@ -8,6 +8,7 @@ declare module "styled-components" {
       secondary: string;
       baseLight: string;
       baseDark: string;
+      secondaryOpa: string;
     };
     fontFamily: {
       poppins: string;

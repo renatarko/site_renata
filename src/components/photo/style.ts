@@ -1,23 +1,28 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
+  /* width: 100%;
+  height: 100vh; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
+  align-items: end;
+  gap: 1rem;
 `;
 
 export const Content = styled.div`
+  /* max-width: 20rem; */
+  display: flex;
+  align-items: end;
   position: relative;
 `;
 
 export const ImageProfile = styled.img`
-  width: 350px;
-  height: 400px;
+  width: 25rem;
+  max-height: 12rem;
+  object-position: 0 -6.8rem;
   object-fit: cover;
+  transform: scale(2);
   position: relative;
+  top: 4.5rem;
   z-index: 2;
 `;
 
@@ -38,7 +43,9 @@ export const ContentIcon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
+  z-index: 10;
 `;
+
 export const Icon = styled.a`
   ${({ theme }) => css`
     display: flex;

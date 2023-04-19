@@ -1,47 +1,89 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const FooterDiv = styled.footer`
-  width: 100%;
-  height: 5rem;
-  /* position: absolute; */
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-
-  @media (max-width: 600px) {
-    position: relative;
-    bottom: 0;
-    margin-top: 1rem;
-  }
-`;
-
-export const Media = styled.section`
+export const Wrapper = styled.footer`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
 `;
 
-export const StyledA = styled.a`
-  text-align: center;
-  font-size: 1.5rem;
+export const ContainerLogo = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-  > p {
-    color: ${({ theme }) => theme.colors.secondary};
-    font-size: 0.7rem;
-    padding: 5px 0;
-  }
+    .rk {
+      font-size: ${theme.fontSize.title};
+      font-weight: 600;
+      color: ${theme.colors.primary};
+      position: relative;
+      z-index: 10;
 
-  > svg {
-    color: ${({ theme }) => theme.colors.purpleLight};
-    cursor: pointer;
-    transition: all 0.3s;
-    opacity: 0.6;
-  }
+      &::before {
+        content: "";
+        width: 65px;
+        height: 65px;
+        background: ${theme.colors.primary};
+        opacity: 0.09;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -7px;
+        /* left: 10px; */
+        z-index: -1;
+      }
+    }
+    .name {
+      color: ${theme.colors.baseLight};
+      text-transform: uppercase;
+      font-weight: 200;
+      letter-spacing: 1.5px;
+    }
+  `}
+`;
 
-  &:hover svg {
-    color: ${({ theme }) => theme.colors.purpleLight};
-    transform: scale(1.2);
-    opacity: 1;
-  }
+export const ContainerLinks = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 0.8rem; */
+
+    span {
+      color: ${theme.colors.baseLight};
+      font-size: ${theme.fontSize.description};
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        color: ${theme.colors.secondary};
+      }
+    }
+
+    .createdby {
+      color: ${theme.colors.baseLight};
+      margin-top: 1rem;
+      font-size: calc(${theme.fontSize.description} - 0.275rem);
+    }
+  `}
+`;
+
+export const Links = styled.div`
+  ${({ theme }) => css`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* gap: 1rem; */
+    color: ${theme.colors.baseLight};
+    text-transform: uppercase;
+  `}
 `;

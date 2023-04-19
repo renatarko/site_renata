@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.section`
-  /* width: 50%; */
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,6 +12,8 @@ export const SectionTitle = styled.h3`
     font-size: ${theme.fontSize.titleSection};
     color: ${theme.colors.primary};
     text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
     margin-bottom: 2rem;
   `}
 `;

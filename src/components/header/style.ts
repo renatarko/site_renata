@@ -4,13 +4,9 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.darkBg};
   width: 100%;
   height: 6rem;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   display: flex;
   align-items: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: 10;
 
   @media (max-width: 450px) {
     padding: 0 1rem;
@@ -41,7 +37,7 @@ export const LinkPage = styled.a`
   text-transform: uppercase;
   transition: 0.4s;
   font-weight: bold;
-  padding: 1rem;
+  /* padding: 1rem; */
 
   :hover {
     border-bottom: 2px solid ${({ theme }) => theme.colors.primary};

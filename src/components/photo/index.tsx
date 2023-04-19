@@ -5,7 +5,7 @@ export default function Photo() {
   return (
     <S.Wrapper>
       <S.Content>
-        <S.ImageProfile src="https://source.unsplash.com/user/willianjusten"></S.ImageProfile>
+        <S.ImageProfile src="../../assets/photo-temp.png" />
         <S.AfterProto></S.AfterProto>
       </S.Content>
       <S.ContentIcon>
