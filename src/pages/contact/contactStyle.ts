@@ -11,7 +11,7 @@ export const Form = styled.form`
     display: grid;
 
     > span {
-      color: ${({ theme }) => theme.colors.purpleLight};
+      color: ${({ theme }) => theme.colors.primary};
       font-size: 0.8rem;
       padding-left: 10px;
     }
@@ -26,12 +26,12 @@ export const Form = styled.form`
       outline: none;
 
       &:focus {
-        border: 2px solid ${({ theme }) => theme.colors.purple};
+        border: 2px solid ${({ theme }) => theme.colors.primary};
         opacity: 0.95;
       }
 
       &::placeholder {
-        color: ${({ theme }) => theme.colors.purple};
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
 
@@ -45,12 +45,12 @@ export const Form = styled.form`
       outline: none;
 
       &:focus {
-        border: 2px solid ${({ theme }) => theme.colors.purple};
+        border: 2px solid ${({ theme }) => theme.colors.primary};
         opacity: 0.95;
       }
 
       &::placeholder {
-        color: ${({ theme }) => theme.colors.purple};
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
   }
@@ -69,7 +69,7 @@ export const Form = styled.form`
 `;
 
 export const InputButton = styled.input`
-  background-color: ${({ theme }) => theme.colors.purple};
+  background-color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fontFamily.poppins};
   font-weight: bold;
   border: none;
@@ -79,7 +79,7 @@ export const InputButton = styled.input`
   border-radius: 10px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.purpleLight};
+    background-color: ${({ theme }) => theme.colors.primary};
     transform: scale(1.01);
   }
 `;
@@ -91,9 +91,9 @@ export const ContainerContact = styled.div`
   gap: 2rem;
 
   > h1 {
-    color: ${({ theme }) => theme.colors.purpleLight};
+    color: ${({ theme }) => theme.colors.primary};
     padding-bottom: 8px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.purpleLight};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   }
 
   > div {
@@ -113,7 +113,7 @@ export const ContainerContact = styled.div`
       }
 
       > span {
-        color: ${({ theme }) => theme.colors.purpleLight};
+        color: ${({ theme }) => theme.colors.primary};
         font-size: 0.8rem;
         letter-spacing: 1px;
       }
@@ -122,6 +122,6 @@ export const ContainerContact = styled.div`
 
   @media (max-width: 600px) {
     padding-bottom: 3rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.purpleLight};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `;

@@ -24,7 +24,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   text-transform: uppercase;
   font-size: 1.3rem;
 
@@ -106,7 +106,7 @@ export const Card = styled.div`
 
   > svg {
     font-size: 3rem;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
     position: absolute;
     top: 4.5rem;
     left: 0;
@@ -119,7 +119,7 @@ export const Card = styled.div`
   > a {
     width: 4.5rem;
     padding: 2px;
-    background-color: ${({ theme }) => theme.colors.purple};
+    background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 10px;
     color: ${({ theme }) => theme.colors.secondary};
     font-size: 0.8rem;
@@ -134,7 +134,7 @@ export const Card = styled.div`
     cursor: pointer;
 
     &:hover {
-      border: 1px solid ${({ theme }) => theme.colors.purple};
+      border: 1px solid ${({ theme }) => theme.colors.primary};
       bottom: 0.5rem;
       background: transparent;
     }
@@ -143,7 +143,7 @@ export const Card = styled.div`
   &:hover {
     transform: scale(1.03);
     box-shadow: rgba(0, 0, 0, 0.432) 0px 5px 15px;
-    border: 1px solid ${({ theme }) => theme.colors.purple};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 
   &:hover h3 {
@@ -173,7 +173,7 @@ export const Card = styled.div`
 `;
 
 // export const IconBack = styled(FaArrowLeft)`
-//   color: ${({ theme }) => theme.colors.purple};
+//   color: ${({ theme }) => theme.colors.primary};
 //   font-size: 1.8rem;
 //   cursor: pointer;
 //   transition: 0.5s;

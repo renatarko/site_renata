@@ -3,10 +3,10 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
-import Footer from "../../components/footer";
-import Header from "../../components/header/header";
+import Footer from "../../components/Footer/index";
+import Header from "../../components/Header/header";
 import MenuMobile from "../../components/menuMobile/menuMobile";
-import { Container, Main } from "../../sharedstyles";
+import { Container } from "../../sharedstyles";
 import { ContainerContact, Form, InputButton } from "./contactStyle";
 
 interface IContact {
@@ -97,66 +97,65 @@ export default function Contact() {
         <MenuMobile />
       </Header>
 
-      <Main>
-        <Container>
-          <ContainerContact>
-            <h1>Fale comigo</h1>
+      <Container>
+        <ContainerContact>
+          <h1>Fale comigo</h1>
 
+          <div>
             <div>
-              <div>
-                <FiMail />
-                <span>renata_rko@hotmail.com</span>
-              </div>
-              <div>
-                <FiMapPin />
-                <span>Campo Grande - MS</span>
-              </div>
-              <div>
-                <FiPhone />
-                <span>(67) 99168-7767</span>
-              </div>
+              <FiMail />
+              <span>renata_rko@hotmail.com</span>
             </div>
-          </ContainerContact>
-
-          <Form onSubmit={sendEmail}>
             <div>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Nome"
-                onChange={handleChange}
-              />
-              <span className="name" />
+              <FiMapPin />
+              <span>Campo Grande - MS</span>
             </div>
-
             <div>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                onChange={handleChange}
-              />
-              <span className="email" />
+              <FiPhone />
+              <span>(67) 99168-7767</span>
             </div>
+          </div>
+        </ContainerContact>
 
-            <div>
-              <textarea
-                name="message"
-                id="message"
-                placeholder="Mensagem"
-                rows={5}
-                onChange={handleChange}
-              ></textarea>
-              <span className="message" />
-              <p className="sendMessage" />
-            </div>
+        <Form onSubmit={sendEmail}>
+          <div>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nome"
+              onChange={handleChange}
+            />
+            <span className="name" />
+          </div>
 
-            <InputButton type="submit" value="Enviar" />
-          </Form>
-        </Container>
-      </Main>
+          <div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            <span className="email" />
+          </div>
+
+          <div>
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Mensagem"
+              rows={5}
+              onChange={handleChange}
+            ></textarea>
+            <span className="message" />
+            <p className="sendMessage" />
+          </div>
+
+          <InputButton type="submit" value="Enviar" />
+        </Form>
+      </Container>
+
       <Footer />
     </>
   );
