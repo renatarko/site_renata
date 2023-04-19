@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 import emailjs from "@emailjs/browser";
+import { FaVoicemail } from "react-icons/fa";
+import { Container } from "../../sharedstyles";
+import { Main } from "../projects/projectsStyle";
+import { ContainerContact, Form } from "./contactStyle";
 
 // import Footer from "../components/footer/footer";
 // import Header from "../components/header/header";
@@ -95,22 +99,20 @@ export default function Contact() {
         <MenuMobile />
       </Header> */}
 
-      {/* <Main>
+      <Main>
         <Container>
           <ContainerContact>
             <h1>Fale comigo</h1>
 
             <div>
               <div>
-                <FiMail />
+                <FaVoicemail />
                 <span>renata_rko@hotmail.com</span>
               </div>
               <div>
-                <FiMapPin />
                 <span>Campo Grande - MS</span>
               </div>
               <div>
-                <FiPhone />
                 <span>(67) 99168-7767</span>
               </div>
             </div>
@@ -151,10 +153,10 @@ export default function Contact() {
               <p className="sendMessage" />
             </div>
 
-            <InputButton type="submit" value="Enviar" />
+            {/* <InputButton type="submit" value="Enviar" /> */}
           </Form>
         </Container>
-      </Main> */}
+      </Main>
       {/* <Footer /> */}
     </>
   );

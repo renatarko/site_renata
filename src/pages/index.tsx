@@ -7,9 +7,6 @@ export default function Home() {
     <>
       <Main>
         <PageProgress />
-        {/* <Header children />
-        <About />
-        <Footer /> */}
       </Main>
     </>
   );
