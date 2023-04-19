@@ -1,30 +1,16 @@
 import styled from "styled-components";
 
-const Main = styled.main`
-  width: 100%;
-  /* height: 100vh; */
-`;
+// const Main = styled.main`
+//   width: 100%;
+//   /* height: 100vh; */
+// `;
 
-const Container = styled.section`
-  max-width: 800px;
-  height: 100%;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5rem 1rem;
-  gap: 7rem;
-  margin-top: 5rem;
-  position: relative;
-
-  @media (max-width: 600px) {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5rem;
-    z-index: 2;
-    margin-top: 3rem;
-  }
+const Container = styled.main`
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4rem;
+  padding-right: 4rem;
 `;
 
 const CodeTag = styled.code`
@@ -34,4 +20,4 @@ const CodeTag = styled.code`
     Bitstream Vera Sans Mono, Courier New, monospace;
 `;
 
-export { Container, Main, CodeTag };
+export { CodeTag, Container };

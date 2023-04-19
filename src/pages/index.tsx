@@ -1,13 +1,9 @@
-// import Head from "next/head";
-import PageProgress from "../components/pageProgress";
-import { Main } from "../sharedstyles";
+import Home from "../templates/Home";
 
-export default function Home() {
+export default function Index() {
   return (
     <>
-      <Main>
-        <PageProgress />
-      </Main>
+      <Home />
     </>
   );
 }
