@@ -42,11 +42,11 @@ export const MenuIconOpen = styled.button`
     z-index: 100;
 
     > svg {
-      color: ${({ theme }) => theme.colors.purple};
+      color: ${({ theme }) => theme.colors.primary};
       font-size: 2rem;
 
       &:hover {
-        color: ${({ theme }) => theme.colors.purpleLight};
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
   }
@@ -58,7 +58,7 @@ export const LinkPage = styled.a`
   @media (max-width: 600px) {
     font-size: 1.5rem;
     display: flex;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
     text-transform: uppercase;
     transition: 0.5s;
     font-weight: bold;
@@ -69,11 +69,11 @@ export const LinkPage = styled.a`
 
   :hover {
     color: ${({ theme }) => theme.colors.secondary};
-    background-color: ${({ theme }) => theme.colors.purple};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   ::selection {
-    color: ${({ theme }) => theme.colors.purpleLight};
+    color: ${({ theme }) => theme.colors.primary};
     background: none;
   }
 `;

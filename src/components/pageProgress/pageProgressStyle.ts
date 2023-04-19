@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const PageInProgress = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.purpleLight};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
   text-align: center;
   padding: 1rem;
 

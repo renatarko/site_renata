@@ -1,15 +1,15 @@
+import About from "../../components/About/about";
 import CardProjects from "../../components/CardProjects";
+import CardSlider from "../../components/CardSlider";
+import Courses from "../../components/Courses";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header/header";
+import Photo from "../../components/Photo";
 import Service from "../../components/Service";
-import About from "../../components/about/about";
-import Header from "../../components/header/header";
-import Photo from "../../components/photo";
-import Title from "../../components/title";
+import Title from "../../components/Title";
 import { Container } from "../../sharedstyles";
 
 import items from "../../components/CardProjects/mock";
-import CardSlider from "../../components/CardSlider";
-import Courses from "../../components/Courses";
-import Footer from "../../components/footer";
 import * as S from "./style";
 
 export default function Home() {
