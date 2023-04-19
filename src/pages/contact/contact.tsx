@@ -1,13 +1,11 @@
 import { useState } from "react";
 
 import emailjs from "@emailjs/browser";
-import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
-import Footer from "../components/footer/footer";
-import Header from "../components/header/header";
-import MenuMobile from "../components/menuMobile/menuMobile";
-import { Container, Main } from "../sharedstyles";
-import { ContainerContact, Form, InputButton } from "./contactStyle";
+// import Footer from "../components/footer/footer";
+// import Header from "../components/header/header";
+// import MenuMobile from "../components/menuMobile/menuMobile";
+// import { Container, Main } from "../sharedstyles";
 
 interface IContact {
   name: string;
@@ -93,11 +91,11 @@ export default function Contact() {
 
   return (
     <>
-      <Header>
+      {/* <Header>
         <MenuMobile />
-      </Header>
+      </Header> */}
 
-      <Main>
+      {/* <Main>
         <Container>
           <ContainerContact>
             <h1>Fale comigo</h1>
@@ -156,8 +154,8 @@ export default function Contact() {
             <InputButton type="submit" value="Enviar" />
           </Form>
         </Container>
-      </Main>
-      <Footer />
+      </Main> */}
+      {/* <Footer /> */}
     </>
   );
 }
