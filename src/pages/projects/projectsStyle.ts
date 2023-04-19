@@ -1,3 +1,4 @@
+import { FaArrowLeft } from "react-icons/fa";
 import styled from "styled-components";
 
 export const Main = styled.main`
@@ -172,13 +173,13 @@ export const Card = styled.div`
   }
 `;
 
-// export const IconBack = styled(FaArrowLeft)`
-//   color: ${({ theme }) => theme.colors.purple};
-//   font-size: 1.8rem;
-//   cursor: pointer;
-//   transition: 0.5s;
+export const IconBack = styled(FaArrowLeft)`
+  color: ${({ theme }) => theme.colors.purple};
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.5s;
 
-//   &:hover {
-//     color: ${({ theme }) => theme.colors.purpleLight};
-//   }
-// `;
+  &:hover {
+    color: ${({ theme }) => theme.colors.purpleLight};
+  }
+`;

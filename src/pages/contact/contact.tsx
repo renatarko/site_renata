@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 import { FaVoicemail } from "react-icons/fa";
 import { Container } from "../../sharedstyles";
 import { Main } from "../projects/projectsStyle";
-import { ContainerContact, Form } from "./contactStyle";
+import { ContainerContact, Form, InputButton } from "./contactStyle";
 
 // import Footer from "../components/footer/footer";
 // import Header from "../components/header/header";
@@ -153,7 +153,7 @@ export default function Contact() {
               <p className="sendMessage" />
             </div>
 
-            {/* <InputButton type="submit" value="Enviar" /> */}
+            <InputButton type="submit" value="Enviar" />
           </Form>
         </Container>
       </Main>
