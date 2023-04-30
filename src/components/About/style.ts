@@ -5,10 +5,12 @@ export type OpenHistoryProps = {
 };
 
 export const Wrapper = styled.section<OpenHistoryProps>`
-  ${({ theme, open }) => css`
+  ${({ open }) => css`
     width: 100%;
     min-height: ${open ? "10rem" : "8.5rem"};
-    background-color: ${theme.colors.baseDark};
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `}
 `;
 
@@ -17,10 +19,13 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: justify;
   padding: 3rem 8rem;
   transition: all 0.3s;
-  margin-right: 5rem;
-  margin-left: 5rem;
+
+  @media (max-width: 900px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 export const ShowHistory = styled.button<OpenHistoryProps>`

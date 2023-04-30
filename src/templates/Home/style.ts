@@ -5,28 +5,52 @@ export const Wrapper = styled.div``;
 export const Section = styled.section`
   width: 100%;
   padding: 8rem 4rem;
+
+  @media (max-width: 900px) {
+    padding: 8rem 0;
+  }
 `;
 
 export const SectionHome = styled(Section)`
   display: flex;
   justify-content: space-between;
+  /* background-color: ${({ theme }) => theme.colors.baseLight}; */
   /* z-index: -1; */
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12rem;
+  }
 `;
 
 export const SectionAbout = styled(Section)`
   width: 100%;
-  padding: 0 6rem;
-  padding-top: 2.45rem;
+  padding: 0 2rem;
+  /* padding-top: 2.45rem; */
+
+  ${({ theme }) => css`
+    background-color: ${theme.colors.baseDark};
+  `}
 `;
 
 export const SectionService = styled(Section)`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
   .containerCards {
     width: 40%;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+
+    .containerCards {
+      width: 100%;
+    }
   }
 `;
 

@@ -3,10 +3,16 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.footer`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
   padding: 2rem 4rem;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
 `;
 
 export const ContainerLogo = styled.div`
@@ -44,6 +50,11 @@ export const ContainerLogo = styled.div`
       text-transform: uppercase;
       font-weight: 200;
       letter-spacing: 1.5px;
+    }
+
+    @media (max-width: 900px) {
+      border-bottom: 1px solid ${theme.colors.secondaryOpa};
+      padding-bottom: 1.5rem;
     }
   `}
 `;

@@ -3,10 +3,6 @@
 import { useState } from "react";
 import * as S from "./style";
 
-// type aboutProps = {
-//   mostrar?: boolean;
-// };
-
 export default function About() {
   const [open, setOpen] = useState(false);
 

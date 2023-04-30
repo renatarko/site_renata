@@ -5,6 +5,10 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const SectionTitle = styled.h3`

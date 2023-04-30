@@ -1,47 +1,57 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  /* width: 100%;
-  height: 100vh; */
   display: flex;
-  align-items: end;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 `;
 
 export const Content = styled.div`
-  /* max-width: 20rem; */
-  display: flex;
-  align-items: end;
-  position: relative;
+  ${({ theme }) => css`
+    /* max-width: 20rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    width: 380px;
+    height: 400px;
+    background-color: #1e1e1e;
+    border-radius: 70px 0 70px 0;
+
+    z-index: 2;
+  `}
 `;
 
 export const ImageProfile = styled.img`
-  width: 25rem;
-  max-height: 12rem;
-  object-position: 0 -6.8rem;
+  width: 13.5rem;
+  /* max-height: 12rem; */
+  /* object-position: 0 -6.8rem; */
   object-fit: cover;
-  transform: scale(2);
-  position: relative;
-  top: 4.5rem;
+  /* transform: scale(2); */
+  position: absolute;
+  top: -1.85rem;
   z-index: 2;
 `;
 
-export const AfterProto = styled.div`
-  ${({ theme }) => css`
-    width: 380px;
-    height: 400px;
-    background-color: ${theme.colors.primary};
-    opacity: 10%;
-    z-index: 1;
-    position: absolute;
-    top: -2.5rem;
-    border-radius: 70px 0 70px 0;
-  `}
-`;
+// export const AfterProto = styled.div`
+//   ${({ theme }) => css`
+//     width: 380px;
+//     height: 400px;
+//     background-color: ${theme.colors.primary};
+//     opacity: 10%;
+//     z-index: 1;
+//     position: absolute;
+//     top: -2.5rem;
+//     border-radius: 70px 0 70px 0;
+//   `}
+// `;
 
 export const ContentIcon = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 18px;
   z-index: 10;
 `;

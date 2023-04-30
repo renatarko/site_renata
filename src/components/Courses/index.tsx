@@ -30,7 +30,7 @@ const items = [
 
 export default function Courses() {
   return (
-    <S.Wrapper>
+    <S.Wrapper id="services">
       <div className="container-title">
         <S.Title>Cursos</S.Title>
         <FaCode />

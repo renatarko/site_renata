@@ -68,7 +68,7 @@ export const ButtonTheme = styled.button`
   `}
 `;
 
-export const ButtonIcon = styled.button`
+export const ButtonIcon = styled.a`
   ${({ theme }) => css`
     background: none;
     border: none;

@@ -1,9 +1,8 @@
+import Link from "next/link";
 import { ReactNode } from "react";
+import { FaGithub, FaSun } from "react-icons/fa";
 
 import * as S from "./style";
-
-import Link from "next/link";
-import { FaGithub, FaSun } from "react-icons/fa";
 
 type HeaderProps = {
   children: ReactNode;
@@ -20,19 +19,21 @@ export default function Header({ children }: HeaderProps) {
     <S.Container>
       <S.Menu>
         {/* <Logo /> */}
-        <S.MenuLinks>
-          <StyledLink href="/" name="Home" />
-          <StyledLink href="/projects" name="Serviços" />
-          <StyledLink href="/contact" name="Cursos" />
-        </S.MenuLinks>
+        {/* <S.MenuLinks>
+          <StyledLink href="/home" name="Home" />
+          <StyledLink href="/services" name="Serviços" />
+          <StyledLink href="/courses" name="Cursos" />
+        </S.MenuLinks> */}
 
         <S.ContainerIcon>
           <S.ButtonTheme>
             <FaSun />
           </S.ButtonTheme>
-          <S.ButtonIcon>
-            <FaGithub />
-          </S.ButtonIcon>
+          <Link href={"https://github.com/renatarko"} target="_blank">
+            <S.ButtonIcon>
+              <FaGithub />
+            </S.ButtonIcon>
+          </Link>
         </S.ContainerIcon>
 
         {/* <MenuMobile /> */}

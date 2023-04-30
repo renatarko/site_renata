@@ -17,24 +17,19 @@ export default function Home() {
     <S.Wrapper>
       <Container>
         <Header children />
-      </Container>
 
-      <Container>
-        <S.SectionHome>
-          <div>
+        <Container>
+          <S.SectionHome>
             <Title />
-          </div>
-          <Photo />
-        </S.SectionHome>
-      </Container>
 
-      <Container>
+            <Photo />
+          </S.SectionHome>
+        </Container>
+
         <S.SectionAbout>
           <About />
         </S.SectionAbout>
-      </Container>
 
-      <Container>
         <S.SectionService>
           <Service />
           <div className="containerCards">
@@ -51,9 +46,7 @@ export default function Home() {
             })}
           </div>
         </S.SectionService>
-      </Container>
 
-      <Container>
         <S.SectionCourses>
           <S.SectionCard>
             <CardSlider />
@@ -63,9 +56,7 @@ export default function Home() {
             <Courses />
           </div>
         </S.SectionCourses>
-      </Container>
 
-      <Container>
         <S.SectionFooter>
           <Footer />
         </S.SectionFooter>
