@@ -3,6 +3,12 @@ import Head from "next/head";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import GlobalStyle from "../globalstyles";
 
+import ReactGA from "react-ga";
+
+const TRACKING_ID = "UA-257131607-1";
+ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 const theme: DefaultTheme = {
   colors: {
     darkBg: "#1A1A1A",

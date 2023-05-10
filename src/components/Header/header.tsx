@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { FaGithub, FaSun } from "react-icons/fa";
 
+import useAnalyticsEventTracker from "../useAnalticsEventTraker";
+
 import * as S from "./style";
 
 type HeaderProps = {
@@ -15,6 +17,8 @@ export const StyledLink = ({ href, name }) => (
 );
 
 export default function Header({ children }: HeaderProps) {
+  const gaEventTracker = useAnalyticsEventTracker("header");
+
   return (
     <S.Container>
       <S.Menu>
@@ -29,7 +33,11 @@ export default function Header({ children }: HeaderProps) {
           <S.ButtonTheme>
             <FaSun />
           </S.ButtonTheme>
-          <Link href={"https://github.com/renatarko"} target="_blank">
+          <Link
+            href={"https://github.com/renatarko"}
+            target="_blank"
+            onClick={() => gaEventTracker("linkGitHub")}
+          >
             <S.ButtonIcon>
               <FaGithub />
             </S.ButtonIcon>
