@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import ReactGA from "react-ga";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import GlobalStyle from "../globalstyles";
 
@@ -29,6 +30,9 @@ const theme: DefaultTheme = {
     gap: "2rem",
   },
 };
+
+const TRACKING_ID = "UA-257131607-1";
+ReactGA.initialize(TRACKING_ID);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -1,20 +1,20 @@
 export default [
   {
     id: 1,
-    imageSrc: "https://source.unsplash.com/user/willianjusten",
-    description: "Minhas Tarefas",
-    url: "https://minhastarefasapp.netlify.app/",
+    imageSrc: "/assets/won-games.png",
+    description: "Won Games e-commerce",
+    url: "https://won-game.vercel.app/",
   },
   {
     id: 2,
-    imageSrc: "https://source.unsplash.com/user/willianjusten",
-    description: "Site Salão de Beleza",
-    url: "https://renatarko.github.io/beatysalon/",
+    imageSrc: "/assets/cafeteria.png",
+    description: "Site para Cafeteria",
+    url: "https://cafeteriaapp-7at5tic3h-renatarko.vercel.app/",
   },
   {
     id: 3,
-    imageSrc: "https://source.unsplash.com/user/willianjusten",
-    description: "Site Cafeteria",
-    url: "https://cafeteriaapp.vercel.app/",
+    imageSrc: "/assets/psileticia.png",
+    description: "Site para Psicóloga",
+    url: "https://www.psileticia.com/",
   },
 ];

@@ -14,6 +14,8 @@ export const Section = styled.section`
 export const SectionHome = styled(Section)`
   display: flex;
   justify-content: space-between;
+  padding: 0 4rem;
+  padding-top: 8rem;
   /* background-color: ${({ theme }) => theme.colors.baseLight}; */
   /* z-index: -1; */
 

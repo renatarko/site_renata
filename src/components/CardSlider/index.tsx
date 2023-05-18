@@ -1,9 +1,8 @@
 import { FaGithub, FaStar } from "react-icons/fa";
 import Slider, { SliderSettings } from "../Slider";
-import * as S from "./style";
 
-import { useEffect, useState } from "react";
 import items from "./mock";
+import * as S from "./style";
 
 type CardSliderProps = {
   id: string;
@@ -13,51 +12,33 @@ type CardSliderProps = {
 const setting: SliderSettings = {
   dots: true,
   // arrows: true,
-  slidesToShow: 4,
+  slidesToShow: 3,
+  slidesToScroll: 1,
   vertical: false,
   infinite: false,
   lazyLoad: "ondemand",
+  responsive: [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 700,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 export default function CardSlider() {
-  const [filterrepos, setFilterrepos] = useState([]);
-
-  const repos = items;
-  const filter = repos.filter((items) => {
-    items.created_at.includes("2023");
-  });
-  // setFilterrepos(filter);
-
-  console.log(filter);
-
-  useEffect(() => {
-    // getApi();
-  }, []);
-
-  async function getApi() {
-    const response = await fetch(
-      `https://api.github.com/users/renatarko/repos`
-    );
-    const data = await response.json();
-    console.log(data);
-    // const allRepos = data.map((item) => {
-    //   return {
-    //     id: item.id,
-    //     name: item.name,
-    //     letters: item.name.substr(0, 2),
-    //     url: item.url,
-    //     language: item.language,
-    //     stars: item.stargazers_count,
-    //   };
-    // });
-
-    // setRepos(allRepos)
-  }
-
   return (
     <S.Wrapper>
       <Slider settings={setting}>
-        {filterrepos.map((item) => {
+        {items.map((item) => {
+          console.log(item);
           return (
             <S.Content key={item.id}>
               <S.ContainerRepo>
@@ -68,8 +49,8 @@ export default function CardSlider() {
               </S.ContainerRepo>
               <S.LinkRepo htmlFor={item.name}>
                 <FaGithub />
-                <a id={item.name} href={item.url}>
-                  ver mais
+                <a id={item.name} href={item.html_url} target="_blank">
+                  ver repositório
                 </a>
               </S.LinkRepo>
               <S.ContainerStacks>

@@ -88,7 +88,7 @@ export const RepoLetter = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background-color: ${theme.colors.baseLight};
+    background-color: ${theme.colors.baseDark};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,6 +139,7 @@ export const ContainerStacks = styled.div`
 export const Stars = styled.div`
   ${({ theme }) => css`
     display: flex;
+    align-items: center;
     gap: 0.3rem;
     color: ${theme.colors.baseLight};
 

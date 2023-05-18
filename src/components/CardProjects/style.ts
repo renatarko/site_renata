@@ -6,12 +6,32 @@ export const Wrapper = styled.aside`
   /* max-width: 500px; */
 `;
 
-export const Container = styled.div`
+export const Image = styled.img`
+  ${({ theme }) => css`
+    width: 7.6rem;
+    height: 5.6rem;
+    object-fit: cover;
+    border-radius: ${theme.borderRadius.baseRadius};
+    transition: 0.4s;
+  `}
+`;
+
+export const Container = styled.a`
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(191, 176, 209, 0.2);
-  padding: 1.25rem 0;
+  padding: 1.25rem;
+  border-radius: ${({ theme }) => theme.borderRadius.baseRadius};
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1e1e1e;
+  }
+
+  &:hover ${Image} {
+    transform: scale(1.2);
+  }
 `;
 
 export const BoxImage = styled.div`
@@ -20,14 +40,6 @@ export const BoxImage = styled.div`
   gap: 15px;
 `;
 
-export const Image = styled.img`
-  ${({ theme }) => css`
-    width: 5.6rem;
-    height: 5.6rem;
-    object-fit: cover;
-    border-radius: ${theme.borderRadius.baseRadius};
-  `}
-`;
 export const Description = styled.span`
   ${({ theme }) => css`
     color: ${theme.colors.baseLight};

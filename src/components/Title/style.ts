@@ -23,6 +23,7 @@ export const SubTitle = styled.h2`
     color: ${theme.colors.baseLight};
     font-size: ${theme.fontSize.subTitle};
     text-align: start;
+    margin-bottom: 0.5rem;
   `}
 `;
 

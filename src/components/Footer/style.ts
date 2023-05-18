@@ -38,7 +38,7 @@ export const ContainerLogo = styled.div`
         opacity: 0.09;
         border-radius: 50%;
         position: absolute;
-        top: 0;
+        top: -0.7rem;
         bottom: 0;
         right: -7px;
         /* left: 10px; */
@@ -96,5 +96,8 @@ export const Links = styled.div`
     /* gap: 1rem; */
     color: ${theme.colors.baseLight};
     text-transform: uppercase;
+    &:hover {
+      color: ${theme.colors.secondary};
+    }
   `}
 `;
