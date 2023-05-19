@@ -29,33 +29,38 @@ export default function Photo() {
     <S.Wrapper>
       <S.Content>
         <S.ImageProfile src="../../assets/fotocortada.png" />
-        {/* <S.AfterProto></S.AfterProto> */}
+        <S.ContentIcon className={isFixed ? "isFixed" : "isNotFixed"}>
+          <Link
+            href={
+              "https://www.linkedin.com/in/renata-karolina-de-oliveira-rko/"
+            }
+            passHref
+            target="_blank"
+          >
+            <S.Icon>
+              <FaLinkedinIn />
+            </S.Icon>
+          </Link>
+          <Link
+            href={"https://twitter.com/renatarko_"}
+            passHref
+            target="_blank"
+          >
+            <S.Icon>
+              <FaTwitter />
+            </S.Icon>
+          </Link>
+          <Link
+            href={"https://instagram.com/renata_rko"}
+            passHref
+            target="_blank"
+          >
+            <S.Icon>
+              <FaInstagram />
+            </S.Icon>
+          </Link>
+        </S.ContentIcon>
       </S.Content>
-      <S.ContentIcon id="midias" className={isFixed ? "isFixed" : "isNotFixed"}>
-        <Link
-          href={"https://www.linkedin.com/in/renata-karolina-de-oliveira-rko/"}
-          passHref
-          target="_blank"
-        >
-          <S.Icon>
-            <FaLinkedinIn />
-          </S.Icon>
-        </Link>
-        <Link href={"https://twitter.com/renatarko_"} passHref target="_blank">
-          <S.Icon>
-            <FaTwitter />
-          </S.Icon>
-        </Link>
-        <Link
-          href={"https://instagram.com/renata_rko"}
-          passHref
-          target="_blank"
-        >
-          <S.Icon>
-            <FaInstagram />
-          </S.Icon>
-        </Link>
-      </S.ContentIcon>
     </S.Wrapper>
   );
 }

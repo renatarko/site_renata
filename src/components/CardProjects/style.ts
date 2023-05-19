@@ -13,6 +13,11 @@ export const Image = styled.img`
     object-fit: cover;
     border-radius: ${theme.borderRadius.baseRadius};
     transition: 0.4s;
+
+    @media (max-width: 450px) {
+      width: 80%;
+      height: 90%;
+    }
   `}
 `;
 

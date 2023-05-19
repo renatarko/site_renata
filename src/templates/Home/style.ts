@@ -16,17 +16,16 @@ export const Section = styled.section`
 
 export const SectionHome = styled(Section)`
   display: flex;
-  justify-content: space-between;
-  padding: 0 4rem;
+  justify-content: space-around;
   padding-top: 8rem;
-  /* background-color: ${({ theme }) => theme.colors.baseLight}; */
-  /* z-index: -1; */
+  margin-bottom: 5rem;
+  gap: 17rem;
 
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
     gap: 12rem;
-    padding: 0;
+    padding-top: 4rem;
   }
 `;
 

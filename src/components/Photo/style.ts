@@ -27,27 +27,10 @@ export const Content = styled.div`
 
 export const ImageProfile = styled.img`
   width: 13.5rem;
-  /* max-height: 12rem; */
-  /* object-position: 0 -6.8rem; */
-  object-fit: cover;
-  /* transform: scale(2); */
   position: absolute;
-  top: -1.85rem;
+  top: 3.1rem;
   z-index: 2;
 `;
-
-// export const AfterProto = styled.div`
-//   ${({ theme }) => css`
-//     width: 380px;
-//     height: 400px;
-//     background-color: ${theme.colors.primary};
-//     opacity: 10%;
-//     z-index: 1;
-//     position: absolute;
-//     top: -2.5rem;
-//     border-radius: 70px 0 70px 0;
-//   `}
-// `;
 
 export const ContentIcon = styled.div`
   display: flex;
@@ -63,7 +46,7 @@ export const ContentIcon = styled.div`
     position: absolute;
     right: -4rem;
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
       right: 0;
     }
   }
@@ -72,6 +55,12 @@ export const ContentIcon = styled.div`
     position: fixed;
     flex-direction: row;
     animation: identifier 1s forwards;
+    backdrop-filter: blur(12px);
+    border-radius: ${({ theme }) => theme.borderRadius.baseRadius};
+    padding: 0.5rem;
+    & svg {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
 
     @media (max-width: 500px) {
       width: 100%;
@@ -86,7 +75,7 @@ export const ContentIcon = styled.div`
 
   @keyframes identifier {
     0% {
-      top: 3rem;
+      top: 0.5rem;
       right: 2rem;
     }
 
@@ -94,7 +83,6 @@ export const ContentIcon = styled.div`
       position: fixed;
       top: 1.5rem;
       right: 1rem;
-      /* transform: rotate(90deg); */
     }
   }
 `;

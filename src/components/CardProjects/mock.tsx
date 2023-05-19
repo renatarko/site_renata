@@ -14,7 +14,7 @@ export default [
   {
     id: 3,
     imageSrc: "/assets/psileticia.png",
-    description: "Site para Psicóloga",
+    description: "Site para Profissional",
     url: "https://www.psileticia.com/",
   },
 ];

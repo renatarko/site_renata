@@ -22,16 +22,15 @@ export default function Home() {
       <Container>
         <S.SectionHome>
           <Title />
-
           <Photo />
         </S.SectionHome>
       </Container>
 
-      <Container>
-        <S.SectionAbout>
+      <S.SectionAbout>
+        <Container>
           <About />
-        </S.SectionAbout>
-      </Container>
+        </Container>
+      </S.SectionAbout>
 
       <Container>
         <S.SectionService>
