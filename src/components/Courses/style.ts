@@ -26,10 +26,48 @@ export const Title = styled.h2`
 `;
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+
+    .one,
+    .two,
+    .three,
+    .four {
+      width: auto;
+      border-radius: ${theme.borderRadius.baseRadius};
+      font-size: calc(${theme.fontSize.description} - 0.2rem);
+      color: ${theme.colors.secondary};
+      padding: 0.3rem;
+      position: absolute;
+      bottom: 0rem;
+      transition: 0.4s;
+      opacity: 0;
+    }
+
+    .card_one:hover .one,
+    .card_two:hover .two,
+    .card_three:hover .three {
+      opacity: 1;
+      bottom: 0.5rem;
+    }
+
+    .card_four:hover {
+      &::before {
+        content: "em progresso";
+        position: absolute;
+        width: 100%;
+        opacity: 1;
+        bottom: 0.5rem;
+        color: ${theme.colors.secondary};
+        font-size: calc(${theme.fontSize.description} - 0.2rem);
+        text-align: center;
+      }
+    }
+  `}
 `;
 
 export const Card = styled.a`
@@ -44,9 +82,12 @@ export const Card = styled.a`
     border: 1px solid ${theme.colors.primary};
     filter: drop-shadow(${theme.colors.primary});
     border-radius: ${theme.borderRadius.baseRadius};
+    transition: 0.3s;
 
     &:hover {
       background-color: rgba(22, 18, 35, 1.2);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      transform: scale(1.02);
     }
   `}
 `;
@@ -62,7 +103,8 @@ export const Teaching = styled.h3`
 export const Course = styled.p`
   ${({ theme }) => css`
     color: ${theme.colors.baseLight};
-    font-size: calc(${theme.fontSize.subTitle} - 0.125rem);
+    /* font-size: calc(${theme.fontSize.subTitle} - 0.125rem); */
+    font-size: ${theme.fontSize.titleSection};
     border-bottom: 1px solid ${theme.colors.secondary};
     padding: 0.2rem 0;
   `}

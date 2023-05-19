@@ -12,29 +12,28 @@ type CardSliderProps = {
 const setting: SliderSettings = {
   dots: true,
   // arrows: true,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   vertical: false,
   infinite: false,
   lazyLoad: "ondemand",
   responsive: [
     {
-      breakpoint: 900,
+      breakpoint: 1150,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 3,
       },
     },
     {
       breakpoint: 700,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
       },
     },
     {
-      breakpoint: 600,
+      breakpoint: 500,
       settings: {
-        slidesToShow: 1.2,
-        dots: false,
+        slidesToShow: 1.1,
       },
     },
   ],
