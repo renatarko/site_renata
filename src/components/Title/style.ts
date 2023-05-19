@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 100;
 `;
 
 export const Container = styled.div`
