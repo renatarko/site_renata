@@ -119,7 +119,7 @@ export const RepoLetter = styled.div`
 
 export const RepoName = styled.p`
   ${({ theme }) => css`
-    width: 9rem;
+    width: 80%;
     color: ${theme.colors.baseLight};
     font-size: ${theme.fontSize.description};
     line-height: 1.2rem;

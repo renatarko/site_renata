@@ -39,17 +39,26 @@ const setting: SliderSettings = {
   ],
 };
 
+const card = items.map((item) => {
+  let shortName = item.name.substring(2, 0);
+
+  return {
+    ...item,
+    shortname: shortName,
+  };
+});
+
 export default function CardSlider() {
   return (
     <S.Wrapper>
       <Slider settings={setting}>
-        {items.map((item) => {
+        {card.map((item) => {
           return (
             <S.Content key={item.id}>
               <S.ContainerRepo>
                 <S.RepoName>{item.name}</S.RepoName>
                 <S.RepoLetter>
-                  <p>MT</p>
+                  <p>{item.shortname}</p>
                 </S.RepoLetter>
               </S.ContainerRepo>
               <S.LinkRepo htmlFor={item.name}>

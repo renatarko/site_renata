@@ -3,6 +3,7 @@ export default [
     id: 557001612,
     node_id: "R_kgDOITMrjA",
     name: "api-wongames",
+    shortname: "",
     full_name: "renatarko/api-wongames",
     private: false,
     owner: {
@@ -136,6 +137,7 @@ export default [
     id: 502169436,
     node_id: "R_kgDOHe5_XA",
     name: "beatysalon",
+    shortname: "",
     full_name: "renatarko/beatysalon",
     private: false,
     owner: {
@@ -268,6 +270,7 @@ export default [
     id: 551644683,
     node_id: "R_kgDOIOFuCw",
     name: "boilerplate",
+    shortname: "",
     full_name: "renatarko/boilerplate",
     private: false,
     owner: {
@@ -401,6 +404,7 @@ export default [
     id: 597834552,
     node_id: "R_kgDOI6I7OA",
     name: "book_website",
+    shortname: "",
     full_name: "renatarko/book_website",
     private: false,
     owner: {
@@ -534,6 +538,7 @@ export default [
     id: 609895723,
     node_id: "R_kgDOJFpFKw",
     name: "breaknews_app",
+    shortname: "",
     full_name: "renatarko/breaknews_app",
     private: false,
     owner: {
@@ -667,6 +672,7 @@ export default [
     id: 542349022,
     node_id: "R_kgDOIFOW3g",
     name: "cafeteria",
+    shortname: "",
     full_name: "renatarko/cafeteria",
     private: false,
     owner: {
@@ -797,6 +803,7 @@ export default [
     id: 518972969,
     node_id: "R_kgDOHu7mKQ",
     name: "github_repositories_tracker",
+    shortname: "",
     full_name: "renatarko/github_repositories_tracker",
     private: false,
     owner: {
@@ -936,6 +943,7 @@ export default [
     id: 546375582,
     node_id: "R_kgDOIJEHng",
     name: "news_aplication",
+    shortname: "",
     full_name: "renatarko/news_aplication",
     private: false,
     owner: {
@@ -1070,6 +1078,7 @@ export default [
     id: 532960422,
     node_id: "R_kgDOH8RUpg",
     name: "to_do_app",
+    shortname: "",
     full_name: "renatarko/to_do_app",
     private: false,
     owner: {
