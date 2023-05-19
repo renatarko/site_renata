@@ -18,7 +18,7 @@ export const SectionHome = styled(Section)`
   display: flex;
   justify-content: space-around;
   padding-top: 8rem;
-  margin-bottom: 5rem;
+  margin-bottom: -3rem;
   gap: 17rem;
 
   @media (max-width: 900px) {
@@ -27,6 +27,10 @@ export const SectionHome = styled(Section)`
     gap: 12rem;
     padding-top: 4rem;
   }
+
+  /* @media (max-width: 500px) {
+    margin-bottom: -3rem;
+  } */
 `;
 
 export const SectionAbout = styled(Section)`
@@ -97,5 +101,5 @@ export const SectionCourses = styled(Section)`
 `;
 
 export const SectionFooter = styled(Section)`
-  padding: 4rem 0;
+  padding: 4rem 1rem;
 `;

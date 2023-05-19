@@ -12,6 +12,7 @@ export const Wrapper = styled.footer`
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    padding: 2rem 1rem;
   }
 `;
 

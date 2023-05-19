@@ -24,7 +24,7 @@ export const Content = styled.div`
   transition: all 0.3s;
 
   @media (max-width: 900px) {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
   }
 `;
 
