@@ -55,5 +55,6 @@ export const Description = styled.p`
     color: ${theme.colors.baseLight};
     margin-top: 2.75rem;
     line-height: 1.6rem;
+    text-align: justify;
   `}
 `;

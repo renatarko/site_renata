@@ -8,10 +8,10 @@ export default function Service() {
         <S.Title>Desenvolvedora</S.Title>
         <S.SubTitle>Front-End</S.SubTitle>
         <S.Description>
-          Principais projetos que desenvolvi utilizando HTML, CSS, JavaScript,
-          React, TypeScript e Styled-Components. Tenho projetos que foram
-          Freelance e outros que fiz durante cursos e projetos pessoais para
-          aprimorar meus conhecimento.
+          <strong>Principais Projetos</strong> que aprimorei e consolidei minhas
+          hard skills em HTML, CSS, JavaScript, React, TypeScript e
+          Styled-Components. Foram realizados em freelances, cursos e projetos
+          pessoais.
         </S.Description>
       </S.Container>
     </S.Wrapper>
