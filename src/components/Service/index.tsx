@@ -8,9 +8,10 @@ export default function Service() {
         <S.Title>Desenvolvedora</S.Title>
         <S.SubTitle>Front-End</S.SubTitle>
         <S.Description>
-          Principais projetos It is a long established fact that a reader will
-          be distracted by the readable content of a page when looking at its
-          layout.
+          Principais projetos que desenvolvi utilizando HTML, CSS, JavaScript,
+          React, TypeScript e Styled-Components. Tenho projetos que foram
+          Freelance e outros que fiz durante cursos e projetos pessoais para
+          aprimorar meus conhecimento.
         </S.Description>
       </S.Container>
     </S.Wrapper>

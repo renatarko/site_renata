@@ -54,5 +54,6 @@ export const Description = styled.p`
     font-size: ${theme.fontSize.description};
     color: ${theme.colors.baseLight};
     margin-top: 2.75rem;
+    line-height: 1.6rem;
   `}
 `;

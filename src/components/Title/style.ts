@@ -29,36 +29,35 @@ export const SubTitle = styled.h2`
     font-size: ${theme.fontSize.subTitle};
     text-align: start;
     margin-bottom: 0.5rem;
-
-    @media (max-width: 570px) {
-      font-size: ${theme.fontSize.titleSection};
-    }
   `}
 `;
 
 export const SubTitleAfter = styled.h2`
   ${({ theme }) => css`
+    width: 100%;
+    height: 100%;
     color: ${theme.colors.baseLight};
     font-size: ${theme.fontSize.subTitle};
     text-align: end;
     margin-top: -15px;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 70%;
+      height: 2px;
+      background-color: ${theme.colors.primary};
+      position: absolute;
+      left: 0;
+      bottom: 0.7rem;
+    }
 
     @media (max-width: 570px) {
       font-size: ${theme.fontSize.titleSection};
-    }
-  `}
-`;
 
-export const Line = styled.div`
-  ${({ theme }) => css`
-    width: 70%;
-    height: 2px;
-    background: ${theme.colors.primary};
-    position: absolute;
-    bottom: 1.2rem;
-
-    @media (max-width: 570px) {
-      bottom: 0.5rem;
+      &::before {
+        bottom: 0.4rem;
+      }
     }
   `}
 `;
