@@ -7,6 +7,13 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    &::-webkit-scrollbar {
+      width: 10px;
+      background: ${({ theme }) => theme.colors.darkBg};
+    }
+    &::-webkit-scrollbar-thumb  {
+      background: ${({ theme }) => theme.colors.primary};
+  }
   }
 
   a {

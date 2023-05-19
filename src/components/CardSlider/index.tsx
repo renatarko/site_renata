@@ -30,6 +30,13 @@ const setting: SliderSettings = {
         slidesToShow: 1,
       },
     },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1.2,
+        dots: false,
+      },
+    },
   ],
 };
 
@@ -38,7 +45,6 @@ export default function CardSlider() {
     <S.Wrapper>
       <Slider settings={setting}>
         {items.map((item) => {
-          console.log(item);
           return (
             <S.Content key={item.id}>
               <S.ContainerRepo>

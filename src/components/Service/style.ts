@@ -31,15 +31,24 @@ export const Title = styled.h1`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.title};
     color: ${theme.colors.baseLight};
-    margin-bottom: -0.5rem;
+    margin-bottom: 0;
+
+    @media (max-width: 500px) {
+      font-size: ${theme.fontSize.subTitle};
+    }
   `}
 `;
 export const SubTitle = styled.h2`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.title};
     color: ${theme.colors.secondary};
+
+    @media (max-width: 500px) {
+      font-size: ${theme.fontSize.titleSection};
+    }
   `}
 `;
+
 export const Description = styled.p`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.description};

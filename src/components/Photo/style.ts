@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  position: relative;
 `;
 
 export const Content = styled.div`
@@ -54,6 +55,48 @@ export const ContentIcon = styled.div`
   align-items: center;
   gap: 18px;
   z-index: 10;
+  transition: all 0.4s;
+
+  &.isNotFixed {
+    gap: 18px;
+    z-index: 10;
+    position: absolute;
+    right: -4rem;
+
+    @media (max-width: 900px) {
+      right: 0;
+    }
+  }
+
+  &.isFixed {
+    position: fixed;
+    flex-direction: row;
+    animation: identifier 1s forwards;
+
+    @media (max-width: 500px) {
+      width: 100%;
+      backdrop-filter: blur(5px);
+      padding: 0.5rem;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      justify-content: center;
+    }
+  }
+
+  @keyframes identifier {
+    0% {
+      top: 3rem;
+      right: 2rem;
+    }
+
+    100% {
+      position: fixed;
+      top: 1.5rem;
+      right: 1rem;
+      /* transform: rotate(90deg); */
+    }
+  }
 `;
 
 export const Icon = styled.a`

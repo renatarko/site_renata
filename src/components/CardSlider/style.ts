@@ -27,6 +27,7 @@ export const Wrapper = styled.section`
       justify-content: center;
       margin-top: 1.5rem;
       list-style: none;
+      gap: 0.5rem !important;
     }
 
     li {
@@ -35,7 +36,7 @@ export const Wrapper = styled.section`
       justify-content: center;
       background-color: ${theme.colors.primary};
       border-radius: 50%;
-      margin-left: 1rem;
+      /* margin-left: 1rem; */
 
       &.slick-active {
         background-color: ${theme.colors.secondary};
@@ -46,6 +47,20 @@ export const Wrapper = styled.section`
       height: 1.1rem;
       opacity: 0;
       cursor: pointer;
+    }
+
+    @media (max-width: 990px) {
+      padding: 0 1rem;
+      justify-content: center;
+      button {
+        max-width: 0.8rem;
+        max-height: 0.8rem;
+      }
+    }
+
+    @media (max-width: 690px) {
+      padding: 0 2rem;
+      justify-content: center;
     }
   `}
 `;

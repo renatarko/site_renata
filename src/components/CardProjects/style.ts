@@ -32,12 +32,23 @@ export const Container = styled.a`
   &:hover ${Image} {
     transform: scale(1.2);
   }
+
+  @media (max-width: 450px) {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const BoxImage = styled.div`
   display: flex;
   align-items: self-start;
   gap: 15px;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Description = styled.span`
@@ -56,5 +67,9 @@ export const LinkAs = styled.a`
     align-items: center;
     color: ${theme.colors.primary};
     font-size: ${theme.fontSize.subTitle};
+
+    @media (max-width: 450px) {
+      display: none;
+    }
   `}
 `;

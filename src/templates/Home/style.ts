@@ -1,13 +1,16 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  height: 100%;
+  position: relative;
+`;
 
 export const Section = styled.section`
   width: 100%;
   padding: 8rem 4rem;
 
   @media (max-width: 900px) {
-    padding: 8rem 0;
+    padding: 8rem 0rem;
   }
 `;
 
@@ -23,6 +26,7 @@ export const SectionHome = styled(Section)`
     flex-direction: column;
     justify-content: center;
     gap: 12rem;
+    padding: 0;
   }
 `;
 

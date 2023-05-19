@@ -16,20 +16,24 @@ export default function Home() {
   return (
     <S.Wrapper>
       <Container>
-        <Header children />
+        <Header children data-aos="fade-down" />
+      </Container>
 
-        <Container>
-          <S.SectionHome>
-            <Title />
+      <Container>
+        <S.SectionHome>
+          <Title />
 
-            <Photo />
-          </S.SectionHome>
-        </Container>
+          <Photo />
+        </S.SectionHome>
+      </Container>
 
+      <Container>
         <S.SectionAbout>
           <About />
         </S.SectionAbout>
+      </Container>
 
+      <Container>
         <S.SectionService>
           <Service />
           <div className="containerCards">
@@ -46,8 +50,10 @@ export default function Home() {
             })}
           </div>
         </S.SectionService>
+      </Container>
 
-        <S.SectionCourses>
+      <S.SectionCourses>
+        <Container>
           <S.SectionCard>
             <CardSlider />
           </S.SectionCard>
@@ -55,8 +61,10 @@ export default function Home() {
           <div>
             <Courses />
           </div>
-        </S.SectionCourses>
+        </Container>
+      </S.SectionCourses>
 
+      <Container>
         <S.SectionFooter>
           <Footer />
         </S.SectionFooter>

@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   position: absolute;
+  padding: 0.5rem;
 `;
 
 export const Title = styled.h1`
@@ -15,6 +16,10 @@ export const Title = styled.h1`
     font-size: ${theme.fontSize.title};
     text-align: start;
     margin-top: -15px;
+
+    @media (max-width: 570px) {
+      font-size: ${theme.fontSize.subTitle};
+    }
   `}
 `;
 
@@ -24,6 +29,10 @@ export const SubTitle = styled.h2`
     font-size: ${theme.fontSize.subTitle};
     text-align: start;
     margin-bottom: 0.5rem;
+
+    @media (max-width: 570px) {
+      font-size: ${theme.fontSize.titleSection};
+    }
   `}
 `;
 
@@ -33,6 +42,10 @@ export const SubTitleAfter = styled.h2`
     font-size: ${theme.fontSize.subTitle};
     text-align: end;
     margin-top: -15px;
+
+    @media (max-width: 570px) {
+      font-size: ${theme.fontSize.titleSection};
+    }
   `}
 `;
 
@@ -43,5 +56,9 @@ export const Line = styled.div`
     background: ${theme.colors.primary};
     position: absolute;
     bottom: 1.2rem;
+
+    @media (max-width: 570px) {
+      bottom: 0.5rem;
+    }
   `}
 `;
