@@ -38,11 +38,11 @@ export default class MyDocument extends Document {
           <meta name="author" content="Renata Karolina de Oliveira" />
           <meta
             name="description"
-            content="Renata Karolina, desenvoledora front end apaixonada por tecnologia e design."
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
           />
           <meta
             name="keywords"
-            content="renata karolina, web developer, front end, desenvolvedora front end"
+            content="renata karolina, web developer, front-end, desenvolvedora front-end"
           />
 
           <meta name="msapplication-TileColor" content="#1A1A1A" />
@@ -57,7 +57,7 @@ export default class MyDocument extends Document {
           <meta property="og:title" content="Renata Karolina | Web Developer" />
           <meta
             property="og:description"
-            content="Renata Karolina, desenvoledora front end apaixonada por tecnologia e design."
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
           />
           <meta property="og:site_name" content="renatakarolina.vercel.app" />
           <meta
@@ -79,7 +79,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name="twitter:description"
-            content="Renata Karolina, desenvoledora front end apaixonada por tecnologia e design."
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
           />
           <meta
             name="twitter:image"
