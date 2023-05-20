@@ -11,7 +11,7 @@ const theme: DefaultTheme = {
     secondary: "#BFB0D1",
     baseDark: "#161223",
     baseLight: "#FAF9FB",
-    secondaryOpa: "rgba(191, 176, 209, 0.4)",
+    secondaryOpa: "#bfb0d166",
   },
   fontFamily: {
     poppins: "'Poppins', sans-serif",
@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Renata Karolina</title>
+        <title>Renata Karolina | Web Developer</title>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
