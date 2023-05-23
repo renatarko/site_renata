@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import ReactGA from "react-ga";
+import { useEffect } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import GlobalStyle from "../globalstyles";
 
@@ -31,10 +31,32 @@ const theme: DefaultTheme = {
   },
 };
 
-const TRACKING_ID = "UA-257131607-1";
-ReactGA.initialize(TRACKING_ID);
+const TagManagerArgs = {
+  gtmId: "G-51GJLR30MC"
+}
+// TagManager.initialize(TagManagerArgs)
+
+// const TRACKING_ID = "UA-257131607-1";
+// ReactGA.initialize(TRACKING_ID);
 
 export default function App({ Component, pageProps }: AppProps) {
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-51GJLR30MC';
+    script.async = true;
+
+    document.head.appendChild(script);
+
+    const dataLayer = window.dataLayer || [];
+    console.log(window.dataLayer)
+    function gtag(args: any, arg: any){
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-51GJLR30MC')
+  }, []);
+  
   return (
     <>
       <Head>

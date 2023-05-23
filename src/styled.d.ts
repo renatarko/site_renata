@@ -1,5 +1,11 @@
 import "styled-components";
 
+declare global {
+  interface Window {
+    dataLayer: any;
+  }
+}
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
