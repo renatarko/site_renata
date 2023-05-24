@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import GlobalStyle from "../globalstyles";
 
@@ -31,6 +33,14 @@ const theme: DefaultTheme = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    
+    const tagManagerArgs = {
+      gtmId: "GTM-T98BFRQ"
+    }
+    TagManager.initialize(tagManagerArgs)
+  }, [])
+
   return (
     <>
       <Head>

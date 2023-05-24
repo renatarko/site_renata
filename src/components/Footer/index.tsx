@@ -17,7 +17,7 @@ export default function Footer() {
           <Link href="/">cursos</Link>
         </S.Links>
         <span>
-          <FaEnvelope /> renatakarolina@gmail.com
+          <FaEnvelope /> renatakarolinarko@gmail.com
         </span>
         <a className="createdby" href="">
           created by @renata_rko

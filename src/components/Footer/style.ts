@@ -97,7 +97,8 @@ export const Links = styled.div`
     /* gap: 1rem; */
     color: ${theme.colors.baseLight};
     text-transform: uppercase;
-    &:hover {
+    
+    & a:hover {
       color: ${theme.colors.secondary};
     }
   `}
