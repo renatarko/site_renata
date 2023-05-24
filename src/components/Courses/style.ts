@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   ${({ theme }) => css`
     .container-title {
       display: flex;
@@ -70,7 +70,7 @@ export const Container = styled.div`
   `}
 `;
 
-export const Card = styled.a`
+export const Card = styled.div`
   ${({ theme }) => css`
     width: 190px;
     height: 200px;
@@ -100,7 +100,7 @@ export const Teaching = styled.h3`
   `}
 `;
 
-export const Course = styled.p`
+export const Course = styled.a`
   ${({ theme }) => css`
     color: ${theme.colors.baseLight};
     /* font-size: calc(${theme.fontSize.subTitle} - 0.125rem); */

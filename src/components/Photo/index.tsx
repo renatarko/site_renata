@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import * as S from "./style";
@@ -28,37 +27,28 @@ export default function Photo() {
   return (
     <S.Wrapper>
       <S.Content>
-        <S.ImageProfile src="../../assets/fotocortada.png" />
+        <S.ImageProfile src="../../assets/fotocortada.png"/>
         <S.ContentIcon className={isFixed ? "isFixed" : "isNotFixed"}>
-          <Link
+          <S.LinkMedias
             href={
               "https://www.linkedin.com/in/renata-karolina-de-oliveira-rko/"
             }
-            passHref
             target="_blank"
           >
-            <S.Icon>
-              <FaLinkedinIn />
-            </S.Icon>
-          </Link>
-          <Link
+            <FaLinkedinIn />
+          </S.LinkMedias>
+          <S.LinkMedias
             href={"https://twitter.com/renatarko_"}
-            passHref
             target="_blank"
           >
-            <S.Icon>
-              <FaTwitter />
-            </S.Icon>
-          </Link>
-          <Link
+            <FaTwitter />
+          </S.LinkMedias>
+          <S.LinkMedias
             href={"https://instagram.com/renata_rko"}
-            passHref
             target="_blank"
           >
-            <S.Icon>
-              <FaInstagram />
-            </S.Icon>
-          </Link>
+            <FaInstagram />
+          </S.LinkMedias>
         </S.ContentIcon>
       </S.Content>
     </S.Wrapper>

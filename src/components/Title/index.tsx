@@ -2,7 +2,7 @@ import * as S from "./style";
 
 export default function Title() {
   return (
-    <>
+   
       <S.Wrapper>
         <S.Container>
           <S.SubTitle>Olá!</S.SubTitle>
@@ -10,6 +10,5 @@ export default function Title() {
           <S.SubTitleAfter>aqui!</S.SubTitleAfter>
         </S.Container>
       </S.Wrapper>
-    </>
   );
 }

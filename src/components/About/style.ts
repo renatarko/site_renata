@@ -4,7 +4,7 @@ export type OpenHistoryProps = {
   open?: boolean;
 };
 
-export const Wrapper = styled.section<OpenHistoryProps>`
+export const Wrapper = styled.div<OpenHistoryProps>`
   ${({ open }) => css`
     width: 100%;
     min-height: ${open ? "10rem" : "8.5rem"};

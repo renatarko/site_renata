@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.darkBg};
   width: 100%;
   height: 6rem;
@@ -20,31 +20,8 @@ export const Menu = styled.nav`
   align-items: center;
 `;
 
-export const MenuLinks = styled.ul`
-  ${({ theme }) => css`
-    display: inline-flex;
-    gap: ${theme.spacing.gap};
-    align-items: center;
-  `}
 
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
-export const LinkPage = styled.a`
-  color: ${({ theme }) => theme.colors.primary};
-  text-transform: uppercase;
-  transition: 0.4s;
-  font-weight: bold;
-  /* padding: 1rem; */
-
-  :hover {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
-  }
-`;
-
-export const ContainerIcon = styled.div`
+export const Container = styled.ul`
   ${({ theme }) => css`
     display: flex;
     gap: ${theme.spacing.gap};

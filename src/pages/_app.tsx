@@ -34,7 +34,6 @@ const theme: DefaultTheme = {
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    
     const tagManagerArgs = {
       gtmId: "GTM-T98BFRQ"
     }

@@ -5,7 +5,7 @@ import styled from "styled-components";
 //   /* height: 100vh; */
 // `;
 
-const Container = styled.main`
+const Container = styled.div`
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;

@@ -25,26 +25,17 @@ export const ContainerLogo = styled.div`
     gap: 1rem;
 
     .rk {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: ${theme.fontSize.title};
       font-weight: 600;
       color: ${theme.colors.primary};
       position: relative;
       z-index: 10;
-
-      &::before {
-        content: "";
-        width: 65px;
-        height: 65px;
-        background: ${theme.colors.primary};
-        opacity: 0.09;
-        border-radius: 50%;
-        position: absolute;
-        top: -0.7rem;
-        bottom: 0;
-        right: -7px;
-        /* left: 10px; */
-        z-index: -1;
-      }
+      border-radius: 50%;
+      background-color: #1e1e1f;
+      padding: .5rem;
     }
     .name {
       color: ${theme.colors.baseLight};
@@ -89,17 +80,24 @@ export const ContainerLinks = styled.div`
   `}
 `;
 
-export const Links = styled.div`
+export const Links = styled.nav`
   ${({ theme }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* gap: 1rem; */
     color: ${theme.colors.baseLight};
     text-transform: uppercase;
     
+    & a {
+      transition: 0.3s;
+      padding: 0.4rem;
+      border-radius: ${theme.borderRadius.baseRadius};
+    } 
+    
     & a:hover {
       color: ${theme.colors.secondary};
+      cursor: pointer;
+      background-color:#1e1e1f ;
     }
   `}
 `;

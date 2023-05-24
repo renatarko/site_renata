@@ -87,7 +87,7 @@ export const ContentIcon = styled.div`
   }
 `;
 
-export const Icon = styled.a`
+export const LinkMedias = styled.a`
   ${({ theme }) => css`
     display: flex;
     align-items: center;

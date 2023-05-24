@@ -16,7 +16,7 @@ export default function CardProjects({
 }: CardProjectsProps) {
   return (
     <S.Wrapper>
-      <S.Container href={url}>
+      <S.Container>
         <S.BoxImage>
           <S.Image src={imageSrc} alt={description} />
           <S.Description>{description}</S.Description>
