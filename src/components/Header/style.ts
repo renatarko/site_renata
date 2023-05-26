@@ -4,13 +4,9 @@ export const Wrapper = styled.header`
   background-color: transparent;
   width: 100%;
   height: 6rem;
-  padding:  2rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
-
-  @media (max-width: 450px) {
-    padding: 0 1rem;
-  }
 `;
 
 export const Menu = styled.nav`
@@ -24,7 +20,6 @@ export const Menu = styled.nav`
 export const Container = styled.ul`
   ${({ theme }) => css`
     display: flex;
-    gap: ${theme.spacing.gap};
   `}
 `;
 
