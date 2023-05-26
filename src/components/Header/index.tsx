@@ -2,13 +2,18 @@ import { FaGithub, FaSun } from "react-icons/fa";
 
 import * as S from "./style";
 
-export default function Header() {
+interface Props {
+  toggleTheme(): void 
+}
+
+export default function Header({toggleTheme}:Props) {
+  // const { title, colors} = useContext(ThemeContext)
   return (
     <S.Wrapper>
       <S.Menu>
 
         <S.Container>
-          <S.ButtonTheme>
+          <S.ButtonTheme onClick={toggleTheme}>
             <FaSun />
           </S.ButtonTheme>
          

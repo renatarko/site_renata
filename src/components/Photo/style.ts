@@ -18,7 +18,7 @@ export const Content = styled.div`
 
     width: 380px;
     height: 400px;
-    background-color: #1e1e1e;
+    background-color: ${theme.colors.secondaryOpa};
     border-radius: 70px 0 70px 0;
 
     z-index: 2;
@@ -28,7 +28,7 @@ export const Content = styled.div`
 export const ImageProfile = styled.img`
   width: 13.5rem;
   position: absolute;
-  top: 3.1rem;
+  top: 3.2rem;
   z-index: 2;
 `;
 
@@ -96,11 +96,10 @@ export const LinkMedias = styled.a`
     border-radius: 100%;
     padding: 0.7rem;
     font-size: ${theme.fontSize.icon};
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     cursor: pointer;
 
     &:hover {
-      color: ${theme.colors.baseLight};
       opacity: 0.7;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
         rgba(0, 0, 0, 0.13) 0px 3px 6px;

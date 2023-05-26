@@ -14,9 +14,9 @@ export default function Footer() {
 
       <S.ContainerLinks>
         <S.Links>
-          <Link to="home" spy={true} smooth={true} activeClass="active" duration={1000}>home</Link>
-          <Link to="service" spy={true} smooth={true} activeClass="active" duration={1000}>serviços</Link>
-          <Link to="courses" spy={true} smooth={true} activeClass="active" duration={1000}>cursos</Link>
+          <Link to="home" spy={true} smooth={true} activeClass="active" duration={500}>home</Link>
+          <Link to="service" spy={true} smooth={true} activeClass="active" duration={500}>serviços</Link>
+          <Link to="courses" spy={true} smooth={true} activeClass="active" duration={500}>cursos</Link>
         </S.Links>
         <span>
           <FaEnvelope /> renatakarolinarko@gmail.com

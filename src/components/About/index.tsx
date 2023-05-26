@@ -1,5 +1,3 @@
-// import { Main } from "../pages/projects";
-
 import { useState } from "react";
 import * as S from "./style";
 

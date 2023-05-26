@@ -1,8 +1,16 @@
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import * as S from "./style";
 
 export default function Service() {
+
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: true
+  })
+  
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={ref}>
       <S.Container>
         <S.SectionTitle>Serviços</S.SectionTitle>
         <S.Title>Desenvolvedora</S.Title>

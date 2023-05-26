@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   ${({ theme }) => css`
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     font-size: ${theme.fontSize.title};
     text-align: start;
     margin-top: -15px;
@@ -26,7 +26,7 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   ${({ theme }) => css`
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     font-size: ${theme.fontSize.subTitle};
     text-align: start;
     margin-bottom: 0.5rem;
@@ -37,7 +37,7 @@ export const SubTitleAfter = styled.h2`
   ${({ theme }) => css`
     width: 100%;
     height: 100%;
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     font-size: ${theme.fontSize.subTitle};
     text-align: end;
     margin-top: -15px;
@@ -47,7 +47,7 @@ export const SubTitleAfter = styled.h2`
       content: "";
       width: 70%;
       height: 2px;
-      background-color: ${theme.colors.primary};
+      background-color: ${theme.colors.third};
       position: absolute;
       left: 0;
       bottom: 0.7rem;

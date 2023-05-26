@@ -28,18 +28,14 @@ export const SectionHome = styled(Section)`
     padding-top: 4rem;
   }
 
-  /* @media (max-width: 500px) {
-    margin-bottom: -3rem;
-  } */
 `;
 
 export const SectionAbout = styled(Section)`
   width: 100%;
   padding: 0 2rem;
-  /* padding-top: 2.45rem; */
 
   ${({ theme }) => css`
-    background-color: ${theme.colors.baseDark};
+    background-color: ${theme.colors.bgAbout};
   `}
 `;
 
@@ -88,7 +84,8 @@ export const SectionCourses = styled(Section)`
       content: "";
       width: 100%;
       height: 100%;
-      background: ${theme.colors.baseDark};
+      /* background: rgb(22, 18, 35); */
+      background: ${({theme}) => theme.colors.background};
       position: absolute;
       opacity: 0.95;
       top: 0;

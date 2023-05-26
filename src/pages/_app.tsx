@@ -1,44 +1,26 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
-import { DefaultTheme, ThemeProvider } from "styled-components";
-import GlobalStyle from "../globalstyles";
-
-const theme: DefaultTheme = {
-  colors: {
-    darkBg: "#1A1A1A",
-    primary: "#8067A9",
-    secondary: "#BFB0D1",
-    baseDark: "#161223",
-    baseLight: "#FAF9FB",
-    secondaryOpa: "#bfb0d166",
-  },
-  fontFamily: {
-    poppins: "'Poppins', sans-serif",
-  },
-  fontSize: {
-    title: "2.5rem",
-    subTitle: "1.8rem",
-    description: "1rem",
-    titleSection: "1.3rem",
-    icon: "25px",
-  },
-  borderRadius: {
-    baseRadius: "8px",
-  },
-  spacing: {
-    gap: "2rem",
-  },
-};
+import { ThemeProvider } from "styled-components";
+import Header from "../components/Header";
+import GlobalStyle from "../styles/globalstyles";
+import dark from "../styles/theme/dark";
+import light from "../styles/theme/light";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const tagManagerArgs = {
-      gtmId: "GTM-T98BFRQ"
+      gtmId: `GTM-T98BFRQ`
     }
     TagManager.initialize(tagManagerArgs)
   }, [])
+
+  const [theme, setTheme] = useState(dark)
+
+  const toggleTheme = () => {
+    setTheme(theme.title === "light" ? dark : light)
+  }
 
   return (
     <>
@@ -46,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Renata Karolina | Web Developer</title>
       </Head>
       <ThemeProvider theme={theme}>
+        <Header toggleTheme={toggleTheme}/>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>

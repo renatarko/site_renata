@@ -3,16 +3,16 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-    background: ${({ theme }) => theme.colors.darkBg};
+    background: ${({ theme }) => theme.colors.background};
     padding: 0;
     margin: 0;
     font-family: 'Poppins', sans-serif;
     &::-webkit-scrollbar {
       width: 10px;
-      background: ${({ theme }) => theme.colors.darkBg};
+      background: ${({ theme }) => theme.colors.background};
     }
     &::-webkit-scrollbar-thumb  {
-      background: ${({ theme }) => theme.colors.primary};
+      background: ${({ theme }) => theme.colors.secondary};
   }
   }
 

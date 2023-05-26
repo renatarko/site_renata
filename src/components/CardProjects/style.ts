@@ -31,7 +31,7 @@ export const Container = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #1e1e1e;
+    background-color: ${({theme}) => theme.colors.secondaryOpa};
   }
 
   &:hover ${Image} {
@@ -58,10 +58,11 @@ export const BoxImage = styled.div`
 
 export const Description = styled.span`
   ${({ theme }) => css`
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     font-size: ${theme.fontSize.description};
     padding: 0 10px;
     margin-top: 20px;
+    font-weight: 700;
     /* text-align: start; */
   `}
 `;
@@ -70,7 +71,7 @@ export const LinkAs = styled.a`
   ${({ theme }) => css`
     display: inline-flex;
     align-items: center;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     font-size: ${theme.fontSize.subTitle};
 
     @media (max-width: 450px) {

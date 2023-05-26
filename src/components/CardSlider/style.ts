@@ -34,7 +34,7 @@ export const Wrapper = styled.section`
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: ${theme.colors.primary};
+      background-color: ${theme.colors.third};
       border-radius: 50%;
       /* margin-left: 1rem; */
 
@@ -69,7 +69,7 @@ export const Content = styled.div`
   ${({ theme }) => css`
     width: 190px;
     height: 170px;
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.third};
     padding: 0.5rem;
     border-radius: ${theme.borderRadius.baseRadius};
     display: flex !important;
@@ -83,7 +83,7 @@ export const Content = styled.div`
     }
 
     & svg {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.primary};
       font-size: ${theme.fontSize.icon};
     }
   `}
@@ -103,7 +103,7 @@ export const RepoLetter = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background-color: ${theme.colors.baseDark};
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +112,7 @@ export const RepoLetter = styled.div`
     & p {
       font-weight: 700;
       font-size: calc(${theme.fontSize.icon} - 0.2rem);
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.primary};
     }
   `}
 `;
@@ -120,7 +120,7 @@ export const RepoLetter = styled.div`
 export const RepoName = styled.p`
   ${({ theme }) => css`
     width: 80%;
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     font-size: ${theme.fontSize.description};
     line-height: 1.2rem;
   `}
@@ -133,13 +133,13 @@ export const LinkRepo = styled.label`
     gap: 0.4rem;
 
     & a {
-      color: ${theme.colors.baseDark};
+      color: ${theme.colors.text};
       text-decoration: underline;
       font-size: calc(${theme.fontSize.description} - 0.2rem);
     }
 
     & svg {
-      color: ${theme.colors.baseDark};
+      color: ${theme.colors.text};
       width: calc(${theme.fontSize.icon} - 0.5rem);
     }
   `}
@@ -156,9 +156,10 @@ export const Stars = styled.div`
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
 
     & svg {
+      color: ${theme.colors.text};
       width: ${theme.fontSize.description};
     }
   `}
@@ -166,6 +167,6 @@ export const Stars = styled.div`
 
 export const Stack = styled.p`
   ${({ theme }) => css`
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
   `}
 `;

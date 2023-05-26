@@ -30,17 +30,17 @@ export const ContainerLogo = styled.div`
       align-items: center;
       font-size: ${theme.fontSize.title};
       font-weight: 600;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.secondary};
       position: relative;
       z-index: 10;
       border-radius: 50%;
-      background-color: #1e1e1f;
+      background-color: #1e1e1f44;
       padding: .5rem;
     }
     .name {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.secondary};
       text-transform: uppercase;
-      font-weight: 200;
+      font-weight: 700;
       letter-spacing: 1.5px;
     }
 
@@ -60,7 +60,7 @@ export const ContainerLinks = styled.div`
     /* gap: 0.8rem; */
 
     span {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
       font-size: ${theme.fontSize.description};
       margin-top: 1rem;
       display: flex;
@@ -73,7 +73,7 @@ export const ContainerLinks = styled.div`
     }
 
     .createdby {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
       margin-top: 1rem;
       font-size: calc(${theme.fontSize.description} - 0.275rem);
     }
@@ -85,7 +85,7 @@ export const Links = styled.nav`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     text-transform: uppercase;
     
     & a {
@@ -97,7 +97,7 @@ export const Links = styled.nav`
     & a:hover {
       color: ${theme.colors.secondary};
       cursor: pointer;
-      background-color:#1e1e1f ;
+      background-color:${theme.colors.secondaryOpa} ;
     }
   `}
 `;

@@ -6,13 +6,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.11.0",
     "@react-icons/all-files": "^4.1.0",
-    "aos": "^2.3.4",
-    "emailjs-com": "^3.2.0",
     "framer-motion": "^7.3.2",
     "next": "latest",
-    "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
@@ -25,7 +21,6 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.4",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",

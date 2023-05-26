@@ -33,7 +33,7 @@ export const ShowHistory = styled.button<OpenHistoryProps>`
     background: none;
     border: none;
     font-family: ${theme.fontFamily.poppins};
-    color: ${({ theme }) => theme.colors.baseLight};
+    color: ${({ theme }) => theme.colors.text};
     font-size: ${theme.fontSize.description};
     text-decoration: underline;
     cursor: pointer;
@@ -46,7 +46,7 @@ export const ShowHistory = styled.button<OpenHistoryProps>`
 
 export const Myhistory = styled.p<OpenHistoryProps>`
   ${({ theme, open }) => css`
-    color: ${({ theme }) => theme.colors.baseLight};
+    color: ${({ theme }) => theme.colors.primary};
     font-size: ${theme.fontSize.description};
     display: ${open ? "flex" : "none"};
   `}
