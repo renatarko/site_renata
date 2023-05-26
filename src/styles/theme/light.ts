@@ -2,7 +2,6 @@ export default {
   title: "light",
 
   colors: {
-    // darkBg: "#1A1A1A",
     primary: "#161223",
     secondary: "#8067A9",
     third:"rgb(191, 176, 209)",
@@ -11,8 +10,6 @@ export default {
     bgAbout:"rgb(191, 176, 209)",
     text:"#000000",
 
-    // baseDark: "#161223",
-    // baseLight: "#FAF9FB",
     secondaryOpa: "#bfb0d166",
   },
   fontFamily: {
