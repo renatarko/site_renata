@@ -1,4 +1,4 @@
-import { FaGithub, FaStar } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaGithub, FaStar } from "react-icons/fa";
 import Slider, { SliderSettings } from "../Slider";
 
 import items from "./mock";
@@ -11,12 +11,14 @@ type CardSliderProps = {
 
 const setting: SliderSettings = {
   dots: true,
-  // arrows: true,
+  arrows: true,
   slidesToShow: 4,
   slidesToScroll: 1,
   vertical: false,
   infinite: false,
   lazyLoad: "ondemand",
+  prevArrow: <FaArrowLeft />,
+  nextArrow: <FaArrowRight />,
   responsive: [
     {
       breakpoint: 1150,
@@ -31,9 +33,17 @@ const setting: SliderSettings = {
       },
     },
     {
+      breakpoint: 690,
+      settings: {
+        slidesToShow: 2.1,
+        arrows: false,
+      },
+    },
+    {
       breakpoint: 500,
       settings: {
         slidesToShow: 1.1,
+        arrows: false,
       },
     },
   ],

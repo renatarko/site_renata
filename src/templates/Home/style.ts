@@ -27,7 +27,6 @@ export const SectionHome = styled(Section)`
     gap: 12rem;
     padding-top: 4rem;
   }
-
 `;
 
 export const SectionAbout = styled(Section)`
@@ -60,9 +59,8 @@ export const SectionService = styled(Section)`
 `;
 
 export const SectionCard = styled(Section)`
-  padding: 0;
   position: absolute;
-  top: -7rem;
+  top: -14rem;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -85,7 +83,7 @@ export const SectionCourses = styled(Section)`
       width: 100%;
       height: 100%;
       /* background: rgb(22, 18, 35); */
-      background: ${({theme}) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.background};
       position: absolute;
       opacity: 0.95;
       top: 0;

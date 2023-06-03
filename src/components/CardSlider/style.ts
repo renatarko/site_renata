@@ -6,19 +6,16 @@ export const Wrapper = styled.section`
 
     .slick-track,
     .slick-list {
-      display: flex;
+      display: flex !important;
       gap: 1rem;
+    }
+
+    .slick-list {
+      margin: 1rem;
     }
 
     .slick-track {
       padding: 1.5rem 0;
-    }
-
-    .slick-slide div {
-      /* display: flex !important; */
-      /* flex-direction: column;
-      justify-content: center;
-      align-items: center; */
     }
 
     .slick-dots {
@@ -42,6 +39,30 @@ export const Wrapper = styled.section`
         background-color: ${theme.colors.secondary};
       }
     }
+
+    .slick-arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      color: ${theme.colors.secondary};
+      cursor: pointer;
+      font-size: ${theme.fontSize.icon};
+      transition: 0.3s;
+
+      :hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .slick-next {
+      right: -0.8rem;
+    }
+
+    .slick-prev {
+      left: -0.8rem;
+    }
+
     button {
       width: 1.1rem;
       height: 1.1rem;
@@ -67,8 +88,7 @@ export const Wrapper = styled.section`
 
 export const Content = styled.div`
   ${({ theme }) => css`
-    width: 190px;
-    height: 170px;
+    height: 190px;
     background-color: ${theme.colors.third};
     padding: 0.5rem;
     border-radius: ${theme.borderRadius.baseRadius};

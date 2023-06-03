@@ -29,9 +29,10 @@ export const Container = styled.div`
   padding: 1.25rem;
   border-radius: ${({ theme }) => theme.borderRadius.baseRadius};
   cursor: pointer;
+  position: relative;
 
   &:hover {
-    background-color: ${({theme}) => theme.colors.secondaryOpa};
+    background-color: ${({ theme }) => theme.colors.secondaryOpa};
   }
 
   &:hover ${Image} {
@@ -63,7 +64,6 @@ export const Description = styled.span`
     padding: 0 10px;
     margin-top: 20px;
     font-weight: 700;
-    /* text-align: start; */
   `}
 `;
 
@@ -75,7 +75,13 @@ export const LinkAs = styled.a`
     font-size: ${theme.fontSize.subTitle};
 
     @media (max-width: 450px) {
-      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      svg {
+        display: none;
+      }
     }
   `}
 `;

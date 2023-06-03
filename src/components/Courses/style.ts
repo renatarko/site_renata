@@ -27,9 +27,10 @@ export const Title = styled.h2`
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    /* justify-content: center;
+    flex-wrap: wrap; */
     gap: 1rem;
     position: relative;
 
@@ -72,20 +73,21 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   ${({ theme }) => css`
-    width: 190px;
-    height: 200px;
+    /* width: 220px; */
+    height: 230px;
     background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid #8067A9;
+    border: 1px solid #8067a9;
     filter: drop-shadow(${theme.colors.primary});
     border-radius: ${theme.borderRadius.baseRadius};
     transition: 0.3s;
 
     &:hover {
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, ${theme.colors.secondary} 0px 3px 7px -3px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        ${theme.colors.secondary} 0px 3px 7px -3px;
       transform: scale(1.02);
     }
   `}
