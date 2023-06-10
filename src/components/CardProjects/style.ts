@@ -30,12 +30,17 @@ export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.baseRadius};
   cursor: pointer;
   position: relative;
+  transition: all 0.3s;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondaryOpa};
   }
 
   &:hover ${Image} {
+    transform: scale(1.2);
+  }
+
+  &:hover svg {
     transform: scale(1.2);
   }
 
@@ -73,6 +78,15 @@ export const LinkAs = styled.a`
     align-items: center;
     color: ${theme.colors.secondary};
     font-size: ${theme.fontSize.subTitle};
+    padding: 0.4rem;
+    border-radius: 50%;
+
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: rgba(191, 176, 209, 0.1);
+      transform: scale(1.1);
+    }
 
     @media (max-width: 450px) {
       width: 100%;

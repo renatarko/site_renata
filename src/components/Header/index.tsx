@@ -1,26 +1,29 @@
-import { FaGithub, FaSun } from "react-icons/fa";
+import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
 
+// import { useThemeContext } from "../../styles/theme/ThemeContext";
 import * as S from "./style";
 
 interface Props {
-  toggleTheme(): void 
+  toggleTheme(): void;
+  theme: { title: string };
 }
 
-export default function Header({toggleTheme}:Props) {
-  // const { title, colors} = useContext(ThemeContext)
+export default function Header({ theme, toggleTheme }: Props) {
   return (
     <S.Wrapper>
       <S.Menu>
-
         <S.Container>
           <S.ButtonTheme onClick={toggleTheme}>
-            <FaSun />
+            {theme.title === "light" ? (
+              <FaSun title="tema claro" />
+            ) : (
+              <FaMoon title="tema escuro" />
+            )}
           </S.ButtonTheme>
-         
+
           <S.ButtonIcon href={"https://github.com/renatarko"} target="_blank">
-            <FaGithub />
+            <FaGithub title="GitHub" />
           </S.ButtonIcon>
-          
         </S.Container>
 
         {/* <MenuMobile /> */}

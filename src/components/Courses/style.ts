@@ -31,7 +31,7 @@ export const Container = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     /* justify-content: center;
     flex-wrap: wrap; */
-    gap: 1rem;
+    gap: 2rem;
     position: relative;
 
     .one,
