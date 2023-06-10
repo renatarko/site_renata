@@ -84,7 +84,6 @@ export const LinkAs = styled.a`
     transition: all 0.3s;
 
     &:hover {
-      background-color: rgba(191, 176, 209, 0.1);
       transform: scale(1.1);
     }
 
