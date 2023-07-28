@@ -27,7 +27,7 @@ export const SectionHome = styled(Section)`
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
-    gap: 12rem;
+    gap: 14.5rem;
     padding-top: 2rem;
   }
 `;
