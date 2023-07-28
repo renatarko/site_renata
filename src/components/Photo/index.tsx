@@ -26,8 +26,9 @@ export default function Photo() {
 
   return (
     <S.Wrapper>
+      <S.ImageProfile src="../../assets/profile.png" />
       <S.Content>
-        <S.ImageProfile src="../../assets/fotocortada.png"/>
+        <S.Back />
         <S.ContentIcon className={isFixed ? "isFixed" : "isNotFixed"}>
           <S.LinkMedias
             href={
@@ -37,10 +38,7 @@ export default function Photo() {
           >
             <FaLinkedinIn />
           </S.LinkMedias>
-          <S.LinkMedias
-            href={"https://twitter.com/renatarko_"}
-            target="_blank"
-          >
+          <S.LinkMedias href={"https://twitter.com/renatarko_"} target="_blank">
             <FaTwitter />
           </S.LinkMedias>
           <S.LinkMedias

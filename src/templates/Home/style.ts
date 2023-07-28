@@ -7,7 +7,10 @@ export const Wrapper = styled.main`
 
 export const Section = styled.section`
   width: 100%;
-  padding: 8rem 4rem;
+  /* padding: 8rem 4rem; */
+  /* padding-top: 4rem; */
+  padding-left: 4rem;
+  padding-right: 4rem;
 
   @media (max-width: 900px) {
     padding: 8rem 0rem;
@@ -17,21 +20,22 @@ export const Section = styled.section`
 export const SectionHome = styled(Section)`
   display: flex;
   justify-content: space-around;
-  padding-top: 8rem;
-  margin-bottom: -3rem;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
   gap: 17rem;
 
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
     gap: 12rem;
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
 `;
 
 export const SectionAbout = styled(Section)`
   width: 100%;
   padding: 0 2rem;
+  /* padding-bottom: 5rem; */
 
   ${({ theme }) => css`
     background-color: ${theme.colors.bgAbout};
@@ -42,6 +46,7 @@ export const SectionService = styled(Section)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5rem 0;
 
   .containerCards {
     width: 40%;
@@ -60,11 +65,15 @@ export const SectionService = styled(Section)`
 
 export const SectionCard = styled(Section)`
   position: absolute;
-  top: -14rem;
+  top: -6rem;
   left: 0;
   right: 0;
   margin: 0 auto;
   z-index: 100;
+
+  @media (max-width: 900px) {
+    top: -14rem;
+  }
 `;
 
 export const SectionCourses = styled(Section)`

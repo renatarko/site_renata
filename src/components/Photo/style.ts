@@ -10,26 +10,33 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   ${({ theme }) => css`
-    /* max-width: 20rem; */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-
-    width: 380px;
-    height: 400px;
-    background-color: ${theme.colors.secondaryOpa};
-    border-radius: 70px 0 70px 0;
-
     z-index: 2;
   `}
 `;
 
+export const Back = styled.div`
+  ${({ theme }) => css`
+    width: 380px;
+    height: 400px;
+    border-radius: 70px 0 70px 0;
+    background-color: ${theme.colors.secondaryOpa};
+
+    @media (max-width: 400px) {
+      width: 15rem;
+      height: 17rem;
+    }
+  `}
+`;
+
 export const ImageProfile = styled.img`
-  width: 13.5rem;
+  width: 100%;
+  max-width: 22rem;
   position: absolute;
-  top: 3.2rem;
-  z-index: 2;
+  bottom: -3rem;
+  z-index: 10;
 `;
 
 export const ContentIcon = styled.div`
@@ -46,7 +53,7 @@ export const ContentIcon = styled.div`
     position: absolute;
     right: -4rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
       right: 0;
     }
   }
