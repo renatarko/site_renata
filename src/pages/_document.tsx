@@ -1,11 +1,12 @@
 import Document, {
+  DocumentContext,
   Head,
   Html,
-  DocumentContext,
   Main,
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import Analytics from "../components/Analytics";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -34,6 +35,58 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
+
+          <meta name="author" content="Renata Karolina de Oliveira" />
+          <meta
+            name="description"
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
+          />
+          <meta
+            name="keywords"
+            content="renata karolina, web developer, front-end, desenvolvedora front-end"
+          />
+
+          <meta name="msapplication-TileColor" content="#1A1A1A" />
+          <meta
+            name="msapplication-TileImage"
+            content="favicon/ms-icon-144x144.png"
+          />
+          <meta name="theme-color" content="#1A1A1A" />
+
+          <meta property="og:url" content="https://renatakarolina.vercel.app" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Renata Karolina | Web Developer" />
+          <meta
+            property="og:description"
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
+          />
+          <meta property="og:site_name" content="renatakarolina.vercel.app" />
+          <meta
+            property="og:image"
+            content="https://renatakarolina.vercel.app/assets/tumblr.webp"
+          />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="twitter:domain" content="renatakarolina.vercel.app" />
+          <meta
+            property="twitter:url"
+            content="https://renatakarolina.vercel.app"
+          />
+          <meta
+            name="twitter:title"
+            content="Renata Karolina | Web Developer"
+          />
+          <meta
+            name="twitter:description"
+            content="Renata Karolina, desenvolvedora front-end apaixonada por tecnologia e design."
+          />
+          <meta
+            name="twitter:image"
+            content="https://renatakarolina.vercel.app/assets/tumblr.webp"
+          />
+
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -122,6 +175,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <Analytics />
         </body>
       </Html>
     );

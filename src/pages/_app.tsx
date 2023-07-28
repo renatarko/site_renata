@@ -1,48 +1,39 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DefaultTheme, ThemeProvider } from "styled-components";
-import GlobalStyle from "../globalstyles";
+import React, { useEffect, useState } from "react";
+import TagManager from "react-gtm-module";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "../styles/globalstyles";
 
-import ReactGA from "react-ga";
-
-const TRACKING_ID = "UA-257131607-1";
-ReactGA.initialize(TRACKING_ID);
-ReactGA.pageview(window.location.pathname + window.location.search);
-
-const theme: DefaultTheme = {
-  colors: {
-    darkBg: "#1A1A1A",
-    primary: "#8067A9",
-    secondary: "#BFB0D1",
-    baseDark: "#161223",
-    baseLight: "#FAF9FB",
-    secondaryOpa: "rgba(191, 176, 209, 0.4)",
-  },
-  fontFamily: {
-    poppins: "'Poppins', sans-serif",
-  },
-  fontSize: {
-    title: "2.5rem",
-    subTitle: "1.8rem",
-    description: "1rem",
-    titleSection: "1.3rem",
-    icon: "25px",
-  },
-  borderRadius: {
-    baseRadius: "8px",
-  },
-  spacing: {
-    gap: "2rem",
-  },
-};
+import Header from "../components/Header";
+import dark from "../styles/theme/dark";
+import light from "../styles/theme/light";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [currentTheme, setCurrentTheme] = React.useState("");
+
+  console.log({ currentTheme });
+
+  useEffect(() => {
+    const tagManagerArgs = {
+      gtmId: `GTM-T98BFRQ`,
+    };
+    TagManager.initialize(tagManagerArgs);
+  }, []);
+
+  const [theme, setTheme] = useState(dark);
+
+  const toggleTheme = () => {
+    setTheme(theme.title === "light" ? dark : light);
+  };
+
   return (
     <>
       <Head>
-        <title>Renata Karolina</title>
+        <title>Renata Karolina | Web Developer</title>
       </Head>
       <ThemeProvider theme={theme}>
+        <Header toggleTheme={toggleTheme} theme={theme} />
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>

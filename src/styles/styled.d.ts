@@ -1,13 +1,16 @@
 import "styled-components";
-
 declare module "styled-components" {
   export interface DefaultTheme {
+    title: string;
+
     colors: {
-      darkBg: string;
-      primary: string;
-      secondary: string;
-      baseLight: string;
-      baseDark: string;
+      primary: string,
+      secondary: string,
+      third:string,
+  
+      background: string,
+      bgAbout:string,
+      text:string,
       secondaryOpa: string;
     };
     fontFamily: {

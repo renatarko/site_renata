@@ -1,16 +1,12 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkBg};
+export const Wrapper = styled.header`
+  background-color: transparent;
   width: 100%;
   height: 6rem;
-  /* padding: 0 2rem; */
+  padding: 2rem;
   display: flex;
   align-items: center;
-
-  @media (max-width: 450px) {
-    padding: 0 1rem;
-  }
 `;
 
 export const Menu = styled.nav`
@@ -20,34 +16,10 @@ export const Menu = styled.nav`
   align-items: center;
 `;
 
-export const MenuLinks = styled.ul`
-  ${({ theme }) => css`
-    display: inline-flex;
-    gap: ${theme.spacing.gap};
-    align-items: center;
-  `}
 
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
-export const LinkPage = styled.a`
-  color: ${({ theme }) => theme.colors.primary};
-  text-transform: uppercase;
-  transition: 0.4s;
-  font-weight: bold;
-  /* padding: 1rem; */
-
-  :hover {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
-  }
-`;
-
-export const ContainerIcon = styled.div`
+export const Container = styled.ul`
   ${({ theme }) => css`
     display: flex;
-    gap: ${theme.spacing.gap};
   `}
 `;
 
@@ -55,14 +27,18 @@ export const ButtonTheme = styled.button`
   ${({ theme }) => css`
     background: none;
     border: none;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     font-size: ${theme.fontSize.icon};
     cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 0.8rem;
+    border-radius: 50%;
+    transition: all .2s;
 
     &:hover {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
+      background-color: rgba(191, 176, 209, 0.1);
       opacity: 0.7;
     }
   `}
@@ -72,14 +48,18 @@ export const ButtonIcon = styled.a`
   ${({ theme }) => css`
     background: none;
     border: none;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     font-size: ${theme.fontSize.icon};
     cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 0.8rem;
+    border-radius: 50%;
+    transition: all .2s;
 
     &:hover {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
+      background-color: rgba(191, 176, 209, 0.1);
       opacity: 0.7;
     }
   `}

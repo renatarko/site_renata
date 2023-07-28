@@ -1,32 +1,6 @@
 import { FaCode } from "react-icons/fa";
+import items from "./mock";
 import * as S from "./style";
-
-const items = [
-  {
-    id: 1,
-    teaching: "Rocketseat",
-    course: "NLW",
-    url: "",
-  },
-  {
-    id: 2,
-    teaching: "Rocketseat",
-    course: "NLW",
-    url: "",
-  },
-  {
-    id: 3,
-    teaching: "Rocketseat",
-    course: "NLW",
-    url: "",
-  },
-  {
-    id: 4,
-    teaching: "Rocketseat",
-    course: "NLW",
-    url: "",
-  },
-];
 
 export default function Courses() {
   return (
@@ -39,9 +13,17 @@ export default function Courses() {
       <S.Container>
         {items.map((item) => {
           return (
-            <S.Card key={item.id} href={item.url}>
+            <S.Card
+              key={item.id}
+              className={item.id}
+            >
               <S.Teaching>{item.teaching}</S.Teaching>
-              <S.Course>{item.course}</S.Course>
+              <S.Course href={item.url} target="_blank">{item.course}</S.Course>
+              <div className={`${item.class}`}>
+                <a href={item.urlEn} target="_blank">
+                  certificate in english
+                </a>
+              </div>
             </S.Card>
           );
         })}

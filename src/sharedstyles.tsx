@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-// const Main = styled.main`
-//   width: 100%;
-//   /* height: 100vh; */
-// `;
-
-const Container = styled.main`
+const Container = styled.div`
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;

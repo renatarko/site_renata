@@ -21,7 +21,7 @@ export default function CardProjects({
           <S.Image src={imageSrc} alt={description} />
           <S.Description>{description}</S.Description>
         </S.BoxImage>
-        <S.LinkAs href={url}>
+        <S.LinkAs href={url} target="_blank">
           <FiArrowRight />
         </S.LinkAs>
       </S.Container>

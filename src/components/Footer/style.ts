@@ -12,6 +12,7 @@ export const Wrapper = styled.footer`
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    padding: 2rem 1rem;
   }
 `;
 
@@ -24,31 +25,22 @@ export const ContainerLogo = styled.div`
     gap: 1rem;
 
     .rk {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: ${theme.fontSize.title};
       font-weight: 600;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.secondary};
       position: relative;
       z-index: 10;
-
-      &::before {
-        content: "";
-        width: 65px;
-        height: 65px;
-        background: ${theme.colors.primary};
-        opacity: 0.09;
-        border-radius: 50%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: -7px;
-        /* left: 10px; */
-        z-index: -1;
-      }
+      border-radius: 50%;
+      background-color: #1e1e1f44;
+      padding: .5rem;
     }
     .name {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.secondary};
       text-transform: uppercase;
-      font-weight: 200;
+      font-weight: 700;
       letter-spacing: 1.5px;
     }
 
@@ -68,7 +60,7 @@ export const ContainerLinks = styled.div`
     /* gap: 0.8rem; */
 
     span {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
       font-size: ${theme.fontSize.description};
       margin-top: 1rem;
       display: flex;
@@ -81,20 +73,31 @@ export const ContainerLinks = styled.div`
     }
 
     .createdby {
-      color: ${theme.colors.baseLight};
+      color: ${theme.colors.text};
       margin-top: 1rem;
       font-size: calc(${theme.fontSize.description} - 0.275rem);
     }
   `}
 `;
 
-export const Links = styled.div`
+export const Links = styled.nav`
   ${({ theme }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* gap: 1rem; */
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     text-transform: uppercase;
+    
+    & a {
+      transition: 0.3s;
+      padding: 0.4rem;
+      border-radius: ${theme.borderRadius.baseRadius};
+    } 
+    
+    & a:hover {
+      color: ${theme.colors.secondary};
+      cursor: pointer;
+      background-color:${theme.colors.secondaryOpa} ;
+    }
   `}
 `;

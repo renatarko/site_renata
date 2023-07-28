@@ -1,16 +1,25 @@
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import * as S from "./style";
 
 export default function Service() {
+
+  const ref = useRef(null)
+  const isInView = useInView(ref, {
+    once: true
+  })
+  
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={ref}>
       <S.Container>
         <S.SectionTitle>Serviços</S.SectionTitle>
         <S.Title>Desenvolvedora</S.Title>
         <S.SubTitle>Front-End</S.SubTitle>
         <S.Description>
-          Principais projetos It is a long established fact that a reader will
-          be distracted by the readable content of a page when looking at its
-          layout.
+          <strong>Principais Projetos</strong> que aprimorei e consolidei minhas
+          hard skills em HTML, CSS, JavaScript, React, TypeScript e
+          Styled-Components. Foram realizados em freelances, cursos e projetos
+          pessoais.
         </S.Description>
       </S.Container>
     </S.Wrapper>

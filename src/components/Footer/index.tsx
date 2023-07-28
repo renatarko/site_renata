@@ -1,25 +1,27 @@
-import Link from "next/link";
 import { FaEnvelope } from "react-icons/fa";
+import { Link } from "react-scroll";
 import * as S from "./style";
 
 export default function Footer() {
   return (
     <S.Wrapper>
       <S.ContainerLogo>
-        <p className="rk">RK</p>
+        <div className="rk">
+          <p>RK</p>
+        </div>
         <p className="name">Renata Karolina</p>
       </S.ContainerLogo>
 
       <S.ContainerLinks>
         <S.Links>
-          <Link href="/">home</Link>
-          <Link href="/">serviços</Link>
-          <Link href="/">cursos</Link>
+          <Link to="home" spy={true} smooth={true} activeClass="active" duration={500}>home</Link>
+          <Link to="service" spy={true} smooth={true} activeClass="active" duration={500}>serviços</Link>
+          <Link to="courses" spy={true} smooth={true} activeClass="active" duration={500}>cursos</Link>
         </S.Links>
         <span>
-          <FaEnvelope /> renatakarolina@gmail.com
+          <FaEnvelope /> renatakarolinarko@gmail.com
         </span>
-        <a className="createdby" href="">
+        <a className="createdby" href="https://twitter.com/renatarko_" target="_blank">
           created by @renata_rko
         </a>
       </S.ContainerLinks>

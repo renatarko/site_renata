@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ export const Wrapper = styled.section`
 export const SectionTitle = styled.h3`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.titleSection};
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 3px;
@@ -30,20 +30,31 @@ export const Container = styled.article`
 export const Title = styled.h1`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.title};
-    color: ${theme.colors.baseLight};
-    margin-bottom: -0.5rem;
+    color: ${theme.colors.text};
+    margin-bottom: 0;
+
+    @media (max-width: 500px) {
+      font-size: ${theme.fontSize.subTitle};
+    }
   `}
 `;
 export const SubTitle = styled.h2`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.title};
-    color: ${theme.colors.secondary};
+    color: ${theme.colors.third};
+
+    @media (max-width: 500px) {
+      font-size: ${theme.fontSize.titleSection};
+    }
   `}
 `;
+
 export const Description = styled.p`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.description};
-    color: ${theme.colors.baseLight};
+    color: ${theme.colors.text};
     margin-top: 2.75rem;
+    line-height: 1.6rem;
+    text-align: justify;
   `}
 `;

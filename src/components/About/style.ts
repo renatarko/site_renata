@@ -4,7 +4,7 @@ export type OpenHistoryProps = {
   open?: boolean;
 };
 
-export const Wrapper = styled.section<OpenHistoryProps>`
+export const Wrapper = styled.div<OpenHistoryProps>`
   ${({ open }) => css`
     width: 100%;
     min-height: ${open ? "10rem" : "8.5rem"};
@@ -24,7 +24,7 @@ export const Content = styled.div`
   transition: all 0.3s;
 
   @media (max-width: 900px) {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
   }
 `;
 
@@ -33,7 +33,7 @@ export const ShowHistory = styled.button<OpenHistoryProps>`
     background: none;
     border: none;
     font-family: ${theme.fontFamily.poppins};
-    color: ${({ theme }) => theme.colors.baseLight};
+    color: ${({ theme }) => theme.colors.text};
     font-size: ${theme.fontSize.description};
     text-decoration: underline;
     cursor: pointer;
@@ -46,7 +46,7 @@ export const ShowHistory = styled.button<OpenHistoryProps>`
 
 export const Myhistory = styled.p<OpenHistoryProps>`
   ${({ theme, open }) => css`
-    color: ${({ theme }) => theme.colors.baseLight};
+    color: ${({ theme }) => theme.colors.text};
     font-size: ${theme.fontSize.description};
     display: ${open ? "flex" : "none"};
   `}
