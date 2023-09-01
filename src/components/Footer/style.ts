@@ -25,6 +25,8 @@ export const ContainerLogo = styled.div`
     gap: 1rem;
 
     .rk {
+      width: 5rem;
+      height: 5rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -35,7 +37,7 @@ export const ContainerLogo = styled.div`
       z-index: 10;
       border-radius: 50%;
       background-color: #1e1e1f44;
-      padding: .5rem;
+      /* padding: 0.5rem; */
     }
     .name {
       color: ${theme.colors.secondary};
@@ -87,17 +89,17 @@ export const Links = styled.nav`
     justify-content: space-between;
     color: ${theme.colors.text};
     text-transform: uppercase;
-    
+
     & a {
       transition: 0.3s;
       padding: 0.4rem;
       border-radius: ${theme.borderRadius.baseRadius};
-    } 
-    
+    }
+
     & a:hover {
       color: ${theme.colors.secondary};
       cursor: pointer;
-      background-color:${theme.colors.secondaryOpa} ;
+      background-color: ${theme.colors.secondaryOpa};
     }
   `}
 `;
