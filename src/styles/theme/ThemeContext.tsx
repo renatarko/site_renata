@@ -1,20 +1,21 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { DefaultTheme } from "styled-components";
+import dark from "./dark";
+import light from "./light";
 
-type Theme = 'light' | 'dark';
-
-
+type Theme = DefaultTheme
 interface ThemeContextType {
-  theme: Theme
-  toggleTheme: () => void
+  theme: Theme;
+  toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({} as ThemeContextType)
+const ThemeContext = createContext<ThemeContextType | undefined>({} as undefined)
 
-const ThemeProvider = ({children}) => {
-  const [theme, setTheme] = useState<Theme>('light');
-
+const DarkThemeProvider = ({children}) => {
+  const [theme, setTheme] = useState<Theme>(dark);
+console.log(theme)
   const toggleTheme = () => {
-
+    setTheme(theme.title === "light" ? dark : light)
   }
 
   return (
@@ -24,4 +25,10 @@ const ThemeProvider = ({children}) => {
   )
 }
 
-export default ThemeContext
+export const useThemeContext = () => {
+  const context = useContext(ThemeContext)
+  return context
+}
+
+
+export default DarkThemeProvider

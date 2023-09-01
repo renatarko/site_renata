@@ -15,9 +15,7 @@ import * as S from "./style";
 export default function Home() {
   return (
     <S.Wrapper>
-      <Container>
-        {/* <Header toggleTheme={() => {}}/> */}
-      </Container>
+      <Container>{/* <Header /> */}</Container>
 
       <Element name="home">
         <Container>
@@ -27,7 +25,7 @@ export default function Home() {
           </S.SectionHome>
         </Container>
       </Element>
-      
+
       <S.SectionAbout>
         <Container>
           <About />
@@ -55,13 +53,13 @@ export default function Home() {
         </Container>
       </Element>
 
-      <Element name="courses">            
+      <Element name="courses">
         <S.SectionCourses>
           <Container>
             <S.SectionCard>
               <CardSlider />
             </S.SectionCard>
-              
+
             <div>
               <Courses />
             </div>
