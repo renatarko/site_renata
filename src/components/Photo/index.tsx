@@ -2,8 +2,24 @@ import { useEffect, useState } from "react";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import * as S from "./style";
 
+const socialMedias = [
+  {
+    icon: <FaLinkedinIn />,
+    link: "https://www.linkedin.com/in/renata-karolina-de-oliveira-rko/",
+  },
+  {
+    icon: <FaTwitter />,
+    link: "https://twitter.com/renatarko_",
+  },
+  {
+    icon: <FaInstagram />,
+    link: "https://instagram.com/renata_rko",
+  },
+];
+
 export default function Photo() {
   const [isFixed, setIsFixed] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,27 +42,20 @@ export default function Photo() {
 
   return (
     <S.Wrapper>
-      <S.ImageProfile src="../../assets/profile.png" />
+      <S.ImageProfile
+        src="/assets/profile.png"
+        alt="Foto da Renata em pé segurando um notebook"
+        width={400}
+        height={550}
+      />
       <S.Content>
         <S.Back />
         <S.ContentIcon className={isFixed ? "isFixed" : "isNotFixed"}>
-          <S.LinkMedias
-            href={
-              "https://www.linkedin.com/in/renata-karolina-de-oliveira-rko/"
-            }
-            target="_blank"
-          >
-            <FaLinkedinIn />
-          </S.LinkMedias>
-          <S.LinkMedias href={"https://twitter.com/renatarko_"} target="_blank">
-            <FaTwitter />
-          </S.LinkMedias>
-          <S.LinkMedias
-            href={"https://instagram.com/renata_rko"}
-            target="_blank"
-          >
-            <FaInstagram />
-          </S.LinkMedias>
+          {socialMedias.map((link) => (
+            <S.LinkMedias href={link.link} target="_blank">
+              {link.icon}
+            </S.LinkMedias>
+          ))}
         </S.ContentIcon>
       </S.Content>
     </S.Wrapper>

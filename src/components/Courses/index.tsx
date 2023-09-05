@@ -13,12 +13,11 @@ export default function Courses() {
       <S.Container>
         {items.map((item) => {
           return (
-            <S.Card
-              key={item.id}
-              className={item.id}
-            >
+            <S.Card key={item.id} className={item.id}>
               <S.Teaching>{item.teaching}</S.Teaching>
-              <S.Course href={item.url} target="_blank">{item.course}</S.Course>
+              <S.Course href={item.url} target="_blank">
+                {item.course}
+              </S.Course>
               <div className={`${item.class}`}>
                 <a href={item.urlEn} target="_blank">
                   certificate in english

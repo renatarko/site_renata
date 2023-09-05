@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
@@ -6,6 +7,10 @@ export const Wrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   position: relative;
+
+  /* @media (max-width: 410px) {
+    flex-direction: column;
+  } */
 `;
 
 export const Content = styled.div`
@@ -28,15 +33,25 @@ export const Back = styled.div`
       width: 15rem;
       height: 17rem;
     }
+
+    @media (max-width: 410px) {
+      background-image: url("/assets/profile.png");
+      background-size: cover;
+      background-position: center;
+    }
   `}
 `;
 
-export const ImageProfile = styled.img`
+export const ImageProfile = styled(Image)`
   width: 100%;
-  max-width: 22rem;
   position: absolute;
   bottom: -3rem;
   z-index: 10;
+  object-fit: contain;
+
+  @media (max-width: 410px) {
+    display: none;
+  }
 `;
 
 export const ContentIcon = styled.div`

@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import Photo from "../../components/Photo";
 import Service from "../../components/Service";
 import Title from "../../components/Title";
+import stack from "../../components/stackMock";
 import { Container } from "../../sharedstyles";
 
 import { Element } from "react-scroll";
@@ -15,7 +16,9 @@ import * as S from "./style";
 export default function Home() {
   return (
     <S.Wrapper>
-      <Container>{/* <Header /> */}</Container>
+      {/* <Container>
+        <Header />
+      </Container> */}
 
       <Element name="home">
         <Container>
@@ -52,6 +55,63 @@ export default function Home() {
           </S.SectionService>
         </Container>
       </Element>
+
+      <Container>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "3rem",
+            gap: "2rem",
+            color: "white",
+          }}
+        >
+          <h2>Minha Stack</h2>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              flexWrap: "wrap",
+              gap: "1rem",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            {stack.map((item) => (
+              <div key={item.tech} style={{ position: "relative" }}>
+                <div
+                  style={{
+                    borderRadius: "1rem",
+                    overflow: "hidden",
+                    width: "4rem",
+                    height: "4rem",
+                  }}
+                >
+                  <img
+                    src={item.path}
+                    alt={item.tech}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                {/* <p
+                                style={{
+                                  position: "absolute",
+                                  bottom: "-1.5rem",
+                                }}
+                              >
+                                {item.tech}
+                              </p> */}
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
 
       <Element name="courses">
         <S.SectionCourses>

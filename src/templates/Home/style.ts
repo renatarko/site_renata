@@ -30,6 +30,10 @@ export const SectionHome = styled(Section)`
     gap: 14.5rem;
     padding-top: 2rem;
   }
+
+  @media (max-width: 400px) {
+    gap: 10rem;
+  }
 `;
 
 export const SectionAbout = styled(Section)`
@@ -84,7 +88,7 @@ export const SectionCourses = styled(Section)`
     background-size: cover;
     position: relative;
     z-index: 1;
-    margin-top: 5rem;
+    margin-top: 12rem;
     padding-top: 20rem;
 
     &::before {

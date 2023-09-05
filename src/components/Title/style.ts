@@ -9,6 +9,11 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   position: absolute;
   padding: 0.5rem;
+
+  @media (max-width: 320px) {
+    left: 0;
+    right: 0;
+  }
 `;
 
 export const Title = styled.h1`
@@ -17,6 +22,7 @@ export const Title = styled.h1`
     font-size: ${theme.fontSize.title};
     text-align: start;
     margin-top: -15px;
+    text-transform: uppercase;
 
     @media (max-width: 570px) {
       font-size: ${theme.fontSize.subTitle};
@@ -30,6 +36,9 @@ export const SubTitle = styled.h2`
     font-size: ${theme.fontSize.subTitle};
     text-align: start;
     margin-bottom: 0.5rem;
+    @media (max-width: 570px) {
+      font-size: ${theme.fontSize.description};
+    }
   `}
 `;
 
@@ -40,24 +49,24 @@ export const SubTitleAfter = styled.h2`
     color: ${theme.colors.text};
     font-size: ${theme.fontSize.subTitle};
     text-align: end;
-    margin-top: -15px;
+    margin-top: -8px;
     position: relative;
 
     &::before {
       content: "";
-      width: 70%;
+      width: 60%;
       height: 2px;
       background-color: ${theme.colors.third};
       position: absolute;
       left: 0;
-      bottom: 0.7rem;
+      bottom: 1.2rem;
     }
 
     @media (max-width: 570px) {
       font-size: ${theme.fontSize.titleSection};
 
       &::before {
-        bottom: 0.4rem;
+        bottom: 1rem;
       }
     }
   `}
