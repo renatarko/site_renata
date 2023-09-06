@@ -16,10 +16,6 @@ import * as S from "./style";
 export default function Home() {
   return (
     <S.Wrapper>
-      {/* <Container>
-        <Header />
-      </Container> */}
-
       <Element name="home">
         <Container>
           <S.SectionHome>

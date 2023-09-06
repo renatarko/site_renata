@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -22,8 +22,23 @@ export const Content = styled.div`
   `}
 `;
 
-export const Back = styled.div`
-  ${({ theme }) => css`
+const loadingKeyframe = keyframes`
+  50% {
+    opacity: 0.3;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 0.5;
+    filter: blur(5px);
+  }
+`;
+
+type imageProps = {
+  imageLoading: boolean;
+};
+
+export const Back = styled.div<imageProps>`
+  ${({ theme, imageLoading }) => css`
     width: 380px;
     height: 400px;
     border-radius: 70px 0 70px 0;
@@ -38,21 +53,63 @@ export const Back = styled.div`
       background-image: url("/assets/profile.png");
       background-size: cover;
       background-position: center;
+      opacity: 100%;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      ${imageLoading &&
+      css`
+        animation: placeholderShimmer 1s linear forwards;
+        background-image: linear-gradient(
+          to right,
+          ${theme.colors.secondaryOpa} 0%,
+          ${theme.colors.secondaryOpa} 20%,
+          ${theme.colors.secondaryOpa} 40%,
+          #f6f7f810 100%
+        );
+        background-size: 80rem 14rem;
+      `};
+    }
+
+    @keyframes placeholderShimmer {
+      0% {
+        background-position: -40rem 0;
+        filter: blur(4px);
+      }
+      100% {
+        background-position: 40rem 0;
+      }
     }
   `}
 `;
 
-export const ImageProfile = styled(Image)`
-  width: 100%;
-  position: absolute;
-  bottom: -3rem;
-  z-index: 10;
-  object-fit: contain;
+export const ImageProfile = styled(Image)<imageProps>`
+  ${({ imageLoading }) => css`
+    ${imageLoading &&
+    css`
+      animation: ${loadingKeyframe} ease-in-out 2s;
+    `}
+    width: 100%;
+    position: absolute;
+    bottom: -3rem;
+    z-index: 10;
+    object-fit: contain;
+    opacity: 100%;
 
-  @media (max-width: 410px) {
-    display: none;
-  }
+    @media (max-width: 410px) {
+      display: none;
+    }
+  `}
 `;
+
+// export const ImageProfileMobile = styled(ImageProfile)`
+//   @media (max-width: 410px) {
+//     display: block;
+//   }
+// `;
 
 export const ContentIcon = styled.div`
   display: flex;
