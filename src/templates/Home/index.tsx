@@ -12,6 +12,7 @@ import { Container } from "../../sharedstyles";
 import { Element } from "react-scroll";
 import items from "../../components/CardProjects/mock";
 import * as S from "./style";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -75,8 +76,8 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            {stack.map((item) => (
-              <div key={item.tech} style={{ position: "relative" }}>
+            {stack.map((item, index) => (
+              <div key={index} style={{ position: "relative" }}>
                 <div
                   style={{
                     borderRadius: "1rem",
@@ -85,7 +86,9 @@ export default function Home() {
                     height: "4rem",
                   }}
                 >
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src={item.path}
                     alt={item.tech}
                     style={{
@@ -95,14 +98,6 @@ export default function Home() {
                     }}
                   />
                 </div>
-                {/* <p
-                                style={{
-                                  position: "absolute",
-                                  bottom: "-1.5rem",
-                                }}
-                              >
-                                {item.tech}
-                              </p> */}
               </div>
             ))}
           </div>

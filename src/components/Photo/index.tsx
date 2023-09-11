@@ -41,8 +41,6 @@ export default function Photo() {
     };
   }, []);
 
-  console.log({ imageLoading });
-
   return (
     <S.Wrapper>
       <S.ImageProfile

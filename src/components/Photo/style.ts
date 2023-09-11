@@ -44,21 +44,21 @@ export const Back = styled.div<imageProps>`
     border-radius: 70px 0 70px 0;
     background-color: ${theme.colors.secondaryOpa};
 
+    img {
+      display: none;
+    }
+
     @media (max-width: 400px) {
       width: 15rem;
       height: 17rem;
     }
 
     @media (max-width: 410px) {
-      background-image: url("/assets/profile.png");
-      background-size: cover;
-      background-position: center;
-      opacity: 100%;
-
       .image {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
       }
       ${imageLoading &&
       css`
