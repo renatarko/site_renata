@@ -5,9 +5,10 @@ export const Wrapper = styled.div`
     .container-title {
       display: flex;
       align-items: center;
-      margin-bottom: 3.75rem;
+      /* margin-bottom: 3.75rem; */
       gap: 1rem;
       z-index: 100;
+      padding-bottom: 4rem;
 
       svg {
         color: ${theme.colors.secondary};

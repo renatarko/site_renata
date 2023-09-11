@@ -4,7 +4,6 @@ import CardSlider from "../../components/CardSlider";
 import Courses from "../../components/Courses";
 import Footer from "../../components/Footer";
 import Photo from "../../components/Photo";
-import Service from "../../components/Service";
 import Title from "../../components/Title";
 import stack from "../../components/stackMock";
 import { Container } from "../../sharedstyles";
@@ -13,6 +12,7 @@ import { Element } from "react-scroll";
 import items from "../../components/CardProjects/mock";
 import * as S from "./style";
 import Image from "next/image";
+import MyJobs from "../../components/MyJobs";
 
 export default function Home() {
   return (
@@ -35,7 +35,7 @@ export default function Home() {
       <Element name="service">
         <Container>
           <S.SectionService>
-            <Service />
+            <MyJobs />
             <div className="containerCards">
               {items.map((item) => {
                 return (

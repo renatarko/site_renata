@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.aside`
@@ -21,7 +22,7 @@ export const Image = styled.img`
   `}
 `;
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,9 +45,19 @@ export const Container = styled.div`
     transform: scale(1.2);
   }
 
+  svg {
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: ${({ theme }) => theme.fontSize.subTitle};
+    transition: all 0.3s;
+  }
+
   @media (max-width: 450px) {
     justify-content: center;
     margin-bottom: 1rem;
+
+    svg {
+      display: none;
+    }
   }
 `;
 
@@ -69,32 +80,5 @@ export const Description = styled.span`
     padding: 0 10px;
     margin-top: 20px;
     font-weight: 700;
-  `}
-`;
-
-export const LinkAs = styled.a`
-  ${({ theme }) => css`
-    display: inline-flex;
-    align-items: center;
-    color: ${theme.colors.secondary};
-    font-size: ${theme.fontSize.subTitle};
-    padding: 0.4rem;
-    border-radius: 50%;
-
-    transition: all 0.3s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 450px) {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-
-      svg {
-        display: none;
-      }
-    }
   `}
 `;

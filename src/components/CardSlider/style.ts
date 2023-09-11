@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   ${({ theme }) => css`
+    width: 100%;
     padding: 0 7.5rem;
 
     .slick-track,
@@ -88,6 +89,7 @@ export const Wrapper = styled.section`
 
 export const Content = styled.div`
   ${({ theme }) => css`
+    max-width: 100%;
     height: 190px;
     background-color: ${theme.colors.third};
     padding: 0.5rem;
@@ -113,6 +115,7 @@ export const ContainerRepo = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 1.5rem;
   position: relative;
   gap: 0.5rem;
@@ -139,7 +142,7 @@ export const RepoLetter = styled.div`
 
 export const RepoName = styled.p`
   ${({ theme }) => css`
-    width: 80%;
+    max-height: 100%;
     color: ${theme.colors.text};
     font-size: ${theme.fontSize.description};
     line-height: 1.2rem;

@@ -27,24 +27,26 @@ export const Container = styled.article`
   flex-direction: column;
 `;
 
-export const Title = styled.h1`
+export const TitleContainer = styled.div`
   ${({ theme }) => css`
-    font-size: ${theme.fontSize.title};
-    color: ${theme.colors.text};
-    margin-bottom: 0;
+    margin-bottom: 1rem;
 
-    @media (max-width: 500px) {
-      font-size: ${theme.fontSize.subTitle};
+    h1 {
+      font-size: ${theme.fontSize.title};
+      color: ${theme.colors.text};
+
+      @media (max-width: 500px) {
+        font-size: ${theme.fontSize.subTitle};
+      }
     }
-  `}
-`;
-export const SubTitle = styled.h2`
-  ${({ theme }) => css`
-    font-size: ${theme.fontSize.title};
-    color: ${theme.colors.third};
 
-    @media (max-width: 500px) {
-      font-size: ${theme.fontSize.titleSection};
+    h2 {
+      font-size: ${theme.fontSize.title};
+      color: ${theme.colors.third};
+
+      @media (max-width: 500px) {
+        font-size: ${theme.fontSize.titleSection};
+      }
     }
   `}
 `;
@@ -53,7 +55,7 @@ export const Description = styled.p`
   ${({ theme }) => css`
     font-size: ${theme.fontSize.description};
     color: ${theme.colors.text};
-    margin-top: 2.75rem;
+    margin-top: 1rem;
     line-height: 1.6rem;
     text-align: justify;
   `}

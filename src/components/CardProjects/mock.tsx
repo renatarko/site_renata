@@ -17,4 +17,10 @@ export default [
     description: "Site para Profissional",
     url: "https://www.psileticia.com/",
   },
+  {
+    id: 4,
+    imageSrc: "/assets/breaknews.png",
+    description: "Site de notícias",
+    url: "https://breaknews-app.vercel.app/",
+  },
 ];

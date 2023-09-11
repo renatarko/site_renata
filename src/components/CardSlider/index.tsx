@@ -51,10 +51,12 @@ const setting: SliderSettings = {
 
 const card = items.map((item) => {
   let shortName = item.name.substring(2, 0);
+  let name = item.name.replaceAll("_", " ");
 
   return {
     ...item,
     shortname: shortName,
+    name: name,
   };
 });
 
