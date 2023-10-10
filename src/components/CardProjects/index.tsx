@@ -16,10 +16,11 @@ export default function CardProjects({
 }: CardProjectsProps) {
   return (
     <S.Wrapper>
-      <S.Container href={url}>
+      <S.Container href={url} target="_blank">
         <S.BoxImage>
           <S.Image src={imageSrc} alt={description} />
           <S.Description>{description}</S.Description>
+          {/* <p className="show-page">Ir para página</p> */}
         </S.BoxImage>
         <FiArrowRight />
       </S.Container>

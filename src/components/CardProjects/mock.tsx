@@ -7,9 +7,9 @@ export default [
   },
   {
     id: 2,
-    imageSrc: "/assets/cafeteria.png",
-    description: "Site para Cafeteria",
-    url: "https://cafeteriaapp-7at5tic3h-renatarko.vercel.app/",
+    imageSrc: "/assets/legendarios-site.png",
+    description: "Site para Organização Religiosa",
+    url: "https://www.legendariosms.com/",
   },
   {
     id: 3,
@@ -22,5 +22,17 @@ export default [
     imageSrc: "/assets/breaknews.png",
     description: "Site de notícias",
     url: "https://breaknews-app.vercel.app/",
+  },
+  {
+    id: 5,
+    imageSrc: "/assets/cafeteria.png",
+    description: "Site para Cafeteria",
+    url: "https://cafeteriaapp-7at5tic3h-renatarko.vercel.app/",
+  },
+  {
+    id: 6,
+    imageSrc: "/assets/anapaula-site.png",
+    description: "Site para Profissional",
+    url: "https://anaoliveirapsi.vercel.app/",
   },
 ];

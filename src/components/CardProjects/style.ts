@@ -45,6 +45,24 @@ export const Container = styled(Link)`
     transform: scale(1.2);
   }
 
+  /* &:hover .show-page {
+    opacity: 1;
+  }
+
+  .show-page {
+    position: absolute;
+    left: 35%;
+    top: 70%;
+
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
+    padding: 0.2rem;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    font-size: 14px;
+  } */
+
   svg {
     color: ${({ theme }) => theme.colors.secondary};
     font-size: ${({ theme }) => theme.fontSize.subTitle};
