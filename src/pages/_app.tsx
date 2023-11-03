@@ -12,8 +12,6 @@ import light from "../styles/theme/light";
 export default function App({ Component, pageProps }: AppProps) {
   const [currentTheme, setCurrentTheme] = React.useState("");
 
-  console.log({ currentTheme });
-
   useEffect(() => {
     const tagManagerArgs = {
       gtmId: `GTM-T98BFRQ`,

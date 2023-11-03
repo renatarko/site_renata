@@ -1,6 +1,8 @@
 import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
 
 // import { useThemeContext } from "../../styles/theme/ThemeContext";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import * as S from "./style";
 
 interface Props {
@@ -9,25 +11,38 @@ interface Props {
 }
 
 export default function Header({ theme, toggleTheme }: Props) {
+  const { pathname } = useRouter();
+
   return (
-    <S.Wrapper>
-      <S.Menu>
-        <S.Container>
-          <S.ButtonTheme onClick={toggleTheme}>
-            {theme.title === "light" ? (
-              <FaSun title="tema claro" />
-            ) : (
-              <FaMoon title="tema escuro" />
-            )}
-          </S.ButtonTheme>
+    <>
+      {pathname !== "/contato" && (
+        <S.Wrapper>
+          <S.Menu>
+            <S.Container>
+              <S.ButtonTheme onClick={toggleTheme}>
+                {theme.title === "light" ? (
+                  <FaSun title="tema claro" />
+                ) : (
+                  <FaMoon title="tema escuro" />
+                )}
+              </S.ButtonTheme>
 
-          <S.ButtonIcon href={"https://github.com/renatarko"} target="_blank">
-            <FaGithub title="GitHub" />
-          </S.ButtonIcon>
-        </S.Container>
+              <S.ButtonIcon
+                href={"https://github.com/renatarko"}
+                target="_blank"
+              >
+                <FaGithub title="GitHub" />
+              </S.ButtonIcon>
 
-        {/* <MenuMobile /> */}
-      </S.Menu>
-    </S.Wrapper>
+              <Link href="/contato" className="link-contact">
+                Contato
+              </Link>
+            </S.Container>
+
+            {/* <MenuMobile /> */}
+          </S.Menu>
+        </S.Wrapper>
+      )}
+    </>
   );
 }

@@ -16,10 +16,23 @@ export const Menu = styled.nav`
   align-items: center;
 `;
 
-
 export const Container = styled.ul`
   ${({ theme }) => css`
     display: flex;
+    align-items: center;
+
+    .link-contact {
+      color: ${theme.colors.secondary};
+      font-weight: 600;
+      padding: 0.8rem;
+    }
+
+    .link-contact:hover {
+      color: ${theme.colors.text};
+      background-color: rgba(191, 176, 209, 0.1);
+      opacity: 0.7;
+      border-radius: 8px;
+    }
   `}
 `;
 
@@ -34,7 +47,7 @@ export const ButtonTheme = styled.button`
     align-items: center;
     padding: 0.8rem;
     border-radius: 50%;
-    transition: all .2s;
+    transition: all 0.2s;
 
     &:hover {
       color: ${theme.colors.text};
@@ -55,7 +68,7 @@ export const ButtonIcon = styled.a`
     align-items: center;
     padding: 0.8rem;
     border-radius: 50%;
-    transition: all .2s;
+    transition: all 0.2s;
 
     &:hover {
       color: ${theme.colors.text};

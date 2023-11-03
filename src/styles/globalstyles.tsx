@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  li {
+    list-style: none;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
