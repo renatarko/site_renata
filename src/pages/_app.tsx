@@ -1,40 +1,25 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import TagManager from "react-gtm-module";
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "../styles/globalstyles";
 
-import Header from "../components/Header";
 import dark from "../styles/theme/dark";
-import light from "../styles/theme/light";
+import "../styles/site.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [currentTheme, setCurrentTheme] = React.useState("");
+	useEffect(() => {
+		TagManager.initialize({ gtmId: "GTM-T98BFRQ" });
+	}, []);
 
-  useEffect(() => {
-    const tagManagerArgs = {
-      gtmId: `GTM-T98BFRQ`,
-    };
-    TagManager.initialize(tagManagerArgs);
-  }, []);
-
-  const [theme, setTheme] = useState(dark);
-
-  const toggleTheme = () => {
-    setTheme(theme.title === "light" ? dark : light);
-  };
-
-  return (
-    <>
-      <Head>
-        <title>Renata Karolina | Web Developer</title>
-      </Head>
-      <ThemeProvider theme={theme}>
-        <Header toggleTheme={toggleTheme} theme={theme} />
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
-  );
+	return (
+		// ThemeProvider kept so the legacy /contato page's styled-components resolve.
+		// The landing page manages its own theme via the [data-theme] attribute + site.css.
+		<ThemeProvider theme={dark}>
+			<Head>
+				<title>Renata Karolina · Desenvolvedora Web</title>
+			</Head>
+			<Component {...pageProps} />
+		</ThemeProvider>
+	);
 }

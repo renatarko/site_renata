@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@types/three": "^0.160.0",
     "framer-motion": "^7.3.2",
     "next": "latest",
     "react": "^18.2.0",
@@ -18,7 +19,8 @@
     "react-loading": "^2.0.3",
     "react-scroll": "^1.8.9",
     "react-slick": "^0.29.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "three": "^0.160.1"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
