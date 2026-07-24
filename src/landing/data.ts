@@ -34,6 +34,20 @@ export interface Social {
 	href?: string;
 }
 
+export interface Plan {
+	id: string;
+	name: string;
+	badge: string;
+	/** the pricier plan gets the accent treatment on the card */
+	featured: boolean;
+	price: string;
+	note: string;
+	/** shown above the list when the plan builds on the cheaper one */
+	inherits?: string;
+	features: string[];
+	cta: string;
+}
+
 export interface SiteData {
 	name: string;
 	brand: string;
@@ -45,7 +59,7 @@ export interface SiteData {
 	filters: string[];
 	projects: Project[];
 	stack: StackGroup[];
-	planFeatures: string[];
+	plans: Plan[];
 	socials: Social[];
 }
 
@@ -157,13 +171,42 @@ const SITE: SiteData = {
 		},
 	],
 
-	planFeatures: [
-		"Site ou landing page com design 100% próprio (nada de template)",
-		"Layout no Figma aprovado por você antes de codar",
-		"Blog opcional, fácil de atualizar sozinha(o)",
-		"Otimizado para Google (SEO) e celular",
-		"Hospedagem, domínio e manutenção inclusos",
-		"Suporte e pequenos ajustes durante todo o contrato",
+	plans: [
+		{
+			id: "landing",
+			name: "Landing Page",
+			badge: "Para começar",
+			featured: false,
+			price: "R$120",
+			note: "Contrato de 12 meses · página única",
+			features: [
+				"Página única com design 100% próprio (nada de template)",
+				"Layout no Figma aprovado por você antes de codar",
+				"Seções pensadas para converter: oferta, provas e chamada final",
+				"Formulário de contato ou botão direto no WhatsApp",
+				"Otimizada para Google (SEO) e celular",
+				"Hospedagem, domínio e manutenção inclusos",
+				"Suporte e pequenos ajustes durante todo o contrato",
+			],
+			cta: "Quero minha landing →",
+		},
+		{
+			id: "site",
+			name: "Site Completo",
+			badge: "★ Mais completo",
+			featured: true,
+			price: "R$240",
+			note: "Contrato de 12 meses · site institucional, blog ou e-commerce",
+			inherits: "Tudo da Landing Page, e mais:",
+			features: [
+				"Várias páginas (institucional, serviços, sobre, contato)",
+				"Blog próprio, fácil de atualizar sozinha(o)",
+				"Loja virtual com catálogo e pagamento online",
+				"Painel simples para editar textos e imagens sem depender de mim",
+				"Integrações: WhatsApp, e-mail marketing e analytics",
+			],
+			cta: "Quero meu site →",
+		},
 	],
 
 	socials: [

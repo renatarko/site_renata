@@ -62,7 +62,7 @@ export default function Hero({ theme }: { theme: Theme }) {
 							Ver trabalhos →
 						</a>
 						<a href="#servicos" className="btn btn-ghost" onClick={(e) => scrollTo(e, "#servicos")}>
-							Conhecer o plano
+							Conhecer os planos
 						</a>
 					</motion.div>
 					<motion.div className="hero-stats" variants={item}>
