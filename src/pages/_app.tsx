@@ -1,3 +1,6 @@
+// Pages Router on Next 13.0: the /next subpath pulls useParams from next/navigation,
+// which only exists from Next 13.3 on. The /react subpath has no such dependency.
+import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -7,7 +10,8 @@ import { ThemeProvider } from "styled-components";
 import dark from "../styles/theme/dark";
 import "../styles/site.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ 
+	Component, pageProps }: AppProps) {
 	useEffect(() => {
 		TagManager.initialize({ gtmId: "GTM-T98BFRQ" });
 	}, []);
@@ -20,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<title>Renata Karolina · Desenvolvedora Web</title>
 			</Head>
 			<Component {...pageProps} />
+			<Analytics />
 		</ThemeProvider>
 	);
 }
