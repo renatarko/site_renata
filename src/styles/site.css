@@ -277,11 +277,21 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .field { margin-bottom: 18px; }
 .field label { display: block; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+.field .hint { font-size: 13.5px; color: var(--text-2); margin: -4px 0 9px; }
 .field input, .field textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 13px;
   padding: 14px 16px; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15.5px; transition: border-color .2s; }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
 .field textarea { resize: vertical; min-height: 110px; }
 .form .btn { width: 100%; justify-content: center; }
+.form-alt { text-align: center; font-size: 14.5px; color: var(--muted); margin: 14px 0 0; }
+.form-alt a, .form-alt button { color: var(--accent-soft); font-weight: 600; text-decoration: underline;
+  text-underline-offset: 3px; transition: color .2s ease; }
+.form-alt button { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; }
+.form-alt a:hover, .form-alt button:hover { color: var(--accent); }
+.form-alt button:disabled { opacity: .6; cursor: default; }
+.form-error { margin: 12px 0 0; text-align: center; font-size: 14.5px; color: #ff8080; }
+/* honeypot: off-screen instead of display:none so bots still fill it */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form-ok { text-align: center; padding: 30px 10px; }
 .form-ok .ck-big { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: #fff;
   display: grid; place-items: center; margin: 0 auto 16px; }

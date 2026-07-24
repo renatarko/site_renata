@@ -1,10 +1,64 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Reveal from "./Reveal";
 import SITE from "./data";
 
+interface Fields {
+	nome: string;
+	contato: string;
+	projeto: string;
+}
+
+const EMPTY: Fields = { nome: "", contato: "", projeto: "" };
+
+function buildMessage({ nome, contato, projeto }: Fields) {
+	return `Oi, Renata! Sou ${nome}.\n\nContato: ${contato}\n\nSobre o projeto: ${projeto}`;
+}
+
 export default function Contato() {
-	const [sent, setSent] = useState(false);
+	const [fields, setFields] = useState<Fields>(EMPTY);
+	const [sent, setSent] = useState<"whatsapp" | "email" | null>(null);
+	const [sending, setSending] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+	// honeypot — hidden from people, filled in by bots
+	const [empresa, setEmpresa] = useState("");
+	// both buttons submit the form so the browser still runs `required` validation
+	const intent = useRef<"whatsapp" | "email">("whatsapp");
+
+	const set = (k: keyof Fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+		setFields((f) => ({ ...f, [k]: e.target.value }));
+
+	const openWhatsApp = () => {
+		const url = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(buildMessage(fields))}`;
+		// opened straight from the submit handler so it counts as a user gesture and dodges popup blockers
+		window.open(url, "_blank", "noopener,noreferrer");
+		setSent("whatsapp");
+	};
+
+	const sendEmail = async () => {
+		setSending(true);
+		setError(null);
+		try {
+			const res = await fetch("/api/contato", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ ...fields, empresa }),
+			});
+			const data = await res.json().catch(() => ({}));
+			if (!res.ok) throw new Error(data.error || "Não consegui enviar agora.");
+			setSent("email");
+		} catch (e) {
+			setError(e instanceof Error ? e.message : "Não consegui enviar agora.");
+		} finally {
+			setSending(false);
+		}
+	};
+
+	const hasWhatsApp = SITE.whatsapp !== "";
+
+	let submitLabel = "Enviar por e-mail →";
+	if (hasWhatsApp) submitLabel = "Chamar no WhatsApp →";
+	else if (sending) submitLabel = "Enviando...";
 
 	return (
 		<section className="sec" id="contato">
@@ -51,7 +105,9 @@ export default function Contato() {
 						className="form"
 						onSubmit={(e) => {
 							e.preventDefault();
-							setSent(true);
+							if (sending) return;
+							if (hasWhatsApp && intent.current === "whatsapp") openWhatsApp();
+							else void sendEmail();
 						}}
 					>
 						<AnimatePresence mode="wait">
@@ -67,28 +123,94 @@ export default function Contato() {
 											<path d="M5 12l5 5L20 6" />
 										</svg>
 									</div>
-									<h3 style={{ fontSize: 24 }}>Mensagem enviada!</h3>
+									<h3 style={{ fontSize: 24 }}>{sent === "whatsapp" ? "Quase lá!" : "Recebido!"}</h3>
 									<p style={{ color: "var(--text-2)", marginTop: 8 }}>
-										Obrigada pelo contato — em breve eu respondo. ✨
+										{sent === "whatsapp"
+											? "Abri o WhatsApp com sua mensagem pronta — é só apertar enviar por lá. ✨"
+											: "Mensagem enviada! Te respondo no contato que você deixou. ✨"}
 									</p>
+									<button
+										type="button"
+										className="btn btn-ghost"
+										style={{ marginTop: 20 }}
+										onClick={() => {
+											setSent(null);
+											setFields(EMPTY);
+										}}
+									>
+										Escrever outra mensagem
+									</button>
 								</motion.div>
 							) : (
 								<motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
 									<div className="field">
-										<label>Nome</label>
-										<input type="text" placeholder="Como te chamo?" required />
+										<label htmlFor="nome">Nome</label>
+										<input
+											id="nome"
+											type="text"
+											placeholder="Como te chamo?"
+											value={fields.nome}
+											onChange={set("nome")}
+											required
+										/>
 									</div>
 									<div className="field">
-										<label>E-mail ou WhatsApp</label>
-										<input type="text" placeholder="pra eu te responder" required />
+										<label htmlFor="contato">Seu contato</label>
+										<p className="hint">Onde eu te respondo — e-mail ou WhatsApp, você escolhe.</p>
+										<input
+											id="contato"
+											type="text"
+											placeholder="seu@email.com ou (11) 91234-5678"
+											value={fields.contato}
+											onChange={set("contato")}
+											required
+										/>
 									</div>
 									<div className="field">
-										<label>Sobre o projeto</label>
-										<textarea placeholder="Conte sua ideia, prazo, referências..." required />
+										<label htmlFor="projeto">Sobre o projeto</label>
+										<textarea
+											id="projeto"
+											placeholder="Conte sua ideia, prazo, referências..."
+											value={fields.projeto}
+											onChange={set("projeto")}
+											required
+										/>
 									</div>
-									<button type="submit" className="btn btn-primary">
-										Enviar mensagem →
+									<input
+										type="text"
+										name="empresa"
+										className="hp"
+										tabIndex={-1}
+										autoComplete="off"
+										aria-hidden="true"
+										value={empresa}
+										onChange={(e) => setEmpresa(e.target.value)}
+									/>
+									<button
+										type="submit"
+										className="btn btn-primary"
+										disabled={sending}
+										onClick={() => (intent.current = hasWhatsApp ? "whatsapp" : "email")}
+									>
+										{submitLabel}
 									</button>
+									{hasWhatsApp && (
+										<p className="form-alt">
+											ou{" "}
+											<button
+												type="submit"
+												disabled={sending}
+												onClick={() => (intent.current = "email")}
+											>
+												{sending ? "enviando..." : "enviar por e-mail"}
+											</button>
+										</p>
+									)}
+									{error && (
+										<p className="form-error" role="alert">
+											{error}
+										</p>
+									)}
 								</motion.div>
 							)}
 						</AnimatePresence>

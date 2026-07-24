@@ -53,6 +53,8 @@ export interface SiteData {
 	brand: string;
 	role: string;
 	email: string;
+	/** international format, digits only: 55 + DDD + number. Empty hides the WhatsApp CTA. */
+	whatsapp: string;
 	stats: Stat[];
 	about: string[];
 	aboutTags: string[];
@@ -68,6 +70,8 @@ const SITE: SiteData = {
 	brand: "renata",
 	role: "Desenvolvedora Web",
 	email: "renatakarolinarko@gmail.com",
+	// TODO: preencher com o numero real, ex.: "5511987654321" (55 + DDD + numero, so digitos)
+	whatsapp: "5567991687767",
 
 	stats: [
 		{ num: "12+", lbl: "projetos no ar" },
