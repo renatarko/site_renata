@@ -104,6 +104,16 @@ const SITE: SiteData = {
 			image: "/projects/lp-romualdo.png",
 			link: "https://www.romualdocosta.com/"
 		},
+			{
+			title: "Página de Vendas - Mês dos Psicólogos",
+			cat: "Landing Pages",
+			catLabel: "Landing Page",
+			desc: "Landing de vendas para campanha sazonal, oferta e botão de compra. Foco em conversão.",
+			tags: ["Html", "Tailwind", "SEO"],
+			hue: 265,
+			image: "/projects/lp-promocao-psi.webp",
+			link: "https://promocaopsi.rerko.net/"
+		},
 		{
 			title: "Psicóloga · Institucional + Blog",
 			cat: "Sites & Blog",
