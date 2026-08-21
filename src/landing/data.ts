@@ -145,7 +145,17 @@ const SITE: SiteData = {
 			image: '/projects/itop.png',
 			link: "https://www.inscricoestop.com.br/"
 		},
-				{
+			{
+			title: "Presença+ - Controle de Presença",
+			cat: "Sistemas",
+			catLabel: "Sistema · proprietária",
+			desc: "Plataforma completa para controle de presença em grupos, cursos e aulas de todo o tipo. Com painel admin para cadastro de membros, categorias, encontros e chamadas de presença. Projeto pessoal.",
+			tags: ["TypeScript", "Supabase", "Vite", "SEO"],
+			hue: 200,
+			image: '/projects/presencamais.png',
+			link: "https://presencamais.rerko.net/"
+		},
+		{
 			title: "OwnBlog - Plataforma para Blog",
 			cat: "Sistemas",
 			catLabel: "Sistema · proprietária",
@@ -155,6 +165,7 @@ const SITE: SiteData = {
 			image: '/projects/ownblog.png',
 			link: "https://ownblog-pro.vercel.app/"
 		},
+		
 	],
 
 	stack: [
