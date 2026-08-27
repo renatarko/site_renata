@@ -1,5 +1,5 @@
 import Landing from "../landing";
 
-export default function Index() {
+export default function HomePage() {
 	return <Landing />;
 }

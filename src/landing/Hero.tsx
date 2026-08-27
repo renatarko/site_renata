@@ -2,7 +2,6 @@ import { motion, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 import SITE from "./data";
 import HeroMockups from "./HeroMockups";
-import { Theme } from "./useTheme";
 import { entr } from "./util";
 
 const glyphs: {
@@ -21,7 +20,7 @@ const glyphs: {
 	{ t: "*", s: { top: "2%", left: "46%" }, fs: 20, d: 7.6 },
 ];
 
-export default function Hero({ theme }: { theme: Theme }) {
+export default function Hero() {
 	// Anotados como Variants para o framer-motion 13 estreitar o array de bezier
 	// para tupla; sem isso o TS o alarga para number[] e recusa.
 	const container: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } };

@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -18,26 +18,42 @@ function isEmail(v: string) {
 const escapeHtml = (v: string) =>
 	v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] as string);
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	if (req.method !== "POST") {
-		res.setHeader("Allow", "POST");
-		return res.status(405).json({ error: "Método não permitido" });
+// O 405 automático do Next não manda o header `Allow`, que a RFC 7231 exige e
+// que o handler antigo mandava. Declarar os outros métodos restaura o header e
+// o mesmo corpo de erro de antes.
+const methodNotAllowed = () =>
+	NextResponse.json(
+		{ error: "Método não permitido" },
+		{ status: 405, headers: { Allow: "POST" } }
+	);
+
+export const GET = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const PATCH = methodNotAllowed;
+export const DELETE = methodNotAllowed;
+
+export async function POST(req: Request) {
+	let body: Record<string, unknown>;
+	try {
+		body = (await req.json()) ?? {};
+	} catch {
+		return NextResponse.json({ error: "Corpo inválido." }, { status: 400 });
 	}
 
-	const { nome, contato, projeto, empresa } = (req.body ?? {}) as Record<string, unknown>;
+	const { nome, contato, projeto, empresa } = body;
 
 	// honeypot: humans never see this field, bots fill everything
 	if (typeof empresa === "string" && empresa.trim() !== "") {
-		return res.status(200).json({ ok: true });
+		return NextResponse.json({ ok: true });
 	}
 
 	const fields = { nome, contato, projeto };
 	for (const [key, value] of Object.entries(fields)) {
 		if (typeof value !== "string" || value.trim() === "") {
-			return res.status(400).json({ error: `Campo "${key}" é obrigatório.` });
+			return NextResponse.json({ error: `Campo "${key}" é obrigatório.` }, { status: 400 });
 		}
 		if (value.length > LIMITS[key as keyof typeof LIMITS]) {
-			return res.status(400).json({ error: `Campo "${key}" é longo demais.` });
+			return NextResponse.json({ error: `Campo "${key}" é longo demais.` }, { status: 400 });
 		}
 	}
 
@@ -49,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	if (!process.env.RESEND_API_KEY) {
 		console.error("[contato] RESEND_API_KEY não configurada");
-		return res.status(500).json({ error: "Envio indisponível no momento." });
+		return NextResponse.json({ error: "Envio indisponível no momento." }, { status: 500 });
 	}
 
 	try {
@@ -67,12 +83,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 		if (error) {
 			console.error("[contato] Resend:", error);
-			return res.status(502).json({ error: "Não consegui enviar agora. Tenta pelo WhatsApp?" });
+			return NextResponse.json(
+				{ error: "Não consegui enviar agora. Tenta pelo WhatsApp?" },
+				{ status: 502 }
+			);
 		}
 
-		return res.status(200).json({ ok: true });
+		return NextResponse.json({ ok: true });
 	} catch (err) {
 		console.error("[contato]", err);
-		return res.status(500).json({ error: "Não consegui enviar agora. Tenta pelo WhatsApp?" });
+		return NextResponse.json(
+			{ error: "Não consegui enviar agora. Tenta pelo WhatsApp?" },
+			{ status: 500 }
+		);
 	}
 }

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import SITE from "./data";
-import { Theme } from "./useTheme";
+import { useTheme } from "next-themes";
 
 const links: [string, string][] = [
 	["Sobre", "#sobre"],
@@ -10,7 +10,7 @@ const links: [string, string][] = [
 	["Contato", "#contato"],
 ];
 
-function ThemeIcon({ theme }: { theme: Theme }) {
+function ThemeIcon({ theme }: { theme: string | undefined }) {
 	return (
 		<AnimatePresence mode="wait" initial={false}>
 			<motion.span
@@ -36,14 +36,17 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 	);
 }
 
-interface Props {
-	theme: Theme;
-	toggleTheme: () => void;
-}
-
-export default function Nav({ theme, toggleTheme }: Props) {
+export default function Nav() {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
+
+	// resolvedTheme só existe depois da montagem; até lá o ícone renderia
+	// diferente no servidor e no cliente, então segura até montar.
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
+	const { resolvedTheme, setTheme } = useTheme();
+	const theme = mounted ? resolvedTheme : undefined;
+	const toggleTheme = () => setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
 	useEffect(() => {
 		const on = () => setScrolled(window.scrollY > 24);
