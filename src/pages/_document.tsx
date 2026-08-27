@@ -8,7 +8,9 @@ import Document, {
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      // nasce escuro para o SSR bater com o padrão do site; o useTheme
+      // troca a classe no cliente se a preferência salva for clara
+      <Html className="dark">
         <Head>
           <meta charSet="utf-8" />
 

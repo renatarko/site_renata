@@ -1,25 +1,12 @@
 /* ===========================================================
    Renata.reko — Violet Nocturne
    =========================================================== */
+/* Convenção do Tailwind/shadcn: :root e o tema CLARO, .dark sobrescreve.
+   Era o inverso ([data-theme="light"] sobrescrevendo um :root escuro).
+   Inverter aqui evita brigar com todo componente do shadcn instalado.
+   O site continua abrindo escuro: o <html> nasce com class="dark" no
+   _document e o useTheme alterna essa classe. */
 :root {
-  --bg: #08080d;
-  --bg-2: #0e0e16;
-  --surface: rgba(255,255,255,0.045);
-  --surface-2: rgba(255,255,255,0.07);
-  --border: rgba(255,255,255,0.09);
-  --border-strong: rgba(255,255,255,0.16);
-  --text: #ECECF1;
-  --text-2: #b7b7c6;
-  --muted: #87879a;
-  --accent: #8b5cf6;
-  --accent-2: #6366f1;
-  --accent-soft: #c4b5fd;
-  --good: #34d399;
-  --glow: rgba(139,92,246,0.45);
-  --shadow: 0 30px 70px -30px rgba(0,0,0,0.8);
-  --maxw: 1240px;
-}
-[data-theme="light"] {
   --bg: #f3f1fb;
   --bg-2: #ffffff;
   --surface: rgba(28,22,54,0.035);
@@ -35,6 +22,28 @@
   --good: #059669;
   --glow: rgba(124,58,237,0.3);
   --shadow: 0 30px 70px -30px rgba(60,40,120,0.35);
+  --maxw: 1240px;
+  /* usados pelos componentes do shadcn */
+  --destructive: #dc2626;
+  --radius: 13px;
+}
+.dark {
+  --bg: #08080d;
+  --bg-2: #0e0e16;
+  --surface: rgba(255,255,255,0.045);
+  --surface-2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.16);
+  --text: #ECECF1;
+  --text-2: #b7b7c6;
+  --muted: #87879a;
+  --accent: #8b5cf6;
+  --accent-2: #6366f1;
+  --accent-soft: #c4b5fd;
+  --good: #34d399;
+  --glow: rgba(139,92,246,0.45);
+  --shadow: 0 30px 70px -30px rgba(0,0,0,0.8);
+  --destructive: #f87171;
 }
 
 * { box-sizing: border-box; }
