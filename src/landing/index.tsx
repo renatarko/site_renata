@@ -1,3 +1,5 @@
+"use client";
+
 import Background from "./Background";
 import Contato from "./Contato";
 import Footer from "./Footer";
@@ -8,17 +10,16 @@ import Sobre from "./Sobre";
 import StackSection from "./Stack";
 import Trabalhos from "./Trabalhos";
 import WhatsAppFab from "./WhatsAppFab";
-import { useTheme } from "./useTheme";
 
+// A landing inteira é cliente: 9 dos 12 componentes usam framer-motion ou
+// estado. Marcar aqui basta — a diretiva vale para todo o subgrafo importado.
 // Composes the "Violet Nocturne" landing page and owns theme state.
 export default function Landing() {
-	const { theme, toggleTheme } = useTheme();
-
 	return (
 		<>
 			<Background />
-			<Nav theme={theme} toggleTheme={toggleTheme} />
-			<Hero theme={theme} />
+			<Nav />
+			<Hero />
 			<Trabalhos />
 			<StackSection />
 			<Servicos />
