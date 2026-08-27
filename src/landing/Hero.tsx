@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import SITE from "./data";
+import HeroMockups from "./HeroMockups";
 import { Theme } from "./useTheme";
 import { entr } from "./util";
 
@@ -36,12 +37,6 @@ export default function Hero({ theme }: { theme: Theme }) {
 		<header className="hero" id="top">
 			<div className="wrap hero-grid">
 				<motion.div variants={container} initial={entr("hidden") as any} animate="show">
-					<motion.div variants={item}>
-						<span className="eyebrow">
-							<span className="pulse" />
-							Disponível para novos projetos
-						</span>
-					</motion.div>
 					<motion.h1 variants={item}>
 						Ideias viram
 						<br />
@@ -54,11 +49,11 @@ export default function Hero({ theme }: { theme: Theme }) {
 						afiado e código limpo — do Figma ao deploy.
 					</motion.p>
 					<motion.div className="hero-btns" variants={item}>
-						<a href="#trabalhos" className="btn btn-primary" onClick={(e) => scrollTo(e, "#trabalhos")}>
-							Ver trabalhos →
-						</a>
-						<a href="#servicos" className="btn btn-ghost" onClick={(e) => scrollTo(e, "#servicos")}>
+						<a href="#servicos" className="btn btn-ghost btn-border-loop" onClick={(e) => scrollTo(e, "#servicos")}>
 							Conhecer os planos
+						</a>
+						<a href="#trabalhos" className="btn btn-primary btn-shine" onClick={(e) => scrollTo(e, "#trabalhos")}>
+							Ver mais trabalhos
 						</a>
 					</motion.div>
 					<motion.div className="hero-stats" variants={item}>
@@ -83,20 +78,6 @@ export default function Hero({ theme }: { theme: Theme }) {
 						<span className="orbit o3" />
 					</div>
 					<div className="hero-dots" aria-hidden="true" />
-					<svg className="hero-circuit" viewBox="0 0 160 120" fill="none" aria-hidden="true">
-						<path
-							d="M2 18h40l14 14h40M2 60h22l16-16h54M2 100h48l18-18h44"
-							stroke="currentColor"
-							strokeWidth="1.4"
-							strokeLinecap="round"
-						/>
-						<circle cx="96" cy="32" r="3.4" fill="currentColor" />
-						<circle cx="94" cy="44" r="3.4" fill="currentColor" />
-						<circle cx="112" cy="82" r="3.4" fill="currentColor" />
-						<rect x="40" y="13" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.4" />
-						<rect x="20" y="55" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.4" />
-						<rect x="46" y="95" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.4" />
-					</svg>
 					<div className="hero-glyphs" aria-hidden="true">
 						{glyphs.map((g, i) => (
 							<span
@@ -113,6 +94,7 @@ export default function Hero({ theme }: { theme: Theme }) {
 							</span>
 						))}
 					</div>
+					<HeroMockups />
 					<motion.div
 						className="float-chip"
 						style={{ top: "12%", left: "-2%" }}

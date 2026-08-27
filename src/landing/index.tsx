@@ -19,10 +19,10 @@ export default function Landing() {
 			<Background />
 			<Nav theme={theme} toggleTheme={toggleTheme} />
 			<Hero theme={theme} />
-			<Sobre />
 			<Trabalhos />
 			<StackSection />
 			<Servicos />
+			<Sobre />
 			<Contato />
 			<Footer />
 			<WhatsAppFab />
