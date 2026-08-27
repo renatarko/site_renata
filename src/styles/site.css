@@ -398,3 +398,48 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .hero-stats { gap: 22px; }
   .svc-feature { padding: 30px 26px; }
 }
+
+/* ============ CONTATO (linktree legado) ============
+   Portado do styled-components. Os valores vinham de styles/theme/dark.ts,
+   que foi deletado junto — ficam literais aqui de propósito: os tokens da
+   landing têm outra paleta (--accent é #8b5cf6, não #8067A9) e o critério
+   desta etapa é fidelidade visual. Unificar é decisão de outra fase. */
+.lk-wrap { display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; }
+.lk-inner { width: 100%; max-width: 130rem; margin-left: auto; margin-right: auto;
+  padding-left: 4rem; padding-right: 4rem;
+  display: flex; flex-direction: column; justify-content: center; position: relative; }
+.lk-content { display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 1.2rem; margin: 2rem 0; align-self: center; position: relative; }
+.lk-back { margin-top: 2rem; color: #FAF9FB; }
+
+.lk-info { width: 100%; display: flex; flex-direction: column; align-items: center;
+  margin-top: 1.9rem; color: #8067A9; }
+.lk-info h2 { font-size: 1rem; }
+
+.lk-avatar { width: 6rem; height: 6rem; margin-bottom: 1rem; }
+.lk-avatar img { width: 100%; height: 100%; border-radius: 100%; }
+
+.lk-title { text-align: center; line-height: 2.3rem; margin: 2rem 0; }
+.lk-title h1 { color: rgb(191, 176, 209); font-size: 2.5rem; }
+.lk-title h3 { font-size: 1.8rem; color: #FAF9FB; }
+
+.lk-links { width: 100%; }
+/* sem reset de propósito: o styled-components original também não resetava,
+   então o ul mantém o disc e o padding-left de 40px do navegador */
+.lk-links li { background-color: #8067A9; text-align: center; padding: 1rem; border-radius: 10px;
+  font-weight: 600; cursor: pointer; color: #FAF9FB; font-size: 1.1rem;
+  margin-bottom: 0.7rem; transition: all 0.3s; }
+.lk-links li:hover { background-color: rgb(191, 176, 209); color: #1A1A1A; }
+.lk-links li a { flex: 1; display: flex; justify-content: center; }
+
+.lk-share { width: 100%; background: none; color: #FAF9FB; position: relative; text-align: center;
+  border-radius: 6px; margin-top: 2rem; display: flex; justify-content: space-between;
+  align-items: center; padding: 0 1rem; }
+.lk-share:hover { background-color: rgba(0, 0, 0, 0.1); }
+.lk-share div { display: flex; align-items: center; gap: 0.3rem; }
+
+@media (max-width: 900px) { .lk-inner { padding: 0 1rem; } }
+@media (max-width: 450px) {
+  .lk-title h1 { font-size: 1.8rem; }
+  .lk-title h3 { font-size: 1.3rem; }
+}
