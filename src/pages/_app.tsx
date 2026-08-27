@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import TagManager from "react-gtm-module";
 
+import "../styles/tailwind.css";
 import "../styles/site.css";
 
 export default function App({ Component, pageProps }: AppProps) {

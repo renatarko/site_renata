@@ -14,7 +14,8 @@ export function useTheme() {
 	}, []);
 
 	useEffect(() => {
-		document.documentElement.setAttribute("data-theme", theme);
+		// classe, e não atributo: é o que o Tailwind 4 e o shadcn esperam
+		document.documentElement.classList.toggle("dark", theme === "dark");
 		try {
 			localStorage.setItem("rk-theme", theme);
 		} catch (e) {}
