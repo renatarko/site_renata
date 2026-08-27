@@ -132,7 +132,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .menu-btn { display: none; }
 
 /* ============ HERO ============ */
-.hero { padding: 168px 0 90px; }
+.hero { padding: 116px 0 90px; }
 .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 30px; align-items: center; }
 .hero h1 { font-size: clamp(40px, 5.6vw, 74px); line-height: 0.98; margin: 24px 0; }
 .hero-sub { font-size: 19px; line-height: 1.6; color: var(--text-2); max-width: 500px; margin: 0 0 34px; }
@@ -301,6 +301,24 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .footer .muted { color: var(--muted); font-size: 14px; }
 
+/* ============ WHATSAPP FAB ============ */
+.wa-fab { position: fixed; right: 22px; bottom: 22px; z-index: 90;
+  width: 58px; height: 58px; border-radius: 50%;
+  display: grid; place-items: center; color: #fff;
+  background: linear-gradient(145deg, #34d366, #16a34a);
+  box-shadow: 0 14px 34px -10px rgba(22, 163, 74, .6), 0 2px 8px rgba(0, 0, 0, .28); }
+.wa-fab svg { position: relative; z-index: 1; }
+.wa-fab-pulse { position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(52, 211, 102, .55); animation: wa-pulse 2.4s ease-out infinite; }
+@keyframes wa-pulse {
+  0%   { transform: scale(1); opacity: .6; }
+  70%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab-pulse { animation: none; display: none; }
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {
   .hero-grid, .about-grid, .svc-plans, .svc-extras, .contact-grid, .work-grid, .stack-groups { grid-template-columns: 1fr; }
@@ -308,12 +326,14 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .about-photo { max-width: 360px; }
   .nav-links { display: none; }
   .menu-btn { display: grid; }
+  .nav-cta { display: none; }
   .stack-groups { gap: 30px; }
   .hero { padding: 130px 0 70px; }
   .sec { padding: 70px 0; }
 }
 @media (max-width: 560px) {
   .wrap { padding: 0 22px; }
+  .wa-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .hero-stats { gap: 22px; }
   .svc-feature { padding: 30px 26px; }
 }

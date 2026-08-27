@@ -7,6 +7,7 @@ import Servicos from "./Servicos";
 import Sobre from "./Sobre";
 import StackSection from "./Stack";
 import Trabalhos from "./Trabalhos";
+import WhatsAppFab from "./WhatsAppFab";
 import { useTheme } from "./useTheme";
 
 // Composes the "Violet Nocturne" landing page and owns theme state.
@@ -24,6 +25,7 @@ export default function Landing() {
 			<Servicos />
 			<Contato />
 			<Footer />
+			<WhatsAppFab />
 		</>
 	);
 }

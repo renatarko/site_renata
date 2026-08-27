@@ -85,7 +85,7 @@ export default function Nav({ theme, toggleTheme }: Props) {
 					<a
 						href="#contato"
 						onClick={(e) => go(e, "#contato")}
-						className="btn btn-primary"
+						className="btn btn-primary nav-cta"
 						style={{ padding: "11px 20px" }}
 					>
 						Vamos conversar
@@ -125,6 +125,31 @@ export default function Nav({ theme, toggleTheme }: Props) {
 									{t}
 								</a>
 							))}
+							<div
+								style={{
+									padding: "0 14px",
+									width: "100%",
+									borderTop: "1px solid var(--border)",
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "flex-start",
+									gap: 12,
+								}}
+							>
+								<span
+								style={{paddingTop: 14,
+									fontSize: 14,
+									color: "var(--text-2)"}}
+								>Fale comigo sobre o seu projeto</span>
+							<a
+								href="#contato"
+								onClick={(e) => go(e, "#contato")}
+								className="btn btn-primary"
+								style={{ justifyContent: "center", width: "100%" }}
+								>
+								Vamos conversar
+							</a>
+								</div>
 						</div>
 					</motion.div>
 				)}

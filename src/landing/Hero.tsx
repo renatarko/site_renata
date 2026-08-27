@@ -21,10 +21,6 @@ const glyphs: {
 ];
 
 export default function Hero({ theme }: { theme: Theme }) {
-
-
-
-
 	const container = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } };
 	const item = {
 		hidden: { opacity: 0, y: 26 },
