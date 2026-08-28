@@ -1,13 +1,42 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import Reveal from "./Reveal";
 import SITE from "./data";
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "./ui/form";
 
-interface Fields {
-	nome: string;
-	contato: string;
-	projeto: string;
-}
+/**
+ * Os limites espelham os de src/app/api/contato/route.ts de propósito.
+ * Isto aqui é só experiência de uso: a validação que vale continua sendo a do
+ * servidor, que não confia em nada que venha do cliente.
+ */
+const schema = z.object({
+	nome: z.string().trim().min(1, "Me diz como te chamo.").max(120, "Nome longo demais."),
+	contato: z
+		.string()
+		.trim()
+		.min(1, "Preciso de um contato para te responder.")
+		.max(160, "Contato longo demais."),
+	projeto: z
+		.string()
+		.trim()
+		.min(1, "Conta um pouquinho sobre o projeto.")
+		.max(5000, "Texto longo demais — resume nos pontos principais?"),
+});
+
+type Fields = z.infer<typeof schema>;
 
 const EMPTY: Fields = { nome: "", contato: "", projeto: "" };
 
@@ -16,28 +45,28 @@ function buildMessage({ nome, contato, projeto }: Fields) {
 }
 
 export default function Contato() {
-	const [fields, setFields] = useState<Fields>(EMPTY);
+	const hasWhatsApp = SITE.whatsapp !== "";
 	const [sent, setSent] = useState<"whatsapp" | "email" | null>(null);
-	const [sending, setSending] = useState(false);
-	const [error, setError] = useState<string | null>(null);
 	// honeypot — hidden from people, filled in by bots
 	const [empresa, setEmpresa] = useState("");
-	// both buttons submit the form so the browser still runs `required` validation
+	// both buttons submit the form, so a ref decides which path runs
 	const intent = useRef<"whatsapp" | "email">("whatsapp");
 
-	const set = (k: keyof Fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-		setFields((f) => ({ ...f, [k]: e.target.value }));
+	const form = useForm<Fields>({
+		resolver: zodResolver(schema),
+		defaultValues: EMPTY,
+		mode: "onTouched",
+	});
+	const sending = form.formState.isSubmitting;
 
-	const openWhatsApp = () => {
+	const openWhatsApp = (fields: Fields) => {
 		const url = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(buildMessage(fields))}`;
 		// opened straight from the submit handler so it counts as a user gesture and dodges popup blockers
 		window.open(url, "_blank", "noopener,noreferrer");
 		setSent("whatsapp");
 	};
 
-	const sendEmail = async () => {
-		setSending(true);
-		setError(null);
+	const sendEmail = async (fields: Fields) => {
 		try {
 			const res = await fetch("/api/contato", {
 				method: "POST",
@@ -48,13 +77,17 @@ export default function Contato() {
 			if (!res.ok) throw new Error(data.error || "Não consegui enviar agora.");
 			setSent("email");
 		} catch (e) {
-			setError(e instanceof Error ? e.message : "Não consegui enviar agora.");
-		} finally {
-			setSending(false);
+			// erro de requisição vai para toast; erro de campo fica inline, no próprio campo
+			toast.error(e instanceof Error ? e.message : "Não consegui enviar agora.", {
+				description: "Se preferir, me chama no WhatsApp.",
+			});
 		}
 	};
 
-	const hasWhatsApp = SITE.whatsapp !== "";
+	const onSubmit = async (fields: Fields) => {
+		if (hasWhatsApp && intent.current === "whatsapp") openWhatsApp(fields);
+		else await sendEmail(fields);
+	};
 
 	let submitLabel = "Enviar por e-mail →";
 	if (hasWhatsApp) submitLabel = "Chamar no WhatsApp →";
@@ -101,120 +134,122 @@ export default function Contato() {
 					</Reveal>
 				</div>
 				<Reveal delay={0.1}>
-					<form
-						className="form"
-						onSubmit={(e) => {
-							e.preventDefault();
-							if (sending) return;
-							if (hasWhatsApp && intent.current === "whatsapp") openWhatsApp();
-							else void sendEmail();
-						}}
-					>
-						<AnimatePresence mode="wait">
-							{sent ? (
-								<motion.div
-									key="ok"
-									className="form-ok"
-									initial={{ opacity: 0, scale: 0.9 }}
-									animate={{ opacity: 1, scale: 1 }}
-								>
-									<div className="ck-big">
-										<svg width="26" height="26" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" fill="none">
-											<path d="M5 12l5 5L20 6" />
-										</svg>
-									</div>
-									<h3 style={{ fontSize: 24 }}>{sent === "whatsapp" ? "Quase lá!" : "Recebido!"}</h3>
-									<p style={{ color: "var(--text-2)", marginTop: 8 }}>
-										{sent === "whatsapp"
-											? "Abri o WhatsApp com sua mensagem pronta — é só apertar enviar por lá. ✨"
-											: "Mensagem enviada! Te respondo no contato que você deixou. ✨"}
-									</p>
-									<button
-										type="button"
-										className="btn btn-ghost"
-										style={{ marginTop: 20 }}
-										onClick={() => {
-											setSent(null);
-											setFields(EMPTY);
-										}}
+					<Form {...form}>
+						<form className="form" onSubmit={form.handleSubmit(onSubmit)} noValidate>
+							<AnimatePresence mode="wait">
+								{sent ? (
+									<motion.div
+										key="ok"
+										className="form-ok"
+										initial={{ opacity: 0, scale: 0.9 }}
+										animate={{ opacity: 1, scale: 1 }}
 									>
-										Escrever outra mensagem
-									</button>
-								</motion.div>
-							) : (
-								<motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
-									<div className="field">
-										<label htmlFor="nome">Nome</label>
-										<input
-											id="nome"
-											type="text"
-											placeholder="Como te chamo?"
-											value={fields.nome}
-											onChange={set("nome")}
-											required
-										/>
-									</div>
-									<div className="field">
-										<label htmlFor="contato">Seu contato</label>
-										<p className="hint">Onde eu te respondo — e-mail ou WhatsApp, você escolhe.</p>
-										<input
-											id="contato"
-											type="text"
-											placeholder="seu@email.com ou (11) 91234-5678"
-											value={fields.contato}
-											onChange={set("contato")}
-											required
-										/>
-									</div>
-									<div className="field">
-										<label htmlFor="projeto">Sobre o projeto</label>
-										<textarea
-											id="projeto"
-											placeholder="Conte sua ideia, prazo, referências..."
-											value={fields.projeto}
-											onChange={set("projeto")}
-											required
-										/>
-									</div>
-									<input
-										type="text"
-										name="empresa"
-										className="hp"
-										tabIndex={-1}
-										autoComplete="off"
-										aria-hidden="true"
-										value={empresa}
-										onChange={(e) => setEmpresa(e.target.value)}
-									/>
-									<button
-										type="submit"
-										className="btn btn-primary"
-										disabled={sending}
-										onClick={() => (intent.current = hasWhatsApp ? "whatsapp" : "email")}
-									>
-										{submitLabel}
-									</button>
-									{hasWhatsApp && (
-										<p className="form-alt">
-											ou{" "}
-											<button
-												type="submit"
-												disabled={sending}
-												onClick={() => (intent.current = "email")}
-											>
-												{sending ? "enviando..." : "enviar por e-mail"}
-											</button>
+										<div className="ck-big">
+											<svg width="26" height="26" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" fill="none">
+												<path d="M5 12l5 5L20 6" />
+											</svg>
+										</div>
+										<h3 style={{ fontSize: 24 }}>{sent === "whatsapp" ? "Quase lá!" : "Recebido!"}</h3>
+										<p style={{ color: "var(--text-2)", marginTop: 8 }}>
+											{sent === "whatsapp"
+												? "Abri o WhatsApp com sua mensagem pronta — é só apertar enviar por lá. ✨"
+												: "Mensagem enviada! Te respondo no contato que você deixou. ✨"}
 										</p>
-									)}
-									{error && (
-										<p className="form-error" role="alert">
-											{error}
-										</p>
-									)}
-								</motion.div>
-							)}
-						</AnimatePresence>
-					</form>
+										<button
+											type="button"
+											className="btn btn-ghost"
+											style={{ marginTop: 20 }}
+											onClick={() => {
+												setSent(null);
+												form.reset(EMPTY);
+											}}
+										>
+											Escrever outra mensagem
+										</button>
+									</motion.div>
+								) : (
+									<motion.div key="form" initial={{ opacity: 1 }} exit={{ opacity: 0 }}>
+										<FormField
+											control={form.control}
+											name="nome"
+											render={({ field }) => (
+												<FormItem className="field">
+													<FormLabel>Nome</FormLabel>
+													<FormControl>
+														<input type="text" placeholder="Como te chamo?" {...field} />
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="contato"
+											render={({ field }) => (
+												<FormItem className="field">
+													<FormLabel>Seu contato</FormLabel>
+													<FormDescription className="hint">
+														Onde eu te respondo — e-mail ou WhatsApp, você escolhe.
+													</FormDescription>
+													<FormControl>
+														<input
+															type="text"
+															placeholder="seu@email.com ou (11) 91234-5678"
+															{...field}
+														/>
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="projeto"
+											render={({ field }) => (
+												<FormItem className="field">
+													<FormLabel>Sobre o projeto</FormLabel>
+													<FormControl>
+														<textarea placeholder="Conte sua ideia, prazo, referências..." {...field} />
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<input
+											type="text"
+											name="empresa"
+											className="hp"
+											tabIndex={-1}
+											autoComplete="off"
+											aria-hidden="true"
+											value={empresa}
+											onChange={(e) => setEmpresa(e.target.value)}
+										/>
+										<button
+											type="submit"
+											className="btn btn-primary"
+											disabled={sending}
+											onClick={() => (intent.current = hasWhatsApp ? "whatsapp" : "email")}
+										>
+											{submitLabel}
+										</button>
+										{hasWhatsApp && (
+											<p className="form-alt">
+												ou{" "}
+												<button
+													type="submit"
+													disabled={sending}
+													onClick={() => (intent.current = "email")}
+												>
+													{sending ? "enviando..." : "enviar por e-mail"}
+												</button>
+											</p>
+										)}
+									</motion.div>
+								)}
+							</AnimatePresence>
+						</form>
+					</Form>
 				</Reveal>
 			</div>
 		</section>

@@ -3,6 +3,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 
 import { SITE_URL } from "../lib/site";
+import { Toaster } from "../components/ui/sonner";
 import { ThemeProvider } from "./theme-provider";
 // o tailwind.css importa o site.css dentro de layer(components)
 import "../styles/tailwind.css";
@@ -67,7 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				/>
 			</head>
 			<body>
-				<ThemeProvider>{children}</ThemeProvider>
+				<ThemeProvider>
+					{children}
+					<Toaster position="top-center" richColors />
+				</ThemeProvider>
 				<Analytics />
 				{/* dentro do <body>: como irmão dele, o Next quebra o prerender
 				    do /_not-found com "Invariant: missing bootstrap script" */}

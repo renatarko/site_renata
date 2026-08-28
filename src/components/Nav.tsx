@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from "react";
 import SITE from "./data";
 import { useTheme } from "next-themes";
@@ -40,12 +41,18 @@ export default function Nav() {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	// resolvedTheme só existe depois da montagem; até lá o ícone renderia
-	// diferente no servidor e no cliente, então segura até montar.
+	// O servidor não sabe a preferência salva, então antes de montar assume o
+	// defaultTheme do provider ("dark"). Isso mantém servidor e cliente iguais na
+	// primeira renderização e, para quem usa escuro, o ícone nem chega a trocar.
+	// Deixar `undefined` aqui forçava uma troca de key em TODO carregamento, e o
+	// AnimatePresence com mode="wait" só monta o novo depois que o antigo sai —
+	// numa aba em segundo plano essa saída não completa e o ícone ficava errado.
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => setMounted(true), []);
 	const { resolvedTheme, setTheme } = useTheme();
-	const theme = mounted ? resolvedTheme : undefined;
+	// o ?? cobre o instante entre montar e o next-themes resolver, em que
+	// resolvedTheme ainda é undefined e causaria uma troca de ícone à toa
+	const theme = (mounted ? resolvedTheme : undefined) ?? "dark";
 	const toggleTheme = () => setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
 	useEffect(() => {
@@ -68,7 +75,7 @@ export default function Nav() {
 
 	return (
 		<nav className={"nav" + (scrolled ? " scrolled" : "")}>
-			<div className="nav-inner">
+			<div className="nav-inner mx-2 sm:mx-0">
 				<a href="#top" className="logo" onClick={(e) => go(e, "#top")}>
 					<span className="dot" />
 					{SITE.brand}
@@ -93,70 +100,49 @@ export default function Nav() {
 					>
 						Vamos conversar
 					</a>
-					<button className="theme-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-label="Menu">
-						<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
-							<path d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"} />
-						</svg>
-					</button>
-				</div>
-			</div>
-			<AnimatePresence>
-				{open && (
-					<motion.div
-						initial={{ opacity: 0, y: -10 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -10 }}
-						style={{ maxWidth: "var(--maxw)", margin: "8px auto 0", padding: "0 18px" }}
-					>
-						<div
-							style={{
-								background: "var(--bg-2)",
-								border: "1px solid var(--border)",
-								borderRadius: 16,
-								padding: 10,
-								display: "grid",
-								gap: 4,
-							}}
+					{/* Sheet com side="top", mas estilizado como o dropdown que existia
+					    antes: são quatro links, e um painel de altura inteira deixava
+					    um vazio enorme e colidia com o botão do WhatsApp. O Sheet é
+					    baseado em Dialog, que não carrega o motor de posicionamento do
+					    Popover — por isso é a opção mais leve. */}
+					<Sheet open={open} onOpenChange={setOpen} modal={false}>
+						<SheetTrigger asChild>
+							<button className="theme-btn menu-btn" aria-label={open ? "Fechar menu" : "Abrir menu"}>
+								<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
+									<path d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"} />
+								</svg>
+							</button>
+						</SheetTrigger>
+						<SheetContent
+							side="top"
+							showCloseButton={false}
+							className="top-24 right-[20px] left-[20px] h-auto gap-1 rounded-2xl border border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
 						>
+							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							{links.map(([t, h]) => (
 								<a
 									key={h}
 									href={h}
 									onClick={(e) => go(e, h)}
-									style={{ padding: "12px 14px", borderRadius: 10, fontFamily: "Space Grotesk", fontWeight: 600 }}
+									className="rounded-[10px] px-[14px] py-3 font-display font-semibold hover:bg-surface-2"
 								>
 									{t}
 								</a>
 							))}
-							<div
-								style={{
-									padding: "0 14px",
-									width: "100%",
-									borderTop: "1px solid var(--border)",
-									display: "flex",
-									flexDirection: "column",
-									alignItems: "flex-start",
-									gap: 12,
-								}}
-							>
-								<span
-								style={{paddingTop: 14,
-									fontSize: 14,
-									color: "var(--text-2)"}}
-								>Fale comigo sobre o seu projeto</span>
+							<p className="mt-2 border-t border-border-soft px-[14px] pt-[14px] text-sm text-text-2">
+								Fale comigo sobre o seu projeto
+							</p>
 							<a
 								href="#contato"
 								onClick={(e) => go(e, "#contato")}
-								className="btn btn-primary"
-								style={{ justifyContent: "center", width: "100%" }}
-								>
+								className="btn btn-primary justify-center"
+							>
 								Vamos conversar
 							</a>
-								</div>
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
+						</SheetContent>
+					</Sheet>
+				</div>
+			</div>
 		</nav>
 	);
 }
