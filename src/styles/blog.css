@@ -1,0 +1,144 @@
+/* ===========================================================
+   Blog — índice e artigo
+   Importado depois do site.css, na mesma camada `components`.
+
+   Arquivo separado de propósito: o site.css é organizado por seção da landing
+   e ficaria soterrado por ~200 linhas de tipografia de artigo. Todo valor aqui
+   é token do :root/.dark, então o modo claro sai de graça.
+   =========================================================== */
+
+/* A nav é fixa e fica por cima; a hero da landing compensa isso com o próprio
+   padding, e as páginas do blog precisam do mesmo. */
+.article-top { padding-top: 140px; }
+
+/* o site.css só dimensiona `.sec-head h2`; no blog o título da página é o h1 */
+.sec-head h1 { font-size: clamp(32px, 4vw, 50px); line-height: 1.02; margin: 16px 0 0; }
+
+/* ============ ÍNDICE ============ */
+.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.post-empty { color: var(--text-2); font-size: 18px; }
+
+.post-card { display: flex; flex-direction: column; border-radius: 22px; border: 1px solid var(--border);
+  background: var(--surface); overflow: hidden; position: relative;
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1), border-color .3s ease, box-shadow .3s ease; }
+.post-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.post-card:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+
+/* 16/9 fixo para o card não pular de altura enquanto a capa carrega */
+/* --post-hue vem inline do PostCard; o fallback mantém a cor da marca caso
+   algum consumidor futuro não passe a variável. */
+.post-thumb { --post-hue: 262; aspect-ratio: 16/9; position: relative; overflow: hidden; display: grid; place-items: center;
+  background: linear-gradient(150deg, color-mix(in srgb, hsl(var(--post-hue) 78% 60%) 26%, var(--bg-2)), var(--bg-2)); }
+.post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+/* sem capa: a inicial do título gigante, recortada pelo gradiente da marca */
+.post-thumb-fallback { font-family: 'Space Grotesk', sans-serif; font-size: 110px; font-weight: 700;
+  line-height: 1; opacity: .5; color: hsl(var(--post-hue) 70% 62%); user-select: none; }
+.post-draft { position: absolute; top: 14px; left: 14px; font-family: 'Space Mono', monospace; font-size: 11px;
+  letter-spacing: .06em; text-transform: uppercase; padding: 5px 11px; border-radius: 100px; color: var(--text);
+  background: color-mix(in srgb, var(--bg) 70%, transparent); border: 1px solid var(--border-strong); }
+
+.post-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.post-body h2 { font-size: 21px; line-height: 1.25; }
+.post-card:hover .post-body h2 { color: var(--accent-soft); }
+.post-desc { color: var(--text-2); font-size: 15px; line-height: 1.55; margin: 0; }
+
+/* --text-2 e não --muted: sobre o --surface-2 da tag o --muted reprova no AA,
+   nos dois temas. Mesmo motivo do .work-tags. */
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0;
+  font-family: 'Space Mono', monospace; font-size: 12.5px; color: var(--text-2); }
+.post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+.post-tags span { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--text-2);
+  padding: 5px 11px; border-radius: 8px; background: var(--surface-2); }
+
+/* ============ ARTIGO ============ */
+.article { padding: 140px 0 90px; }
+.breadcrumb { display: flex; align-items: center; gap: 10px; font-family: 'Space Mono', monospace;
+  font-size: 13px; color: var(--muted); margin-bottom: 26px; }
+.breadcrumb a { color: var(--muted); transition: color .2s ease; }
+.breadcrumb a:hover { color: var(--accent); }
+
+.article-head { max-width: 760px; margin-bottom: 34px; display: flex; flex-direction: column; gap: 16px; }
+.article-head h1 { font-size: clamp(32px, 4.6vw, 52px); line-height: 1.05; }
+.article-lead { font-size: 19px; line-height: 1.6; color: var(--text-2); margin: 0; }
+
+.article-cover { width: 100%; max-width: 900px; aspect-ratio: 16/9; object-fit: cover;
+  border-radius: 22px; border: 1px solid var(--border); margin-bottom: 40px; }
+
+/* ============ .prose — tipografia do texto ============ */
+.prose { max-width: 760px; font-size: 18px; line-height: 1.75; color: var(--text-2); }
+.prose > *:first-child { margin-top: 0; }
+
+.prose h2 { font-size: 28px; line-height: 1.2; color: var(--text); margin: 52px 0 16px; scroll-margin-top: 110px; }
+.prose h3 { font-size: 21px; line-height: 1.3; color: var(--text); margin: 38px 0 12px; scroll-margin-top: 110px; }
+/* o rehype-autolink-headings envolve o título inteiro num <a>; ele não pode
+   herdar o sublinhado de .prose a */
+.prose .heading-link { color: inherit; text-decoration: none; }
+.prose .heading-link:hover { color: var(--accent-soft); }
+
+.prose p { margin: 0 0 22px; }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose em { font-style: italic; }
+
+/* O site.css:50 tem `a { color: inherit; text-decoration: none }` global — sem
+   esta regra, os links do artigo ficam invisíveis no meio do texto. */
+.prose a { color: var(--accent-soft); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 3px; transition: color .2s ease; }
+.prose a:hover { color: var(--accent); }
+
+.prose ul, .prose ol { margin: 0 0 22px; padding-left: 26px; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin-bottom: 10px; }
+.prose li::marker { color: var(--accent-soft); }
+
+.prose blockquote { margin: 30px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent);
+  color: var(--text); font-size: 19px; }
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+.prose code { font-family: 'Space Mono', monospace; font-size: .88em; padding: 3px 7px; border-radius: 7px;
+  background: var(--surface-2); color: var(--text); }
+.prose pre { background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px 22px; overflow-x: auto; margin: 0 0 26px; font-size: 14.5px; line-height: 1.6; }
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+
+.prose img { width: 100%; border-radius: 16px; border: 1px solid var(--border); margin: 8px 0 26px; }
+.prose figure { margin: 0 0 26px; }
+.prose figcaption { font-size: 14px; color: var(--muted); text-align: center; margin-top: -14px; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 44px 0; }
+
+.prose table { width: 100%; border-collapse: collapse; margin: 0 0 26px; font-size: 16px; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid var(--border); padding: 11px 14px; text-align: left; }
+.prose th { background: var(--surface-2); color: var(--text); font-weight: 600; }
+
+/* --- componentes que o .mdx pode usar --- */
+.callout { margin: 30px 0; padding: 20px 22px; border-radius: 16px; background: var(--surface);
+  border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); font-size: 17px; }
+.callout[data-tipo="atencao"] { border-left-color: var(--destructive); }
+.callout > p:last-child { margin-bottom: 0; }
+.checklist ul { list-style: none; padding-left: 0; }
+.checklist li { padding-left: 30px; position: relative; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 700; }
+
+/* ============ prev / next ============ */
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 760px;
+  margin-top: 60px; padding-top: 34px; border-top: 1px solid var(--border); }
+.post-nav-item { display: flex; flex-direction: column; gap: 7px; padding: 18px 20px; border-radius: 16px;
+  border: 1px solid var(--border); background: var(--surface); transition: border-color .25s ease, transform .25s ease; }
+.post-nav-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+.post-nav-next { text-align: right; }
+.post-nav-dir { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); }
+.post-nav-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card, .post-nav-item { transition: none; }
+  .post-card:hover, .post-nav-item:hover { transform: none; }
+}
+
+@media (max-width: 980px) {
+  .article-top { padding-top: 120px; }
+  .article { padding: 120px 0 70px; }
+  .prose { font-size: 17px; }
+  .prose h2 { font-size: 25px; margin-top: 42px; }
+  .post-nav { grid-template-columns: 1fr; }
+  .post-nav-next { text-align: left; }
+}

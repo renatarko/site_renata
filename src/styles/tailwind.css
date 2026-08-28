@@ -16,6 +16,9 @@
    Tailwind não conseguiam sobrescrever as classes do site. Agora conseguem, e
    dá para portar um trecho por vez sem ter que remover a regra antiga primeiro. */
 @import "./site.css" layer(components);
+/* O blog.css vem depois do site.css e na mesma camada: precisa vencer o
+   `a { color: inherit; text-decoration: none }` global no `.prose a`. */
+@import "./blog.css" layer(components);
 
 /* Onde procurar classes. O CSS mora em src/styles, então aponta para src/. */
 @source "../";
