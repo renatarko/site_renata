@@ -276,6 +276,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; transition: all .2s; }
 .filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+/* o <a> agora fica DENTRO do wrapper de animação, então precisa preencher */
+.work-stack-item > a { display: block; height: 100%; }
 .work-card { position: relative; border-radius: 22px; border: 1px solid var(--border); background: var(--surface);
   overflow: hidden; cursor: pointer; }
 .work-thumb { aspect-ratio: 16/10; position: relative; overflow: hidden; display: grid; place-items: center; }
