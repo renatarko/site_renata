@@ -155,16 +155,16 @@ const SITE: SiteData = {
 			image: '/projects/presencamais.png',
 			link: "https://presencamais.rerko.net/"
 		},
-		{
-			title: "OwnBlog - Plataforma para Blog",
-			cat: "Sistemas",
-			catLabel: "Sistema · proprietária",
-			desc: "Plataforma completa para gerenciamento de blog, com painel admin, editor de posts, agendamento e postagem automática com integração com banco de dados. Projeto pessoal.",
-			tags: ["TypeScript", "MongoDB", "Next.js", "SEO"],
-			hue: 200,
-			image: '/projects/ownblog.png',
-			link: "https://ownblog-pro.vercel.app/"
-		},
+		// {
+		// 	title: "OwnBlog - Plataforma para Blog",
+		// 	cat: "Sistemas",
+		// 	catLabel: "Sistema · proprietária",
+		// 	desc: "Plataforma completa para gerenciamento de blog, com painel admin, editor de posts, agendamento e postagem automática com integração com banco de dados. Projeto pessoal.",
+		// 	tags: ["TypeScript", "MongoDB", "Next.js", "SEO"],
+		// 	hue: 200,
+		// 	image: '/projects/ownblog.png',
+		// 	link: "https://ownblog-pro.vercel.app/"
+		// },
 		
 	],
 
