@@ -1,12 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import {
-	Sheet,
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-	SheetTrigger,
-} from "./ui/sheet";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useEffect, useState } from "react";
 import SITE from "./data";
 import { useTheme } from "next-themes";
@@ -48,12 +41,18 @@ export default function Nav() {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	// resolvedTheme só existe depois da montagem; até lá o ícone renderia
-	// diferente no servidor e no cliente, então segura até montar.
+	// O servidor não sabe a preferência salva, então antes de montar assume o
+	// defaultTheme do provider ("dark"). Isso mantém servidor e cliente iguais na
+	// primeira renderização e, para quem usa escuro, o ícone nem chega a trocar.
+	// Deixar `undefined` aqui forçava uma troca de key em TODO carregamento, e o
+	// AnimatePresence com mode="wait" só monta o novo depois que o antigo sai —
+	// numa aba em segundo plano essa saída não completa e o ícone ficava errado.
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => setMounted(true), []);
 	const { resolvedTheme, setTheme } = useTheme();
-	const theme = mounted ? resolvedTheme : undefined;
+	// o ?? cobre o instante entre montar e o next-themes resolver, em que
+	// resolvedTheme ainda é undefined e causaria uma troca de ícone à toa
+	const theme = (mounted ? resolvedTheme : undefined) ?? "dark";
 	const toggleTheme = () => setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
 	useEffect(() => {
@@ -101,44 +100,45 @@ export default function Nav() {
 					>
 						Vamos conversar
 					</a>
-					<Sheet open={open} onOpenChange={setOpen}>
-						<SheetTrigger asChild>
-							<button className="theme-btn menu-btn" aria-label="Abrir menu">
+					{/* Popover em vez de Sheet: são 4 links, e um painel de altura
+					    inteira deixava um vazio enorme e colidia com o botão do
+					    WhatsApp. Reproduz o dropdown que existia antes, mas com o
+					    ESC, o foco e o clique-fora que o Radix dá. */}
+					<Popover open={open} onOpenChange={setOpen}>
+						<PopoverTrigger asChild>
+							<button className="theme-btn menu-btn" aria-label={open ? "Fechar menu" : "Abrir menu"}>
 								<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
-									<path d="M3 6h18M3 12h18M3 18h18" />
+									<path d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"} />
 								</svg>
 							</button>
-						</SheetTrigger>
-						<SheetContent side="right" className="w-[84vw] max-w-[340px] border-border-soft bg-bg-2 p-0">
-							<SheetHeader className="px-5 pt-5 pb-2">
-								<SheetTitle className="font-display text-text">Menu</SheetTitle>
-								<SheetDescription className="text-text-2">
-									Fale comigo sobre o seu projeto
-								</SheetDescription>
-							</SheetHeader>
-							<nav className="grid gap-1 px-3">
-								{links.map(([t, h]) => (
-									<a
-										key={h}
-										href={h}
-										onClick={(e) => go(e, h)}
-										className="rounded-[10px] px-[14px] py-3 font-display font-semibold text-text hover:bg-surface-2"
-									>
-										{t}
-									</a>
-								))}
-							</nav>
-							<div className="mt-auto border-t border-border-soft p-5">
+						</PopoverTrigger>
+						<PopoverContent
+							align="end"
+							sideOffset={8}
+							className="grid w-[calc(100vw-36px)] max-w-[var(--maxw)] gap-1 rounded-2xl border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
+						>
+							{links.map(([t, h]) => (
 								<a
-									href="#contato"
-									onClick={(e) => go(e, "#contato")}
-									className="btn btn-primary w-full justify-center"
+									key={h}
+									href={h}
+									onClick={(e) => go(e, h)}
+									className="rounded-[10px] px-[14px] py-3 font-display font-semibold hover:bg-surface-2"
 								>
-									Vamos conversar
+									{t}
 								</a>
-							</div>
-						</SheetContent>
-					</Sheet>
+							))}
+							<p className="mt-2 border-t border-border-soft px-[14px] pt-[14px] text-sm text-text-2">
+								Fale comigo sobre o seu projeto
+							</p>
+							<a
+								href="#contato"
+								onClick={(e) => go(e, "#contato")}
+								className="btn btn-primary justify-center"
+							>
+								Vamos conversar
+							</a>
+						</PopoverContent>
+					</Popover>
 				</div>
 			</div>
 		</nav>
