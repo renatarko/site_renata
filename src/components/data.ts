@@ -76,7 +76,7 @@ const SITE: SiteData = {
 	stats: [
 		{ num: "12+", lbl: "projetos no ar" },
 		{ num: "4 anos", lbl: "de experiência" },
-		{ num: "100%", lbl: "código próprio" },
+		// { num: "100%", lbl: "código próprio" },
 	],
 
 	about: [

@@ -75,7 +75,7 @@ export default function Nav() {
 
 	return (
 		<nav className={"nav" + (scrolled ? " scrolled" : "")}>
-			<div className="nav-inner mx-2 sm:mx-0">
+			<div className="nav-inner mx-2 sm:mx-auto">
 				<a href="#top" className="logo" onClick={(e) => go(e, "#top")}>
 					<span className="dot" />
 					{SITE.brand}
