@@ -308,7 +308,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-plans > * { display: flex; }
 .svc-plans .svc-feature { flex: 1; display: flex; flex-direction: column; }
 .svc-plans .svc-list { flex: 1; }
-.svc-feature { position: relative; border-radius: 26px; padding: 44px; overflow: hidden;
+.svc-feature { position: relative; border-radius: 26px; padding: 34px; overflow: hidden;
   background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 22%, var(--bg-2)), var(--bg-2));
   border: 1px solid var(--border-strong); box-shadow: var(--shadow); }
 /* entry-level plan: same shape, quieter surface so the featured one leads */
@@ -316,8 +316,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-feature-plain .badge { color: var(--accent-soft); background: var(--surface-2); }
 /* undo .grad's clipped-gradient text so the entry price reads as plain type */
 .svc-feature-plain .price .v { background: none; color: var(--text); -webkit-text-fill-color: var(--text); }
-.svc-feature .badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 12px;
-  letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 7px 14px; border-radius: 100px; }
+.svc-feature .badge { width: fit-content; display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);  padding: 7px 14px; border-radius: 100px; }
 .svc-inherits { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px;
   color: var(--accent-soft); margin: 0 0 16px; }
 .svc-feature h3 { font-size: 32px; margin: 22px 0 6px; }
@@ -325,6 +325,11 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .price .v { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.04em; }
 .price .per { color: var(--text-2); font-size: 16px; }
 .price-note { color: var(--muted); font-size: 14px; margin-bottom: 26px; }
+/* No desktop o accordion não existe: o botão some e o wrapper vira
+   display:contents, saindo do layout. Assim `.svc-plans .svc-list { flex: 1 }`
+   continua valendo e o card fica idêntico ao de antes. */
+.svc-toggle { display: none; }
+.svc-includes { display: contents; }
 .svc-list { display: grid; gap: 13px; margin: 0 0 30px; padding: 0; list-style: none; }
 .svc-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-2); }
 .svc-list .ck { width: 22px; height: 22px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center;
@@ -444,6 +449,40 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
     to { scale: 0.93; filter: brightness(0.7); }
   }
 
+  /* --- "o que está incluso" (só mobile) ---
+     Botão + lista que abre. Sem biblioteca: a animação é o truque de
+     grid-template-rows 0fr -> 1fr, que interpola altura sem precisar saber o
+     valor final. Custo zero de JS; o React só guarda aberto/fechado. */
+  .svc-toggle {
+    display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px;
+    /* background: var(--surface-2); border: 1px solid var(--border); border-radius: 13px; */
+    padding: 13px 0px;
+     margin: 0 0 14px; 
+     cursor: pointer; text-align: left;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; color: var(--text-2);
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .svc-toggle:hover { border-color: var(--border-strong); }
+  .svc-toggle:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+  .svc-toggle svg { flex-shrink: 0; transition: transform .3s ease; }
+  .svc-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  /* Transição de max-height, e não o truque de grid-template-rows 0fr->1fr.
+     O 0fr->1fr é mais elegante, mas neste contexto a linha não expandia: o item
+     do grid tem overflow:hidden, o que zera a contribuição de altura dele, e o
+     card ainda impõe `.svc-plans .svc-list { flex: 1 }`. Medido: mesmo com
+     `grid-template-rows: 273px` inline a linha ficava em 0.
+     O teto é generoso — a maior lista tem 7 itens (~273px). */
+  .svc-includes {
+    display: block; overflow: hidden;
+    max-height: 0; margin-bottom: 0;
+    transition: max-height .35s cubic-bezier(.22, 1, .36, 1), margin-bottom .35s ease;
+  }
+  .svc-includes[data-aberto="true"] { max-height: 600px; margin-bottom: 22px; }
+  /* .svc-plans .svc-list tem flex:1 para igualar a altura dos cards no desktop;
+     dentro do accordion isso atrapalha */
+  .svc-includes .svc-list { flex: initial; margin: 0; }
+
   .about-photo { max-width: 360px; }
   .nav-links { display: none; }
   .menu-btn { display: grid; }
@@ -465,4 +504,9 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
    escala e o brilho param. */
 @media (prefers-reduced-motion: reduce) {
   .work-stack-item .work-card { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-includes { transition: none; }
+  .svc-toggle svg { transition: none; }
 }

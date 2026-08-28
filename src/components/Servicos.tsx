@@ -1,8 +1,74 @@
 import { motion } from "framer-motion";
+import { useId, useState } from "react";
 import Reveal from "./Reveal";
 import SITE from "./data";
 
 const go = (sel: string) => document.querySelector(sel)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+/**
+ * Card de plano. No mobile a lista de itens fica atrás de um botão; no desktop
+ * ela aparece sempre, exatamente como antes. Quem decide é o CSS — aqui só
+ * existe o estado de aberto/fechado, que no desktop é ignorado.
+ */
+function PlanoCard({ plan }: { plan: (typeof SITE.plans)[number] }) {
+	const [aberto, setAberto] = useState(false);
+	const listaId = useId();
+
+	return (
+		<motion.div
+			className={plan.featured ? "svc-feature" : "svc-feature svc-feature-plain"}
+			whileHover={{ y: -6 }}
+			transition={{ type: "spring", stiffness: 200, damping: 20 }}
+		>
+			<span className="badge">{plan.badge}</span>
+			<h3>{plan.name}</h3>
+			<div className="price">
+				<span className="v grad">{plan.price}</span>
+				<span className="per">/mês</span>
+			</div>
+			<div className="price-note">{plan.note}</div>
+			{plan.inherits && <p className="svc-inherits">{plan.inherits}</p>}
+
+			<button
+				type="button"
+				className="svc-toggle"
+				aria-expanded={aberto}
+				aria-controls={listaId}
+				onClick={() => setAberto((v) => !v)}
+			>
+				<span>Veja o que está incluso!</span>
+				<svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2" fill="none" aria-hidden="true">
+					<path d="M6 9l6 6 6-6" />
+				</svg>
+			</button>
+
+			{/* wrapper que anima de 0fr para 1fr; no desktop vira display:contents
+			    e some do layout, deixando a lista exatamente como era */}
+			<div className="svc-includes" data-aberto={aberto}>
+				<ul className="svc-list" id={listaId}>
+					{plan.features.map((f) => (
+						<li key={f}>
+							<span className="ck">
+								<svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" fill="none">
+									<path d="M5 12l5 5L20 6" />
+								</svg>
+							</span>
+							{f}
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<button
+				className={plan.featured ? "btn btn-primary" : "btn btn-ghost"}
+				style={{ width: "100%", justifyContent: "center" }}
+				onClick={() => go("#contato")}
+			>
+				{plan.cta}
+			</button>
+		</motion.div>
+	);
+}
 
 export default function Servicos() {
 	return (
@@ -19,39 +85,7 @@ export default function Servicos() {
 				<div className="svc-plans">
 					{SITE.plans.map((plan, i) => (
 						<Reveal key={plan.id} delay={i * 0.1}>
-							<motion.div
-								className={plan.featured ? "svc-feature" : "svc-feature svc-feature-plain"}
-								whileHover={{ y: -6 }}
-								transition={{ type: "spring", stiffness: 200, damping: 20 }}
-							>
-								<span className="badge">{plan.badge}</span>
-								<h3>{plan.name}</h3>
-								<div className="price">
-									<span className="v grad">{plan.price}</span>
-									<span className="per">/mês</span>
-								</div>
-								<div className="price-note">{plan.note}</div>
-								{plan.inherits && <p className="svc-inherits">{plan.inherits}</p>}
-								<ul className="svc-list">
-									{plan.features.map((f) => (
-										<li key={f}>
-											<span className="ck">
-												<svg width="13" height="13" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" fill="none">
-													<path d="M5 12l5 5L20 6" />
-												</svg>
-											</span>
-											{f}
-										</li>
-									))}
-								</ul>
-								<button
-									className={plan.featured ? "btn btn-primary" : "btn btn-ghost"}
-									style={{ width: "100%", justifyContent: "center" }}
-									onClick={() => go("#contato")}
-								>
-									{plan.cta}
-								</button>
-							</motion.div>
+							<PlanoCard plan={plan} />
 						</Reveal>
 					))}
 				</div>
@@ -70,7 +104,7 @@ export default function Servicos() {
 								go("#contato");
 							}}
 						>
-							Pedir orçamento →
+							Pedir orçamento 
 						</a>
 					</motion.div>
 					<motion.div className="svc-card" whileHover={{ y: -5, borderColor: "var(--accent)" }}>
@@ -87,7 +121,7 @@ export default function Servicos() {
 								go("#contato");
 							}}
 						>
-							Conversar sobre design →
+							Conversar sobre design 
 						</a>
 					</motion.div>
 				</Reveal>
