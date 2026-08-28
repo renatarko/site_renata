@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 import SITE from "./data";
 import { entr } from "./util";
@@ -24,6 +24,88 @@ function WorkMock({ hue, image }: { hue: number , image?: string}) {
 			
 			</div>
 		</div>
+	);
+}
+
+/** true acima de 980px. O efeito é só desktop: no mobile o card é sticky, e um
+ *  transform nele quebraria o empilhamento. */
+function useDesktop() {
+	const [desktop, setDesktop] = useState(false);
+	useEffect(() => {
+		const mq = window.matchMedia("(min-width: 981px)");
+		const on = () => setDesktop(mq.matches);
+		on();
+		mq.addEventListener("change", on);
+		return () => mq.removeEventListener("change", on);
+	}, []);
+	return desktop;
+}
+
+/**
+ * Card com transição ligada à rolagem: vem da lateral, levemente inclinado e
+ * menor, e converge para o centro conforme a seção sobe. Reversível ao subir.
+ *
+ * Usa useScroll do Framer em vez de animation-timeline do CSS: a view timeline
+ * não ativava neste elemento (currentTime null em qualquer posição, mesmo com o
+ * card intersectando a viewport), nem anônima nem nomeada no container. O
+ * Framer já está no projeto, então não custa bundle.
+ *
+ * Quem anima é o wrapper; o hover continua no card, senão o transform daqui
+ * sobrescreveria o whileHover.
+ */
+function CardProjeto({ p, i }: { p: (typeof SITE.projects)[number]; i: number }) {
+	const ref = useRef<HTMLDivElement>(null);
+	const desktop = useDesktop();
+	const semMovimento = useReducedMotion();
+	const ativo = desktop && !semMovimento;
+
+	const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+	const dir = i % 2 === 0 ? -1 : 1;   // coluna esquerda vem da esquerda, direita da direita
+	const x = useTransform(scrollYProgress, [0, 1], [70 * dir, 0]);
+	const rotate = useTransform(scrollYProgress, [0, 1], [2.5 * dir, 0]);
+	const scale = useTransform(scrollYProgress, [0, 1], [0.92, 1]);
+	const opacity = useTransform(scrollYProgress, [0, 1], [0.25, 1]);
+
+	return (
+		<motion.div
+			ref={ref}
+			className="work-stack-item"
+			style={(ativo ? { x, rotate, scale, opacity, "--i": i } : { "--i": i }) as any}
+		>
+			<Link href={p.link}>
+				<motion.article
+					className="work-card"
+					initial={entr({ opacity: 0, y: 30 }) as any}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, scale: 0.95 }}
+					transition={{ duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+					whileHover={{
+						y: -8,
+						boxShadow: "0 40px 80px -30px rgba(0,0,0,0.7)",
+						borderColor: "var(--accent)",
+					}}
+				>
+					<div className="work-thumb">
+						<WorkMock hue={p.hue} image={p.image} />
+						<span className="work-cat">{p.catLabel}</span>
+					</div>
+					<div className="work-body">
+						<h3>{p.title}</h3>
+						<p>{p.desc}</p>
+						<div className="work-tags flex flex-wrap gap-2 mt-4">
+							{p.tags.map((t) => (
+								<span key={t}>{t}</span>
+							))}
+						</div>
+					</div>
+					<div className="work-arrow">
+						<svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.4" fill="none">
+							<path d="M7 17L17 7M17 7H9M17 7v8" />
+						</svg>
+					</div>
+				</motion.article>
+			</Link>
+		</motion.div>
 	);
 }
 
@@ -60,47 +142,7 @@ export default function Trabalhos() {
 				<motion.div className="work-grid">
 					<AnimatePresence mode="popLayout">
 						{list.map((p, i) => (
-							<Link
-								key={p.title}
-								href={p.link}
-								className="work-stack-item"
-								/* --i escalona o topo de cada card, criando a borda do baralho */
-								style={{ "--i": i } as React.CSSProperties}
-							>
-							<motion.article
-								key={p.title}
-								className="work-card"
-								layout
-								initial={entr({ opacity: 0, y: 30 }) as any}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, scale: 0.95 }}
-								transition={{ duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-								whileHover={{
-									y: -8,
-									boxShadow: "0 40px 80px -30px rgba(0,0,0,0.7)",
-									borderColor: "var(--accent)",
-								}}
-							>
-								<div className="work-thumb">
-									<WorkMock hue={p.hue} image={p.image} />
-									<span className="work-cat">{p.catLabel}</span>
-								</div>
-								<div className="work-body">
-									<h3>{p.title}</h3>
-									<p>{p.desc}</p>
-									<div className="work-tags flex flex-wrap gap-2 mt-4">
-										{p.tags.map((t) => (
-											<span key={t}>{t}</span>
-										))}
-									</div>
-								</div>
-								<div className="work-arrow">
-									<svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.4" fill="none">
-										<path d="M7 17L17 7M17 7H9M17 7v8" />
-									</svg>
-								</div>
-							</motion.article>
-							</Link>
+							<CardProjeto key={p.title} p={p} i={i} />
 						))}
 					</AnimatePresence>
 				</motion.div>
