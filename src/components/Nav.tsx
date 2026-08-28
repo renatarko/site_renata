@@ -1,4 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "./ui/sheet";
 import { useEffect, useState } from "react";
 import SITE from "./data";
 import { useTheme } from "next-themes";
@@ -93,70 +101,46 @@ export default function Nav() {
 					>
 						Vamos conversar
 					</a>
-					<button className="theme-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-label="Menu">
-						<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
-							<path d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"} />
-						</svg>
-					</button>
+					<Sheet open={open} onOpenChange={setOpen}>
+						<SheetTrigger asChild>
+							<button className="theme-btn menu-btn" aria-label="Abrir menu">
+								<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
+									<path d="M3 6h18M3 12h18M3 18h18" />
+								</svg>
+							</button>
+						</SheetTrigger>
+						<SheetContent side="right" className="w-[84vw] max-w-[340px] border-border-soft bg-bg-2 p-0">
+							<SheetHeader className="px-5 pt-5 pb-2">
+								<SheetTitle className="font-display text-text">Menu</SheetTitle>
+								<SheetDescription className="text-text-2">
+									Fale comigo sobre o seu projeto
+								</SheetDescription>
+							</SheetHeader>
+							<nav className="grid gap-1 px-3">
+								{links.map(([t, h]) => (
+									<a
+										key={h}
+										href={h}
+										onClick={(e) => go(e, h)}
+										className="rounded-[10px] px-[14px] py-3 font-display font-semibold text-text hover:bg-surface-2"
+									>
+										{t}
+									</a>
+								))}
+							</nav>
+							<div className="mt-auto border-t border-border-soft p-5">
+								<a
+									href="#contato"
+									onClick={(e) => go(e, "#contato")}
+									className="btn btn-primary w-full justify-center"
+								>
+									Vamos conversar
+								</a>
+							</div>
+						</SheetContent>
+					</Sheet>
 				</div>
 			</div>
-			<AnimatePresence>
-				{open && (
-					<motion.div
-						initial={{ opacity: 0, y: -10 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -10 }}
-						style={{ maxWidth: "var(--maxw)", margin: "8px auto 0", padding: "0 18px" }}
-					>
-						<div
-							style={{
-								background: "var(--bg-2)",
-								border: "1px solid var(--border)",
-								borderRadius: 16,
-								padding: 10,
-								display: "grid",
-								gap: 4,
-							}}
-						>
-							{links.map(([t, h]) => (
-								<a
-									key={h}
-									href={h}
-									onClick={(e) => go(e, h)}
-									style={{ padding: "12px 14px", borderRadius: 10, fontFamily: "Space Grotesk", fontWeight: 600 }}
-								>
-									{t}
-								</a>
-							))}
-							<div
-								style={{
-									padding: "0 14px",
-									width: "100%",
-									borderTop: "1px solid var(--border)",
-									display: "flex",
-									flexDirection: "column",
-									alignItems: "flex-start",
-									gap: 12,
-								}}
-							>
-								<span
-								style={{paddingTop: 14,
-									fontSize: 14,
-									color: "var(--text-2)"}}
-								>Fale comigo sobre o seu projeto</span>
-							<a
-								href="#contato"
-								onClick={(e) => go(e, "#contato")}
-								className="btn btn-primary"
-								style={{ justifyContent: "center", width: "100%" }}
-								>
-								Vamos conversar
-							</a>
-								</div>
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
 		</nav>
 	);
 }
