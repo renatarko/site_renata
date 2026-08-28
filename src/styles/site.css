@@ -335,6 +335,35 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-list .ck { width: 22px; height: 22px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center;
   flex-shrink: 0; color: var(--accent-soft); margin-top: 1px; }
 .svc-extras { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+/* cada card tem o próprio wrapper de animação, para se moverem em cascata em vez
+   de como um bloco só. Mesmo padrão de .svc-plans: o wrapper estica e o card
+   preenche, senão os dois perdem a altura igual. */
+.svc-extras > * { display: flex; }
+.svc-extras .svc-card { flex: 1; }
+
+/* --- transição no scroll dos cards de serviço ---
+   Não é um reveal: o card se endireita CONFORME a rolagem e volta a deitar se
+   você sobe. Mesma técnica do empilhamento dos projetos (animation-timeline),
+   então também custa 0 kB e roda fora da main thread.
+
+   A animação fica no WRAPPER, não no card: os cards têm whileHover do framer
+   escrevendo `transform` inline, e uma animação terminando em `transform: none`
+   com fill-mode both venceria o inline e mataria o hover.
+
+   Sem suporte a animation-timeline a duração cai para o padrão 0s e o
+   fill-mode both deixa o card direto no estado final — degrada sozinho. */
+.svc-anim {
+  animation: svc-stand linear both;
+  /* view() anônima, e não uma timeline nomeada: o elemento anima pelo PRÓPRIO
+     progresso, e um `view-timeline-name` declarado nele mesmo não é encontrado
+     na busca por nome (ela olha ancestrais). Foi o que travou na 1ª tentativa. */
+  animation-timeline: view();
+  animation-range: entry calc(10% + var(--i, 0) * 6%) entry calc(70% + var(--i, 0) * 6%);
+}
+@keyframes svc-stand {
+  from { transform: perspective(1200px) rotateX(10deg) translateY(40px); opacity: .4; }
+  to   { transform: none; opacity: 1; }
+}
 .svc-card { border-radius: 22px; padding: 30px; border: 1px solid var(--border); background: var(--surface); }
 .svc-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700; margin: 0 0 10px; }
 .svc-card p { color: var(--text-2); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }
@@ -509,4 +538,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 @media (prefers-reduced-motion: reduce) {
   .svc-includes { transition: none; }
   .svc-toggle svg { transition: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-anim { animation: none; }
 }

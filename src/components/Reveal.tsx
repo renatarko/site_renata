@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { CSSProperties, ReactNode } from "react";
 import { entr } from "./util";
 
@@ -11,6 +11,19 @@ interface Props {
 }
 
 export default function Reveal({ children, y = 26, delay = 0, className, style }: Props) {
+	// O site trata prefers-reduced-motion em todo o CSS, mas as animações do
+	// Framer ficavam de fora. Com a preferência ligada, entrega o conteúdo
+	// direto, sem animação.
+	const semMovimento = useReducedMotion();
+
+	if (semMovimento) {
+		return (
+			<div className={className} style={style}>
+				{children}
+			</div>
+		);
+	}
+
 	return (
 		<motion.div
 			className={className}
