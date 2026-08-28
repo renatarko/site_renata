@@ -75,7 +75,7 @@ export default function Nav() {
 
 	return (
 		<nav className={"nav" + (scrolled ? " scrolled" : "")}>
-			<div className="nav-inner">
+			<div className="nav-inner mx-2 sm:mx-0">
 				<a href="#top" className="logo" onClick={(e) => go(e, "#top")}>
 					<span className="dot" />
 					{SITE.brand}
@@ -105,7 +105,7 @@ export default function Nav() {
 					    um vazio enorme e colidia com o botão do WhatsApp. O Sheet é
 					    baseado em Dialog, que não carrega o motor de posicionamento do
 					    Popover — por isso é a opção mais leve. */}
-					<Sheet open={open} onOpenChange={setOpen}>
+					<Sheet open={open} onOpenChange={setOpen} modal={false}>
 						<SheetTrigger asChild>
 							<button className="theme-btn menu-btn" aria-label={open ? "Fechar menu" : "Abrir menu"}>
 								<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
@@ -116,7 +116,7 @@ export default function Nav() {
 						<SheetContent
 							side="top"
 							showCloseButton={false}
-							className="top-20 right-[18px] left-[18px] h-auto gap-1 rounded-2xl border border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
+							className="top-24 right-[20px] left-[20px] h-auto gap-1 rounded-2xl border border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
 						>
 							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							{links.map(([t, h]) => (
