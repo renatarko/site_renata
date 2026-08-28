@@ -213,7 +213,7 @@ const SITE: SiteData = {
 				"Hospedagem, domínio e manutenção inclusos",
 				"Suporte e pequenos ajustes durante todo o contrato",
 			],
-			cta: "Quero minha landing →",
+			cta: "Quero minha landing",
 		},
 		{
 			id: "site",
@@ -230,7 +230,7 @@ const SITE: SiteData = {
 				"Painel simples para editar textos e imagens sem depender de mim",
 				"Integrações: WhatsApp, e-mail marketing e analytics",
 			],
-			cta: "Quero meu site →",
+			cta: "Quero meu site",
 		},
 	],
 

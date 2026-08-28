@@ -308,7 +308,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-plans > * { display: flex; }
 .svc-plans .svc-feature { flex: 1; display: flex; flex-direction: column; }
 .svc-plans .svc-list { flex: 1; }
-.svc-feature { position: relative; border-radius: 26px; padding: 44px; overflow: hidden;
+.svc-feature { position: relative; border-radius: 26px; padding: 34px; overflow: hidden;
   background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 22%, var(--bg-2)), var(--bg-2));
   border: 1px solid var(--border-strong); box-shadow: var(--shadow); }
 /* entry-level plan: same shape, quieter surface so the featured one leads */
@@ -316,8 +316,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-feature-plain .badge { color: var(--accent-soft); background: var(--surface-2); }
 /* undo .grad's clipped-gradient text so the entry price reads as plain type */
 .svc-feature-plain .price .v { background: none; color: var(--text); -webkit-text-fill-color: var(--text); }
-.svc-feature .badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 12px;
-  letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 7px 14px; border-radius: 100px; }
+.svc-feature .badge { width: fit-content; display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);  padding: 7px 14px; border-radius: 100px; }
 .svc-inherits { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px;
   color: var(--accent-soft); margin: 0 0 16px; }
 .svc-feature h3 { font-size: 32px; margin: 22px 0 6px; }
@@ -325,6 +325,11 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .price .v { font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.04em; }
 .price .per { color: var(--text-2); font-size: 16px; }
 .price-note { color: var(--muted); font-size: 14px; margin-bottom: 26px; }
+/* No desktop o accordion não existe: o botão some e o wrapper vira
+   display:contents, saindo do layout. Assim `.svc-plans .svc-list { flex: 1 }`
+   continua valendo e o card fica idêntico ao de antes. */
+.svc-toggle { display: none; }
+.svc-includes { display: contents; }
 .svc-list { display: grid; gap: 13px; margin: 0 0 30px; padding: 0; list-style: none; }
 .svc-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-2); }
 .svc-list .ck { width: 22px; height: 22px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center;
@@ -397,6 +402,87 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .hero-3d { height: 300px; margin-top: 34px; }
   .hero-orbits, .hero-dots, .hero-circuit, .hero-glyphs, .float-chip { display: none; }
   .hero-mock-img { max-width: 100%; }
+
+  /* --- empilhamento dos cards de projeto (só mobile) ---
+     O card gruda no topo e o seguinte desliza por cima, formando um baralho.
+     Custo zero de JS: sticky + scroll-driven animation, ambos nativos.
+
+     Duas coisas que o efeito exige:
+     1. .work-grid vira block. Um item de GRID não consegue grudar para fora da
+        própria célula — o containing block dele é a grid area, da altura exata
+        do card, e sticky ali não faz nada. Em block o containing block passa a
+        ser a coluna inteira. Como gap não vale em block, vira margin-bottom.
+     2. O card vira opaco. --surface é translúcido (4,5% de branco), e empilhados
+        dava para ver um através do outro.
+
+     A timeline fica no <a> (que rola normal) e o sticky no card. Se o sticky
+     fosse o próprio elemento da timeline, o progresso travaria junto com ele. */
+  /* A timeline fica no GRID, não no <a>. O <a> é sticky, e um elemento pinado
+     para de se mover em relação à viewport — o progresso do view() dele
+     estagnaria. O grid rola normalmente, então serve de régua para a seção
+     inteira, e cada card consome uma FAIXA diferente dela via --i. */
+  .work-grid { display: block; view-timeline-name: --deck; view-timeline-axis: block; }
+
+  /* O STICKY VAI NO <a>, não no card. `position: sticky` gruda dentro do
+     ELEMENTO PAI, e o pai do card é o próprio <a>, que tem a altura exata dele
+     — não sobra curso para grudar. Já o pai do <a> é o .work-grid, que é a
+     coluna inteira, então ali o card fica preso durante toda a seção. */
+  .work-stack-item {
+    display: block;
+    position: sticky;
+    top: calc(96px + var(--i, 0) * 8px);   /* 96px livra a nav fixa */
+    margin-bottom: 24px;
+  }
+  .work-stack-item:last-child { margin-bottom: 0; }
+
+  .work-stack-item .work-card {
+    background: var(--bg-2);   /* opaco: --surface é translúcido e vazaria */
+    /* `scale` e não `transform: scale()`: o card é um motion.article e o framer
+       escreve `transform` inline. scale é propriedade independente, sem disputa. */
+    animation: card-stack linear both;
+    animation-timeline: --deck;
+    /* +15% desloca o início: `cover 0%` é quando o grid apenas encosta na
+       borda de baixo da viewport, muito antes do card ser soterrado. */
+    animation-range: cover calc(var(--i, 0) * 12% + 15%) cover calc(var(--i, 0) * 12% + 41%);
+  }
+  @keyframes card-stack {
+    to { scale: 0.93; filter: brightness(0.7); }
+  }
+
+  /* --- "o que está incluso" (só mobile) ---
+     Botão + lista que abre. Sem biblioteca: a animação é o truque de
+     grid-template-rows 0fr -> 1fr, que interpola altura sem precisar saber o
+     valor final. Custo zero de JS; o React só guarda aberto/fechado. */
+  .svc-toggle {
+    display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px;
+    /* background: var(--surface-2); border: 1px solid var(--border); border-radius: 13px; */
+    padding: 13px 0px;
+     margin: 0 0 14px; 
+     cursor: pointer; text-align: left;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; color: var(--text-2);
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .svc-toggle:hover { border-color: var(--border-strong); }
+  .svc-toggle:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+  .svc-toggle svg { flex-shrink: 0; transition: transform .3s ease; }
+  .svc-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  /* Transição de max-height, e não o truque de grid-template-rows 0fr->1fr.
+     O 0fr->1fr é mais elegante, mas neste contexto a linha não expandia: o item
+     do grid tem overflow:hidden, o que zera a contribuição de altura dele, e o
+     card ainda impõe `.svc-plans .svc-list { flex: 1 }`. Medido: mesmo com
+     `grid-template-rows: 273px` inline a linha ficava em 0.
+     O teto é generoso — a maior lista tem 7 itens (~273px). */
+  .svc-includes {
+    display: block; overflow: hidden;
+    max-height: 0; margin-bottom: 0;
+    transition: max-height .35s cubic-bezier(.22, 1, .36, 1), margin-bottom .35s ease;
+  }
+  .svc-includes[data-aberto="true"] { max-height: 600px; margin-bottom: 22px; }
+  /* .svc-plans .svc-list tem flex:1 para igualar a altura dos cards no desktop;
+     dentro do accordion isso atrapalha */
+  .svc-includes .svc-list { flex: initial; margin: 0; }
+
   .about-photo { max-width: 360px; }
   .nav-links { display: none; }
   .menu-btn { display: grid; }
@@ -410,4 +496,17 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .hero-stats { gap: 22px; }
   .wa-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .svc-feature { padding: 30px 26px; }
+}
+
+/* Precisa vir DEPOIS do bloco de 980px: a animação é declarada lá, tem a mesma
+   especificidade, e sem esta ordem a última declaração venceria e o
+   reduced-motion seria ignorado em silêncio. O empilhamento continua; só a
+   escala e o brilho param. */
+@media (prefers-reduced-motion: reduce) {
+  .work-stack-item .work-card { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-includes { transition: none; }
+  .svc-toggle svg { transition: none; }
 }
