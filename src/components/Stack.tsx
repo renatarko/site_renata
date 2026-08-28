@@ -1,8 +1,25 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRef } from "react";
 import SITE from "./data";
 
 type Tech = (typeof SITE.stack)[number]["items"][number];
+
+/**
+ * Hover do card e do ícone como VARIANTES, não como objetos.
+ *
+ * `whileHover={{ ... }}` com objeto só afeta o próprio elemento. Com rótulo, o
+ * Framer propaga o estado para os filhos — é o que faz o ícone reagir ao hover
+ * do card inteiro em vez de exigir o ponteiro em cima dos 38px do quadradinho.
+ */
+const cardHover: Variants = {
+	hover: { x: 6, borderColor: "var(--accent)", backgroundColor: "var(--surface-2)" },
+};
+
+// só rotate/scale: `x` e `opacity` do ícone vêm da rolagem, via MotionValue no
+// style, e são propriedades independentes — os dois convivem no mesmo transform
+const iconHover: Variants = {
+	hover: { rotate: [0, -10, 10, 0], scale: 1.12 },
+};
 
 /**
  * Item da stack. O card fica parado; quem entra é o ÍCONE, que desliza da
@@ -32,13 +49,14 @@ function TechItem({ t, ativo }: { readonly t: Tech; readonly ativo: boolean }) {
 		<motion.div
 			ref={ref}
 			className="tech"
-			whileHover={{ x: 6, borderColor: "var(--accent)", backgroundColor: "var(--surface-2)" }}
+			variants={cardHover}
+			whileHover="hover"
 			transition={{ type: "spring", stiffness: 300, damping: 20 }}
 		>
 			<motion.span
 				className="ic"
 				style={ativo ? { ...cores, x, opacity } : cores}
-				whileHover={{ rotate: [0, -10, 10, 0], scale: 1.12 }}
+				variants={iconHover}
 				transition={{ duration: 0.5 }}
 			>
 				{t.abbr}
