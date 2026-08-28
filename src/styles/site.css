@@ -57,6 +57,10 @@
    mudava o ritmo vertical de 79 elementos. Como o site.css está na camada
    components, que vem depois de base, esta regra vence o reset. */
 html { scroll-behavior: smooth; line-height: normal; }
+/* Chegar em /#sobre vindo do blog usa o scroll NATIVO do navegador, que ignora
+   a nav fixa de 80px e enterra o título embaixo dela. Só o scrollTo manual da
+   Nav compensava esse offset, e ele não roda fora da home. */
+section[id], header[id] { scroll-margin-top: 96px; }
 body {
   margin: 0;
   background: var(--bg);
@@ -416,6 +420,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 /* ============ FOOTER ============ */
 .footer { padding: 50px 0 40px; border-top: 1px solid var(--border); margin-top: 40px; }
 .footer .muted { color: var(--muted); font-size: 14px; }
+.footer-link { font-size: 14px; color: var(--text-2); transition: color .2s ease; }
+.footer-link:hover { color: var(--accent); }
 
 /* ============ WHATSAPP FAB ============ */
 .wa-fab { position: fixed; right: 22px; bottom: 22px; z-index: 90;

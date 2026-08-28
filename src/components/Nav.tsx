@@ -1,14 +1,21 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from "react";
 import SITE from "./data";
 import { useTheme } from "next-themes";
 
+// Href completo, e não só a âncora: assim o link funciona a partir de
+// /blog/<slug>, abre certo em nova aba e o crawler enxerga um destino válido.
 const links: [string, string][] = [
-	["Sobre", "#sobre"],
-	["Trabalhos", "#trabalhos"],
-	["Serviços", "#servicos"],
-	["Contato", "#contato"],
+	["Sobre", "/#sobre"],
+	["Trabalhos", "/#trabalhos"],
+	["Serviços", "/#servicos"],
+	["Blog", "/blog"],
+	["Contato", "/#contato"],
 ];
 
 function ThemeIcon({ theme }: { theme: string | undefined }) {
@@ -40,6 +47,7 @@ function ThemeIcon({ theme }: { theme: string | undefined }) {
 export default function Nav() {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
+	const onHome = usePathname() === "/";
 
 	// O servidor não sabe a preferência salva, então antes de montar assume o
 	// defaultTheme do provider ("dark"). Isso mantém servidor e cliente iguais na
@@ -62,10 +70,19 @@ export default function Nav() {
 		return () => window.removeEventListener("scroll", on);
 	}, []);
 
+	/**
+	 * Na home, âncora vira scroll suave. Fora dela (no blog), o preventDefault
+	 * era um beco sem saída: o querySelector não achava nada e o clique não
+	 * fazia absolutamente nada. Agora o <Link> roteia e o navegador cai na
+	 * seção — daí o `scroll-margin-top` das seções no site.css, senão a nav
+	 * fixa cobre o título.
+	 */
 	const go = (e: React.MouseEvent, href: string) => {
-		e.preventDefault();
 		setOpen(false);
-		const el = document.querySelector(href);
+		const hash = href.startsWith("/#") ? href.slice(1) : null;
+		if (!hash || !onHome) return;
+		e.preventDefault();
+		const el = document.querySelector(hash);
 		if (el)
 			window.scrollTo({
 				top: el.getBoundingClientRect().top + window.scrollY - 80,
@@ -76,32 +93,32 @@ export default function Nav() {
 	return (
 		<nav className={"nav" + (scrolled ? " scrolled" : "")}>
 			<div className="nav-inner mx-2 sm:mx-auto">
-				<a href="#top" className="logo" onClick={(e) => go(e, "#top")}>
+				<Link href={onHome ? "/#top" : "/"} className="logo" onClick={(e) => go(e, "/#top")}>
 					<span className="dot" />
 					{SITE.brand}
 					<span style={{ color: "var(--accent)" }}>.reko</span>
-				</a>
+				</Link>
 				<div className="nav-links">
 					{links.map(([t, h]) => (
-						<a key={h} href={h} onClick={(e) => go(e, h)}>
+						<Link key={h} href={h} onClick={(e) => go(e, h)}>
 							{t}
-						</a>
+						</Link>
 					))}
 				</div>
 				<div className="flex items-center gap-3">
 					<button className="theme-btn" onClick={toggleTheme} aria-label="Alternar tema">
 						<ThemeIcon theme={theme} />
 					</button>
-					<a
-						href="#contato"
-						onClick={(e) => go(e, "#contato")}
+					<Link
+						href="/#contato"
+						onClick={(e) => go(e, "/#contato")}
 						className="btn btn-primary nav-cta"
 						style={{ padding: "11px 20px" }}
 					>
 						Vamos conversar
-					</a>
+					</Link>
 					{/* Sheet com side="top", mas estilizado como o dropdown que existia
-					    antes: são quatro links, e um painel de altura inteira deixava
+					    antes: são cinco links, e um painel de altura inteira deixava
 					    um vazio enorme e colidia com o botão do WhatsApp. O Sheet é
 					    baseado em Dialog, que não carrega o motor de posicionamento do
 					    Popover — por isso é a opção mais leve. */}
@@ -120,25 +137,25 @@ export default function Nav() {
 						>
 							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							{links.map(([t, h]) => (
-								<a
+								<Link
 									key={h}
 									href={h}
 									onClick={(e) => go(e, h)}
 									className="rounded-[10px] px-[14px] py-3 font-display font-semibold hover:bg-surface-2"
 								>
 									{t}
-								</a>
+								</Link>
 							))}
 							<p className="mt-2 border-t border-border-soft px-[14px] pt-[14px] text-sm text-text-2">
 								Fale comigo sobre o seu projeto
 							</p>
-							<a
-								href="#contato"
-								onClick={(e) => go(e, "#contato")}
+							<Link
+								href="/#contato"
+								onClick={(e) => go(e, "/#contato")}
 								className="btn btn-primary justify-center"
 							>
 								Vamos conversar
-							</a>
+							</Link>
 						</SheetContent>
 					</Sheet>
 				</div>
