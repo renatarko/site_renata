@@ -84,13 +84,13 @@ export default function Servicos() {
 				</Reveal>
 				<div className="svc-plans">
 					{SITE.plans.map((plan, i) => (
-						<Reveal key={plan.id} delay={i * 0.1} y={30} scale={0.96} blur={8}>
+						<div key={plan.id} className="svc-anim" style={{ "--i": i } as React.CSSProperties}>
 							<PlanoCard plan={plan} />
-						</Reveal>
+						</div>
 					))}
 				</div>
 				<div className="svc-extras">
-					<Reveal y={30} scale={0.96} blur={8}>
+					<div className="svc-anim" style={{ "--i": 0 } as React.CSSProperties}>
 					<motion.div className="svc-card" whileHover={{ y: -5, borderColor: "var(--accent)" }}>
 						<h4>Sistemas & Integrações</h4>
 						<p>
@@ -108,8 +108,8 @@ export default function Servicos() {
 							Pedir orçamento 
 						</a>
 					</motion.div>
-					</Reveal>
-					<Reveal delay={0.1} y={30} scale={0.96} blur={8}>
+					</div>
+					<div className="svc-anim" style={{ "--i": 1 } as React.CSSProperties}>
 					<motion.div className="svc-card" whileHover={{ y: -5, borderColor: "var(--accent)" }}>
 						<h4>Design UI/UX no Figma</h4>
 						<p>
@@ -127,7 +127,7 @@ export default function Servicos() {
 							Conversar sobre design 
 						</a>
 					</motion.div>
-					</Reveal>
+					</div>
 				</div>
 			</div>
 		</section>
