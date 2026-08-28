@@ -2,11 +2,11 @@ import { Analytics } from "@vercel/analytics/next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 
+import { SITE_URL } from "../lib/site";
 import { ThemeProvider } from "./theme-provider";
 // o tailwind.css importa o site.css dentro de layer(components)
 import "../styles/tailwind.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://renatakarolina.vercel.app";
 const DESCRIPTION =
 	"Renata Karolina, desenvolvedora web focada em landing pages, sites e sistemas que unem design afiado e código limpo.";
 
