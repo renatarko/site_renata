@@ -335,6 +335,11 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .svc-list .ck { width: 22px; height: 22px; border-radius: 7px; background: var(--surface-2); display: grid; place-items: center;
   flex-shrink: 0; color: var(--accent-soft); margin-top: 1px; }
 .svc-extras { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+/* cada card agora vem embrulhado no próprio Reveal, para entrarem em cascata em
+   vez de como um bloco só. Mesmo padrão de .svc-plans: o wrapper estica e o
+   card preenche, senão os dois perdem a altura igual. */
+.svc-extras > * { display: flex; }
+.svc-extras .svc-card { flex: 1; }
 .svc-card { border-radius: 22px; padding: 30px; border: 1px solid var(--border); background: var(--surface); }
 .svc-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700; margin: 0 0 10px; }
 .svc-card p { color: var(--text-2); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }
