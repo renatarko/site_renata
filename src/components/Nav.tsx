@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from "react";
 import SITE from "./data";
 import { useTheme } from "next-themes";
@@ -100,23 +100,25 @@ export default function Nav() {
 					>
 						Vamos conversar
 					</a>
-					{/* Popover em vez de Sheet: são 4 links, e um painel de altura
-					    inteira deixava um vazio enorme e colidia com o botão do
-					    WhatsApp. Reproduz o dropdown que existia antes, mas com o
-					    ESC, o foco e o clique-fora que o Radix dá. */}
-					<Popover open={open} onOpenChange={setOpen}>
-						<PopoverTrigger asChild>
+					{/* Sheet com side="top", mas estilizado como o dropdown que existia
+					    antes: são quatro links, e um painel de altura inteira deixava
+					    um vazio enorme e colidia com o botão do WhatsApp. O Sheet é
+					    baseado em Dialog, que não carrega o motor de posicionamento do
+					    Popover — por isso é a opção mais leve. */}
+					<Sheet open={open} onOpenChange={setOpen}>
+						<SheetTrigger asChild>
 							<button className="theme-btn menu-btn" aria-label={open ? "Fechar menu" : "Abrir menu"}>
 								<svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none">
 									<path d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"} />
 								</svg>
 							</button>
-						</PopoverTrigger>
-						<PopoverContent
-							align="end"
-							sideOffset={8}
-							className="grid w-[calc(100vw-36px)] max-w-[var(--maxw)] gap-1 rounded-2xl border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
+						</SheetTrigger>
+						<SheetContent
+							side="top"
+							showCloseButton={false}
+							className="top-20 right-[18px] left-[18px] h-auto gap-1 rounded-2xl border border-border-soft bg-bg-2 p-2.5 text-text shadow-site"
 						>
+							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							{links.map(([t, h]) => (
 								<a
 									key={h}
@@ -137,8 +139,8 @@ export default function Nav() {
 							>
 								Vamos conversar
 							</a>
-						</PopoverContent>
-					</Popover>
+						</SheetContent>
+					</Sheet>
 				</div>
 			</div>
 		</nav>
