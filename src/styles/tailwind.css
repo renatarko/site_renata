@@ -2,21 +2,20 @@
    Tailwind 4 — entrada
    Importado no _app ANTES do site.css.
 
-   PREFLIGHT DESLIGADO DE PROPÓSITO nesta fase.
-   O reset do Tailwind zera `ul` (list-style, padding), margens de
-   headings e parágrafos, e `img { display: block }`. O site.css atual
-   depende do padrão do navegador em vários pontos — o caso mais visível
-   é o `ul` do /contato, que mantém os marcadores disc e o padding-left
-   de 40px preservados de propósito na etapa 2.
-
-   Ligar o preflight aqui causaria exatamente a regressão que esta etapa
-   precisa evitar. Ele entra na etapa de portar o CSS (issue #16), junto
-   com o ajuste dos estilos que dependem desses padrões.
+   Preflight ligado. O site.css vem depois dele, na camada components,
+   então as regras do site continuam vencendo o reset.
    =========================================================== */
 @layer theme, base, components, utilities;
 
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
+
+/* O site.css entra na camada `components`, entre base e utilities. Isso resolve
+   a cascata: CSS sem camada venceria qualquer @layer, então as utilitárias do
+   Tailwind não conseguiam sobrescrever as classes do site. Agora conseguem, e
+   dá para portar um trecho por vez sem ter que remover a regra antiga primeiro. */
+@import "./site.css" layer(components);
 
 /* Onde procurar classes. O CSS mora em src/styles, então aponta para src/. */
 @source "../";

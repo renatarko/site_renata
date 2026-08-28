@@ -15,7 +15,7 @@ export default function StackSection() {
 					{SITE.stack.map((g, gi) => (
 						<Reveal key={g.group} className="stack-col" delay={gi * 0.08}>
 							<h4>{g.group}</h4>
-							<div className="stack-items">
+							<div className="flex flex-col gap-3">
 								{g.items.map((t) => (
 									<motion.div
 										key={t.name}

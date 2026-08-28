@@ -3,7 +3,7 @@ import SITE from "./data";
 export default function Footer() {
 	return (
 		<footer className="footer">
-			<div className="wrap footer-inner">
+			<div className="wrap flex flex-wrap items-center justify-between gap-4">
 				<a className="logo" href="#top">
 					<span className="dot" />
 					{SITE.brand}

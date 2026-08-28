@@ -49,7 +49,7 @@ export default function Hero() {
 						Sou {SITE.name}, desenvolvedora web focada em landing pages, sites e sistemas que unem design
 						afiado e código limpo — do Figma ao deploy.
 					</motion.p>
-					<motion.div className="hero-btns" variants={item}>
+					<motion.div className="flex flex-wrap gap-[14px]" variants={item}>
 						<a href="#servicos" className="btn btn-ghost btn-border-loop" onClick={(e) => scrollTo(e, "#servicos")}>
 							Conhecer os planos
 						</a>

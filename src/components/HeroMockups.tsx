@@ -58,7 +58,7 @@ export default function HeroMockups() {
 				</AnimatePresence>
 			</div>
 
-			<div className="hero-mock-meta">
+			<div className="flex flex-col items-center gap-2.5 text-center">
 				<AnimatePresence mode="wait" initial={false}>
 					<motion.div
 						key={current.src}
@@ -72,7 +72,7 @@ export default function HeroMockups() {
 					</motion.div>
 				</AnimatePresence>
 
-				<div className="hero-mock-dots" role="tablist" aria-label="Projetos em destaque">
+				<div className="flex gap-2" role="tablist" aria-label="Projetos em destaque">
 					{mockups.map((m, n) => (
 						<button
 							key={m.src}

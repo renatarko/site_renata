@@ -3,8 +3,8 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 
 import { ThemeProvider } from "./theme-provider";
+// o tailwind.css importa o site.css dentro de layer(components)
 import "../styles/tailwind.css";
-import "../styles/site.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://renatakarolina.vercel.app";
 const DESCRIPTION =

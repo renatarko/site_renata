@@ -42,7 +42,7 @@ export default function Trabalhos() {
 						para o objetivo do cliente.
 					</p>
 				</Reveal>
-				<div className="filters">
+				<div className="flex flex-wrap gap-2.5 mb-9">
 					{SITE.filters.map((f) => (
 						<button
 							key={f}
@@ -78,7 +78,7 @@ export default function Trabalhos() {
 								<div className="work-body">
 									<h3>{p.title}</h3>
 									<p>{p.desc}</p>
-									<div className="work-tags">
+									<div className="work-tags flex flex-wrap gap-2 mt-4">
 										{p.tags.map((t) => (
 											<span key={t}>{t}</span>
 										))}

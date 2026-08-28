@@ -81,7 +81,7 @@ export default function Nav() {
 						</a>
 					))}
 				</div>
-				<div className="nav-right">
+				<div className="flex items-center gap-3">
 					<button className="theme-btn" onClick={toggleTheme} aria-label="Alternar tema">
 						<ThemeIcon theme={theme} />
 					</button>
