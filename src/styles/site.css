@@ -297,7 +297,9 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .stack-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .stack-col h4 { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--muted); margin: 0 0 18px; }
-.tech { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 15px; border: 1px solid var(--border);
+/* overflow: hidden para o ícone entrar de trás da borda esquerda do card em
+   vez de flutuar fora dele durante a transição da seção */
+.tech { overflow: hidden; display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 15px; border: 1px solid var(--border);
   background: var(--surface); cursor: pointer; }
 .tech .ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0;
   font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
