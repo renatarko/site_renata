@@ -51,7 +51,7 @@ export default function Sobre() {
 						</Reveal>
 					))}
 					<Reveal delay={0.3}>
-						<div className="about-tags">
+						<div className="about-tags flex flex-wrap gap-2.5 mt-7">
 							{SITE.aboutTags.map((t) => (
 								<span key={t}>{t}</span>
 							))}

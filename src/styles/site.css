@@ -47,7 +47,11 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* O preflight do Tailwind fixa `line-height: 1.5` em html, sem variável para
+   sobrescrever. O design foi feito contra o `normal` do navegador, e 1.5
+   mudava o ritmo vertical de 79 elementos. Como o site.css está na camada
+   components, que vem depois de base, esta regra vence o reset. */
+html { scroll-behavior: smooth; line-height: normal; }
 body {
   margin: 0;
   background: var(--bg);
@@ -84,6 +88,9 @@ section { position: relative; z-index: 1; }
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 12px var(--good); }
 .pulse::after { content: ""; position: absolute; }
 
+/* h4 fica de fora daqui de propósito: .stack-col h4 e .svc-card h4 têm família e
+   espaçamento próprios. Como o preflight zera o font-weight dos headings, cada um
+   declara o seu — antes dependiam do bold padrão do navegador. */
 h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.03em; margin: 0; }
 .grad { background: linear-gradient(120deg, var(--accent-soft), var(--accent) 55%, var(--accent-2));
   -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -161,10 +168,15 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   display: flex; align-items: center; gap: 10px; }
 .logo .dot { width: 11px; height: 11px; border-radius: 3px; background: linear-gradient(135deg, var(--accent-soft), var(--accent-2));
   box-shadow: 0 0 16px var(--glow); }
+/* .nav-links e .hero-stats ficam em CSS de propósito: o display/gap deles muda por
+   media query. O Tailwind gera `@media (width < 980px)`, que EXCLUI 980px, enquanto
+   o resto do bloco responsivo usa `max-width: 980px`, que INCLUI — em 980px exatos os
+   links do desktop e o botão de menu apareceriam juntos. Além disso, a camada
+   utilities vem depois de components, então um `flex` utilitário venceria o
+   `display: none` da media query. */
 .nav-links { display: flex; gap: 6px; }
 .nav-links a { font-size: 15px; color: var(--text-2); padding: 9px 14px; border-radius: 10px; position: relative; transition: color .2s; }
 .nav-links a:hover { color: var(--text); }
-.nav-right { display: flex; align-items: center; gap: 12px; }
 .theme-btn { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface);
   display: grid; place-items: center; cursor: pointer; color: var(--text); overflow: hidden; }
 .menu-btn { display: none; }
@@ -174,7 +186,6 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 30px; align-items: center; }
 .hero h1 { font-size: clamp(40px, 5.6vw, 74px); line-height: 0.98; margin: 24px 0; }
 .hero-sub { font-size: 19px; line-height: 1.6; color: var(--text-2); max-width: 500px; margin: 0 0 34px; }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-stats { display: flex; gap: 36px; margin-top: 46px; }
 .hero-stats .num { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; }
 .hero-stats .lbl { font-size: 13px; color: var(--muted); margin-top: 2px; }
@@ -219,12 +230,10 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .hero-mock-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
   will-change: transform, opacity, filter; }
 
-.hero-mock-meta { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
 .hero-mock-tag { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-soft); }
 .hero-mock-title { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;
   color: var(--text); margin-top: 3px; }
 
-.hero-mock-dots { display: flex; gap: 8px; }
 .hero-mock-dot { width: 26px; height: 4px; padding: 0; border: 0; border-radius: 99px; cursor: pointer;
   background: var(--border-strong); overflow: hidden; transition: width .35s ease, background .35s ease; }
 .hero-mock-dot.is-active { width: 44px; background: color-mix(in srgb, var(--accent) 25%, transparent); }
@@ -260,11 +269,9 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .about-badge .sm { font-size: 12px; color: var(--muted); }
 .about-body p { font-size: 19px; line-height: 1.7; color: var(--text-2); margin: 0 0 20px; }
 .about-body p strong { color: var(--text); font-weight: 600; }
-.about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .about-tags span { font-size: 14px; padding: 9px 16px; border-radius: 100px; background: var(--surface); border: 1px solid var(--border); font-family: 'Space Mono', monospace; }
 
 /* ============ TRABALHOS ============ */
-.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
 .filter { font-family: 'Space Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 100px;
   border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; transition: all .2s; }
 .filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -279,7 +286,6 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .work-body { padding: 22px 24px 26px; }
 .work-body h3 { font-size: 22px; }
 .work-body p { color: var(--text-2); font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
-.work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .work-tags span { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--muted); padding: 5px 11px;
   border-radius: 8px; background: var(--surface-2); }
 .work-arrow { position: absolute; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 12px;
@@ -287,9 +293,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 
 /* ============ STACK ============ */
 .stack-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.stack-col h4 { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+.stack-col h4 { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--muted); margin: 0 0 18px; }
-.stack-items { display: flex; flex-direction: column; gap: 12px; }
 .tech { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 15px; border: 1px solid var(--border);
   background: var(--surface); cursor: pointer; }
 .tech .ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0;
@@ -326,7 +331,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   flex-shrink: 0; color: var(--accent-soft); margin-top: 1px; }
 .svc-extras { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
 .svc-card { border-radius: 22px; padding: 30px; border: 1px solid var(--border); background: var(--surface); }
-.svc-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; margin: 0 0 10px; }
+.svc-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700; margin: 0 0 10px; }
 .svc-card p { color: var(--text-2); font-size: 15.5px; line-height: 1.6; margin: 0 0 18px; }
 .svc-card .small-cta { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--accent-soft); font-size: 15px; }
 
@@ -364,7 +369,6 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 
 /* ============ FOOTER ============ */
 .footer { padding: 50px 0 40px; border-top: 1px solid var(--border); margin-top: 40px; }
-.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .footer .muted { color: var(--muted); font-size: 14px; }
 
 /* ============ WHATSAPP FAB ============ */
@@ -403,52 +407,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 }
 @media (max-width: 560px) {
   .wrap { padding: 0 22px; }
-  .wa-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .hero-stats { gap: 22px; }
+  .wa-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .svc-feature { padding: 30px 26px; }
-}
-
-/* ============ CONTATO (linktree legado) ============
-   Portado do styled-components. Os valores vinham de styles/theme/dark.ts,
-   que foi deletado junto — ficam literais aqui de propósito: os tokens da
-   landing têm outra paleta (--accent é #8b5cf6, não #8067A9) e o critério
-   desta etapa é fidelidade visual. Unificar é decisão de outra fase. */
-.lk-wrap { display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; }
-.lk-inner { width: 100%; max-width: 130rem; margin-left: auto; margin-right: auto;
-  padding-left: 4rem; padding-right: 4rem;
-  display: flex; flex-direction: column; justify-content: center; position: relative; }
-.lk-content { display: flex; flex-direction: column; justify-content: center; align-items: center;
-  gap: 1.2rem; margin: 2rem 0; align-self: center; position: relative; }
-.lk-back { margin-top: 2rem; color: #FAF9FB; }
-
-.lk-info { width: 100%; display: flex; flex-direction: column; align-items: center;
-  margin-top: 1.9rem; color: #8067A9; }
-.lk-info h2 { font-size: 1rem; }
-
-.lk-avatar { width: 6rem; height: 6rem; margin-bottom: 1rem; }
-.lk-avatar img { width: 100%; height: 100%; border-radius: 100%; }
-
-.lk-title { text-align: center; line-height: 2.3rem; margin: 2rem 0; }
-.lk-title h1 { color: rgb(191, 176, 209); font-size: 2.5rem; }
-.lk-title h3 { font-size: 1.8rem; color: #FAF9FB; }
-
-.lk-links { width: 100%; }
-/* sem reset de propósito: o styled-components original também não resetava,
-   então o ul mantém o disc e o padding-left de 40px do navegador */
-.lk-links li { background-color: #8067A9; text-align: center; padding: 1rem; border-radius: 10px;
-  font-weight: 600; cursor: pointer; color: #FAF9FB; font-size: 1.1rem;
-  margin-bottom: 0.7rem; transition: all 0.3s; }
-.lk-links li:hover { background-color: rgb(191, 176, 209); color: #1A1A1A; }
-.lk-links li a { flex: 1; display: flex; justify-content: center; }
-
-.lk-share { width: 100%; background: none; color: #FAF9FB; position: relative; text-align: center;
-  border-radius: 6px; margin-top: 2rem; display: flex; justify-content: space-between;
-  align-items: center; padding: 0 1rem; }
-.lk-share:hover { background-color: rgba(0, 0, 0, 0.1); }
-.lk-share div { display: flex; align-items: center; gap: 0.3rem; }
-
-@media (max-width: 900px) { .lk-inner { padding: 0 1rem; } }
-@media (max-width: 450px) {
-  .lk-title h1 { font-size: 1.8rem; }
-  .lk-title h3 { font-size: 1.3rem; }
 }
