@@ -397,6 +397,53 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .hero-3d { height: 300px; margin-top: 34px; }
   .hero-orbits, .hero-dots, .hero-circuit, .hero-glyphs, .float-chip { display: none; }
   .hero-mock-img { max-width: 100%; }
+
+  /* --- empilhamento dos cards de projeto (só mobile) ---
+     O card gruda no topo e o seguinte desliza por cima, formando um baralho.
+     Custo zero de JS: sticky + scroll-driven animation, ambos nativos.
+
+     Duas coisas que o efeito exige:
+     1. .work-grid vira block. Um item de GRID não consegue grudar para fora da
+        própria célula — o containing block dele é a grid area, da altura exata
+        do card, e sticky ali não faz nada. Em block o containing block passa a
+        ser a coluna inteira. Como gap não vale em block, vira margin-bottom.
+     2. O card vira opaco. --surface é translúcido (4,5% de branco), e empilhados
+        dava para ver um através do outro.
+
+     A timeline fica no <a> (que rola normal) e o sticky no card. Se o sticky
+     fosse o próprio elemento da timeline, o progresso travaria junto com ele. */
+  /* A timeline fica no GRID, não no <a>. O <a> é sticky, e um elemento pinado
+     para de se mover em relação à viewport — o progresso do view() dele
+     estagnaria. O grid rola normalmente, então serve de régua para a seção
+     inteira, e cada card consome uma FAIXA diferente dela via --i. */
+  .work-grid { display: block; view-timeline-name: --deck; view-timeline-axis: block; }
+
+  /* O STICKY VAI NO <a>, não no card. `position: sticky` gruda dentro do
+     ELEMENTO PAI, e o pai do card é o próprio <a>, que tem a altura exata dele
+     — não sobra curso para grudar. Já o pai do <a> é o .work-grid, que é a
+     coluna inteira, então ali o card fica preso durante toda a seção. */
+  .work-stack-item {
+    display: block;
+    position: sticky;
+    top: calc(96px + var(--i, 0) * 8px);   /* 96px livra a nav fixa */
+    margin-bottom: 24px;
+  }
+  .work-stack-item:last-child { margin-bottom: 0; }
+
+  .work-stack-item .work-card {
+    background: var(--bg-2);   /* opaco: --surface é translúcido e vazaria */
+    /* `scale` e não `transform: scale()`: o card é um motion.article e o framer
+       escreve `transform` inline. scale é propriedade independente, sem disputa. */
+    animation: card-stack linear both;
+    animation-timeline: --deck;
+    /* +15% desloca o início: `cover 0%` é quando o grid apenas encosta na
+       borda de baixo da viewport, muito antes do card ser soterrado. */
+    animation-range: cover calc(var(--i, 0) * 12% + 15%) cover calc(var(--i, 0) * 12% + 41%);
+  }
+  @keyframes card-stack {
+    to { scale: 0.93; filter: brightness(0.7); }
+  }
+
   .about-photo { max-width: 360px; }
   .nav-links { display: none; }
   .menu-btn { display: grid; }
@@ -410,4 +457,12 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
   .hero-stats { gap: 22px; }
   .wa-fab { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .svc-feature { padding: 30px 26px; }
+}
+
+/* Precisa vir DEPOIS do bloco de 980px: a animação é declarada lá, tem a mesma
+   especificidade, e sem esta ordem a última declaração venceria e o
+   reduced-motion seria ignorado em silêncio. O empilhamento continua; só a
+   escala e o brilho param. */
+@media (prefers-reduced-motion: reduce) {
+  .work-stack-item .work-card { animation: none; }
 }

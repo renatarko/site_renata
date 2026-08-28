@@ -53,10 +53,20 @@ export default function Trabalhos() {
 						</button>
 					))}
 				</div>
-				<motion.div className="work-grid" layout>
+				{/* sem `layout` aqui de propósito: ele aplica transform no container
+				    durante a troca de filtro, e ancestral com transform quebra o
+				    position: sticky do empilhamento no mobile. As animações por
+				    card continuam. */}
+				<motion.div className="work-grid">
 					<AnimatePresence mode="popLayout">
 						{list.map((p, i) => (
-							<Link key={p.title} href={p.link} passHref>
+							<Link
+								key={p.title}
+								href={p.link}
+								className="work-stack-item"
+								/* --i escalona o topo de cada card, criando a borda do baralho */
+								style={{ "--i": i } as React.CSSProperties}
+							>
 							<motion.article
 								key={p.title}
 								className="work-card"
