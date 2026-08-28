@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // abstract browser/app preview, no real image
-function WorkMock({ hue, image }: { hue: number , image?: string}) {
+function WorkMock({ hue, image, title }: { hue: number; image: string; title: string }) {
 	const bg = `linear-gradient(150deg, hsl(${hue} 60% 16%), hsl(${(hue + 30) % 360} 55% 9%))`;
 	const acc = `hsl(${hue} 80% 68%)`;
 	return (
@@ -18,8 +18,14 @@ function WorkMock({ hue, image }: { hue: number , image?: string}) {
 						<span key={c} style={{ width: 9, height: 9, borderRadius: 9, background: c, opacity: 0.8 }} />
 					))}
 				</div>
-				<div style={{ width: "100%", height: "100%", background: "rgba(255,255,255,0.1)", border: `1px solid ${acc}55` }} >
-					<Image src={image} alt={image} width={800} height={600} style={{  width: "100%", height: "100%", borderRadius: 8 }} />
+				{/* `fill` em vez de width/height: quem dimensiona é o CSS, e a proporção
+				    declarada (800x600) não batia com a renderizada. Com position:relative
+				    no pai o next/image ocupa a caixa inteira, e o object-fit: cover
+				    recorta em vez de esticar — as capturas têm proporções entre 1.12 e
+				    1.87 e todas iam para a mesma caixa de 1.64. O recorte sai do topo,
+				    que é onde fica o começo da página. */}
+				<div style={{ position: "relative", width: "100%", height: "100%", background: "rgba(255,255,255,0.1)", border: `1px solid ${acc}55` }} >
+					<Image src={image} alt={`Prévia do projeto ${title}`} fill sizes="(max-width: 980px) 100vw, 600px" style={{ objectFit: "cover", objectPosition: "top center", borderRadius: 8 }} />
 				</div>
 			
 			</div>
@@ -86,7 +92,7 @@ function CardProjeto({ p, i }: { p: (typeof SITE.projects)[number]; i: number })
 					}}
 				>
 					<div className="work-thumb">
-						<WorkMock hue={p.hue} image={p.image} />
+						<WorkMock hue={p.hue} image={p.image} title={p.title} />
 						<span className="work-cat">{p.catLabel}</span>
 					</div>
 					<div className="work-body">

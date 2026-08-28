@@ -19,6 +19,10 @@
   --accent: #6d28d9;
   --accent-2: #4f46e5;
   --accent-soft: #7c3aed;
+  /* fundo de preenchimento sólido com texto/ícone branco em cima. No claro é o
+     próprio --accent (7.10 sobre branco); no escuro o --accent é claro demais
+     e daria 4.23, abaixo do 4.5 do WCAG AA. */
+  --accent-strong: #6d28d9;
   --good: #059669;
   --glow: rgba(124,58,237,0.3);
   --shadow: 0 30px 70px -30px rgba(60,40,120,0.35);
@@ -40,6 +44,7 @@
   --accent: #8b5cf6;
   --accent-2: #6366f1;
   --accent-soft: #c4b5fd;
+  --accent-strong: #7c3aed;   /* 5.70 com #fff, contra 4.23 do --accent */
   --good: #34d399;
   --glow: rgba(139,92,246,0.45);
   --shadow: 0 30px 70px -30px rgba(0,0,0,0.8);
@@ -88,9 +93,10 @@ section { position: relative; z-index: 1; }
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 12px var(--good); }
 .pulse::after { content: ""; position: absolute; }
 
-/* h4 fica de fora daqui de propósito: .stack-col h4 e .svc-card h4 têm família e
-   espaçamento próprios. Como o preflight zera o font-weight dos headings, cada um
-   declara o seu — antes dependiam do bold padrão do navegador. */
+/* h4 fica de fora daqui de propósito: .svc-card h4 tem família e espaçamento
+   próprios, e .stack-col h3 sobrescreve os desta regra pelo mesmo motivo. Como o
+   preflight zera o font-weight dos headings, cada um declara o seu — antes
+   dependiam do bold padrão do navegador. */
 h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.03em; margin: 0; }
 .grad { background: linear-gradient(120deg, var(--accent-soft), var(--accent) 55%, var(--accent-2));
   -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -274,7 +280,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 /* ============ TRABALHOS ============ */
 .filter { font-family: 'Space Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 100px;
   border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer; transition: all .2s; }
-.filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filter.active { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; }
 .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 /* o <a> agora fica DENTRO do wrapper de animação, então precisa preencher */
 .work-stack-item > a { display: block; height: 100%; }
@@ -288,14 +294,16 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-
 .work-body { padding: 22px 24px 26px; }
 .work-body h3 { font-size: 22px; }
 .work-body p { color: var(--text-2); font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
-.work-tags span { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--muted); padding: 5px 11px;
+/* --text-2, e não --muted: sobre o --surface-2 da própria tag o --muted cai para
+   4.39 no escuro e 4.14 no claro. É o único fundo em que ele reprova. */
+.work-tags span { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--text-2); padding: 5px 11px;
   border-radius: 8px; background: var(--surface-2); }
 .work-arrow { position: absolute; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 12px;
-  background: var(--accent); color: #fff; display: grid; place-items: center; }
+  background: var(--accent-strong); color: #fff; display: grid; place-items: center; }
 
 /* ============ STACK ============ */
 .stack-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.stack-col h4 { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+.stack-col h3 { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--muted); margin: 0 0 18px; }
 /* overflow: hidden para o ícone entrar de trás da borda esquerda do card em
    vez de flutuar fora dele durante a transição da seção */

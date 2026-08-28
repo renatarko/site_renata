@@ -84,7 +84,7 @@ export default function StackSection() {
 				<div className="stack-groups">
 					{SITE.stack.map((g) => (
 						<div key={g.group} className="stack-col">
-							<h4>{g.group}</h4>
+							<h3>{g.group}</h3>
 							<div className="flex flex-col gap-3">
 								{g.items.map((t) => (
 									<TechItem key={t.name} t={t} ativo={ativo} />

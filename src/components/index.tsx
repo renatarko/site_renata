@@ -19,12 +19,17 @@ export default function Landing() {
 		<>
 			<Background />
 			<Nav />
-			<Hero />
-			<Trabalhos />
-			<StackSection />
-			<Servicos />
-			<Sobre />
-			<Contato />
+			{/* landmark <main>: o Lighthouse cobra um (landmark-one-main) e era o que
+			    faltava, junto do contraste, para a acessibilidade fechar em 100. Fica
+			    só em volta do conteúdo — nav, rodapé e fundo são de outros landmarks. */}
+			<main>
+				<Hero />
+				<Trabalhos />
+				<StackSection />
+				<Servicos />
+				<Sobre />
+				<Contato />
+			</main>
 			<Footer />
 			<WhatsAppFab />
 		</>
