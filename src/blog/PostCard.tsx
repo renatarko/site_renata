@@ -15,7 +15,14 @@ function hueFromSlug(slug: string): number {
 	return 230 + h;
 }
 
-export default function PostCard({ post }: { post: PostMeta }) {
+/**
+ * `nivel` existe por causa da hierarquia de headings: em /blog o h1 é o título
+ * da página e o card é h2; na home o h2 já é o título da seção, então o card
+ * desce para h3. Continua sem pular nível nos dois casos.
+ */
+export default function PostCard({ post, nivel = "h2" }: { post: PostMeta; nivel?: "h2" | "h3" }) {
+	const Titulo = nivel;
+
 	const data = new Date(`${post.date}T12:00:00Z`).toLocaleDateString("pt-BR", {
 		day: "2-digit",
 		month: "short",
@@ -45,7 +52,7 @@ export default function PostCard({ post }: { post: PostMeta }) {
 					<span aria-hidden="true">·</span>
 					<span>{post.readingMinutes} min de leitura</span>
 				</p>
-				<h2>{post.title}</h2>
+				<Titulo>{post.title}</Titulo>
 				<p className="post-desc">{post.description}</p>
 				{post.tags.length > 0 && (
 					<div className="post-tags">

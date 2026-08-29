@@ -38,8 +38,8 @@
   background: color-mix(in srgb, var(--bg) 70%, transparent); border: 1px solid var(--border-strong); }
 
 .post-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.post-body h2 { font-size: 21px; line-height: 1.25; }
-.post-card:hover .post-body h2 { color: var(--accent-soft); }
+.post-body h2, .post-body h3 { font-size: 21px; line-height: 1.25; }
+.post-card:hover .post-body h2, .post-card:hover .post-body h3 { color: var(--accent-soft); }
 .post-desc { color: var(--text-2); font-size: 15px; line-height: 1.55; margin: 0; }
 
 /* --text-2 e não --muted: sobre o --surface-2 da tag o --muted reprova no AA,
@@ -49,6 +49,14 @@
 .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
 .post-tags span { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--text-2);
   padding: 5px 11px; border-radius: 8px; background: var(--surface-2); }
+
+/* Na home cada card vem embrulhado pelo <div> do Reveal, que passa a ser o item
+   do grid — sem isto o card não acompanha a altura da linha. Mesmo problema que
+   o `.work-stack-item > a` resolve nos projetos. */
+.post-grid-item { display: flex; }
+.post-grid-item > .post-card { flex: 1; }
+
+.blog-sec-cta { display: flex; justify-content: center; margin-top: 40px; }
 
 /* ============ ARTIGO ============ */
 .article { padding: 140px 0 90px; }
