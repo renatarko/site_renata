@@ -39,6 +39,12 @@ export async function generateMetadata({
 	// o metadataBase do layout raiz torna esta relativa em absoluta — obrigatório
 	// para o preview do WhatsApp, que ignora og:image relativa em silêncio
 	const image = cover ?? "/assets/tumblr.webp";
+	// og:image:width/height só quando as dimensões são conhecidas de fato. A
+	// imagem padrão é 1200x630; a capa do post é um arquivo qualquer em /public,
+	// e cravar um tamanho aqui faria a tag mentir — o scraper monta o placeholder
+	// na proporção declarada e a prévia sai cortada errado. Sem os campos, ele
+	// baixa e mede sozinho.
+	const imagemPadrao = cover === null;
 
 	return {
 		title,
@@ -53,7 +59,7 @@ export async function generateMetadata({
 			description,
 			publishedTime: date,
 			tags,
-			images: [{ url: image, width: 1200, height: 630 }],
+			images: [imagemPadrao ? { url: image, width: 1200, height: 630 } : { url: image }],
 		},
 		twitter: { card: "summary_large_image", title, description, images: [image] },
 	};
