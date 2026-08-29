@@ -1,6 +1,7 @@
 "use client";
 
 import Background from "./Background";
+import Blog from "./Blog";
 import Contato from "./Contato";
 import Footer from "./Footer";
 import Hero from "./Hero";
@@ -10,11 +11,12 @@ import Sobre from "./Sobre";
 import StackSection from "./Stack";
 import Trabalhos from "./Trabalhos";
 import WhatsAppFab from "./WhatsAppFab";
+import type { PostMeta } from "../blog/types";
 
 // A landing inteira é cliente: 9 dos 12 componentes usam framer-motion ou
 // estado. Marcar aqui basta — a diretiva vale para todo o subgrafo importado.
 // Composes the "Violet Nocturne" landing page and owns theme state.
-export default function Landing() {
+export default function Landing({ posts }: { posts: PostMeta[] }) {
 	return (
 		<>
 			<Background />
@@ -28,6 +30,7 @@ export default function Landing() {
 				<StackSection />
 				<Servicos />
 				<Sobre />
+				<Blog posts={posts} />
 				<Contato />
 			</main>
 			<Footer />
