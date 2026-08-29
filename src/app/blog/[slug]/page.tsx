@@ -2,14 +2,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
+import Toc from "../../../blog/Toc";
 import { blogPostingJsonLd, breadcrumbJsonLd } from "../../../blog/jsonld";
 import { mdxComponents } from "../../../blog/mdx-components";
 import { getAllPostMeta, getNeighbours, getPost } from "../../../blog/posts";
+import { collectHeadings, type Heading } from "../../../blog/headings";
+
+/** Abaixo disso o índice vira ruído: o próprio texto já cabe na tela. */
+const MIN_HEADINGS = 3;
 
 /**
  * Todo post vira HTML no build. Como não existe `dynamicParams`, um slug fora
@@ -66,6 +71,25 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 		year: "numeric",
 	});
 
+	// compileMDX com await, e não <MDXRemote> direto: o índice precisa das
+	// headings ANTES de montar o JSX, e elas só existem depois do compile.
+	const headings: Heading[] = [];
+	const { content } = await compileMDX({
+		source: post.content,
+		components: mdxComponents,
+		options: {
+			mdxOptions: {
+				remarkPlugins: [remarkGfm],
+				// slug primeiro: o autolink e o coletor do índice precisam do id pronto
+				rehypePlugins: [
+					rehypeSlug,
+					collectHeadings(headings),
+					[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: "heading-link" } }],
+				],
+			},
+		},
+	});
+
 	return (
 		<article className="article">
 			<script
@@ -107,21 +131,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 					<img className="article-cover" src={post.meta.cover} alt="" />
 				)}
 
-				<div className="prose">
-					<MDXRemote
-						source={post.content}
-						components={mdxComponents}
-						options={{
-							mdxOptions: {
-								remarkPlugins: [remarkGfm],
-								// slug primeiro: o autolink precisa do id já existir
-								rehypePlugins: [
-									rehypeSlug,
-									[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: "heading-link" } }],
-								],
-							},
-						}}
-					/>
+				{/* O índice vem ANTES no DOM para, no mobile, cair naturalmente acima
+				    do texto; no desktop o grid o joga para a coluna da direita. */}
+				<div className="article-body">
+					{headings.length >= MIN_HEADINGS && <Toc headings={headings} />}
+					<div className="prose">{content}</div>
 				</div>
 
 				{(prev || next) && (

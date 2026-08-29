@@ -64,6 +64,30 @@
 .article-cover { width: 100%; max-width: 900px; aspect-ratio: 16/9; object-fit: cover;
   border-radius: 22px; border: 1px solid var(--border); margin-bottom: 40px; }
 
+/* ============ corpo + índice lateral ============ */
+/* O <aside> vem antes do .prose no DOM (para o mobile empilhar na ordem certa),
+   então aqui as colunas são atribuídas explicitamente em vez de por ordem.
+   minmax(0, 760px) e não 760px: sem o mínimo 0, um <pre> ou uma tabela larga
+   estoura a coluna em vez de rolar dentro dela. */
+.article-body { display: grid; grid-template-columns: minmax(0, 760px) 1fr; gap: 56px; align-items: start; }
+.article-body .prose { grid-column: 1; grid-row: 1; }
+
+.toc { grid-column: 2; grid-row: 1; position: sticky; top: 110px; max-height: calc(100vh - 150px);
+  overflow-y: auto; overscroll-behavior: contain; }
+.toc-titulo { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--border); }
+.toc li { margin: 0; }
+.toc li a { display: block; padding: 7px 0 7px 16px; margin-left: -1px; font-size: 14.5px; line-height: 1.4;
+  color: var(--text-2); border-left: 2px solid transparent; transition: color .2s ease, border-color .2s ease; }
+.toc li[data-nivel="3"] a { padding-left: 30px; font-size: 13.5px; }
+.toc li a:hover { color: var(--text); }
+/* aria-current é a fonte da verdade do estado ativo: o estilo acompanha o que
+   o leitor de tela já anuncia, em vez de uma classe paralela */
+.toc li a[aria-current] { color: var(--accent-soft); border-left-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) { .toc li a { transition: none; } }
+
 /* ============ .prose — tipografia do texto ============ */
 .prose { max-width: 760px; font-size: 18px; line-height: 1.75; color: var(--text-2); }
 .prose > *:first-child { margin-top: 0; }
@@ -132,6 +156,19 @@
 @media (prefers-reduced-motion: reduce) {
   .post-card, .post-nav-item { transition: none; }
   .post-card:hover, .post-nav-item:hover { transform: none; }
+}
+
+/* O índice precisa de largura própria para não espremer o texto. Abaixo disso
+   ele vira uma caixa acima do artigo — que é a ordem natural do DOM. */
+@media (max-width: 1180px) {
+  .article-body { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .article-body .prose, .toc { grid-column: 1; grid-row: auto; }
+  .toc { position: static; max-height: none; overflow: visible; padding: 18px 20px;
+    border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
+  .toc ol { border-left: 0; }
+  .toc li a { padding: 6px 0; border-left: 0; }
+  .toc li[data-nivel="3"] a { padding-left: 16px; }
+  .toc li a[aria-current] { border-left: 0; }
 }
 
 @media (max-width: 980px) {
